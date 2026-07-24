@@ -10,6 +10,12 @@ as a whole (see `package.json`).
   a new open-source MCP scaffold (`schedule_recurring_reminder`, `cancel_recurring_reminder`,
   `list_recurring_reminders`). `opskeep-follow-up-reminders` now hands off recurring
   requests to `opskeep-manage` instead of refusing them outright.
+- Added sole-trader coverage: short reference notes on `opskeep-define-work`,
+  `opskeep-deliver-work`, `opskeep-get-paid`, and `opskeep-keep-clients` for solo
+  tradespeople/freelancers, plus a new `opskeep-expense-tracking` breakout skill (backed
+  by a new open-source MCP scaffold: `log_expense`, `list_expenses`,
+  `summarize_expenses`, `delete_expense`) for job-tagged materials/mileage costs that
+  `opskeep-get-paid` can fold into an invoice.
 
 ## 0.1.0 (2026-07-24)
 

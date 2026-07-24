@@ -46,7 +46,7 @@ cp -r opskeep-skills/skills/* .agents/skills/
 - Delivery planning, coordination, and follow-through for active client work
 - Money, relationship, handoff, closeout, and learning loops around delivery
 - Client-ready updates and internal operating briefs
-- Audio briefs, voice huddles, follow-up reminders, time tracking, and Composio-backed tool access as standalone breakout skills
+- Audio briefs, voice huddles, follow-up reminders, time tracking, job expense tracking, and Composio-backed tool access as standalone breakout skills
 - Lane-owned references with gotchas, examples, and connector setup
 - An MCP server exposing the reminders/time-tracking hosted tools as callable functions: see [mcp-server](mcp-server)
 
@@ -85,6 +85,7 @@ These remain separately installable because they're tool-specific or useful outs
 | `composio-mcp` | Routes external app work through the Composio MCP with tool discovery, authorization links, schema-safe execution, and concise provenance. |
 | `opskeep-follow-up-reminders` | Creates and cancels deterministic one-shot email follow-up reminders, only when the user wants a specific future reminder. |
 | `opskeep-time-tracking` | Starts, stops, switches, backfills, updates, archives, and summarizes time entries. |
+| `opskeep-expense-tracking` | Logs, lists, and summarizes job-tagged expenses (materials, mileage, other costs) ready to fold into an invoice. |
 | `opskeep-triggers` | Creates, inspects, and deletes event-triggered automations with explicit trigger proposal confirmation. |
 
 ## Contributing

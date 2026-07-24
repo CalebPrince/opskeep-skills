@@ -28,7 +28,7 @@ Manage Opskeep:
 - `setup`, `connect tools`, `company brain`, `automation`, `trigger`, `loop`
 
 Opskeep Tools:
-- `audio brief`, `voice session`, `follow-up reminder`, `time tracking`, `composio`
+- `audio brief`, `voice session`, `follow-up reminder`, `time tracking`, `expense tracking`, `composio`
 
 Decision stub: next action, owner, date, evidence. Use `TBD` when missing.
 ```

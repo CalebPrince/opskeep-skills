@@ -19,6 +19,10 @@ the skill; this server does the sending, scheduling, and storing.
 | `start_timer` / `stop_timer` | Starts/stops a running timer for a project |
 | `backfill_time_entry` | Logs a completed time block without a live timer |
 | `summarize_time` | Totals logged time for a project, optionally since a date |
+| `log_expense` | Logs a materials/mileage/other cost tagged to a job |
+| `list_expenses` | Lists logged expenses, optionally by job and/or category |
+| `summarize_expenses` | Totals a job's expenses by category, ready to fold into an invoice |
+| `delete_expense` | Removes a logged expense by ID |
 
 ## Status
 

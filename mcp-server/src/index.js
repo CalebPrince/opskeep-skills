@@ -16,6 +16,12 @@ import {
   backfillTimeEntryTool,
   summarizeTimeTool,
 } from "./tools/timeTracking.js";
+import {
+  logExpenseTool,
+  listExpensesTool,
+  summarizeExpensesTool,
+  deleteExpenseTool,
+} from "./tools/expenseTracking.js";
 
 const server = new McpServer({
   name: "opskeep-tools",
@@ -34,6 +40,10 @@ const tools = [
   stopTimerTool,
   backfillTimeEntryTool,
   summarizeTimeTool,
+  logExpenseTool,
+  listExpensesTool,
+  summarizeExpensesTool,
+  deleteExpenseTool,
 ];
 
 for (const tool of tools) {

@@ -1,7 +1,8 @@
 # Sole trader profile — coverage sketch
 
-Status: sketch, not wired into any skill yet. Unlike `verticals/opskeep-retail` and
-`verticals/opskeep-hospitality`, this is not a sibling pack proposal.
+Status: built. Unlike `verticals/opskeep-retail` and `verticals/opskeep-hospitality`, this
+was never a sibling pack proposal — it shipped as reference notes on existing skills plus
+one new breakout skill.
 
 ## Why sole trader isn't a new vertical
 
@@ -17,49 +18,42 @@ So the right unit here isn't a new lane taxonomy — it's a set of light adjustm
 four existing skills where a solo, often on-site operator differs from the
 consultant/agency default Opskeep is written against, plus one real gap.
 
-## Where the differences land
+## Where the differences landed
 
-| Existing skill | Sole-trader adjustment |
-| --- | --- |
-| `opskeep-define-work` | A quote for a single job stands in for a full proposal; skip RACI/stakeholder mapping unless the client explicitly has multiple decision-makers. |
-| `opskeep-deliver-work` | Delivery is typically a single visit or short on-site run, not a multi-week engagement; "handoff" and "dependency" tracking rarely apply solo. |
-| `opskeep-get-paid` | Mileage and job materials are core cost inputs to billable time/budget, not an edge case, since margin on a physical job depends on them directly. |
-| `opskeep-keep-clients` | Referral tracking matters more than renewal tracking — most trades don't run recurring contracts, they get repeat and referred jobs. |
+| Existing skill | Sole-trader adjustment | Reference |
+| --- | --- | --- |
+| `opskeep-define-work` | A quote for a single job stands in for a full proposal; skip RACI/stakeholder mapping unless the client explicitly has multiple decision-makers. | [`references/sole-trader.md`](../skills/opskeep-define-work/references/sole-trader.md) |
+| `opskeep-deliver-work` | Delivery is typically a single visit or short on-site run, not a multi-week engagement; "handoff" and "dependency" tracking rarely apply solo. | [`references/sole-trader.md`](../skills/opskeep-deliver-work/references/sole-trader.md) |
+| `opskeep-get-paid` | Mileage and job materials are core cost inputs to billable time/budget, not an edge case, since margin on a physical job depends on them directly. | [`references/sole-trader.md`](../skills/opskeep-get-paid/references/sole-trader.md) |
+| `opskeep-keep-clients` | Referral tracking matters more than renewal tracking — most trades don't run recurring contracts, they get repeat and referred jobs. | [`references/sole-trader.md`](../skills/opskeep-keep-clients/references/sole-trader.md) |
 
-These are candidates for short `references/sole-trader.md` additions inside each of those
-four skills (per the `docs/` convention: one topic file, linked from the relevant skills)
-once validated, not new skill files.
+## The gap that's now closed: mileage/job-expense tracking
 
-## The one real gap: mileage/job-expense tracking
+Built as its own breakout skill, [`opskeep-expense-tracking`](../skills/opskeep-expense-tracking/SKILL.md),
+answering open question 2 below in favor of a dedicated skill rather than folding into
+`opskeep-get-paid` — same reasoning as `opskeep-time-tracking`: capture is a distinct,
+repeated interaction from invoicing, so it's cleaner as its own tool that `opskeep-get-paid`
+reads from.
 
-Everything else above is a framing adjustment to an existing skill. This one is missing
-entirely: a tradesperson needs to capture a mileage log or a materials receipt and tag it
-to a specific job, so it rolls into that job's `opskeep-get-paid` invoice. Today there's no
-skill or `opskeep-tools` breakout that does this — `opskeep-time-tracking` covers billable
-hours but not mileage or job materials.
+- Capture: `log_expense` — a materials/mileage/other cost tagged to a job. Amount is
+  always caller-supplied; the tool never invents a per-mile rate.
+- Store: `list_expenses` / `summarize_expenses` (mirrors the MCP scaffold pattern used for
+  reminders and time entries — in-memory, resets on restart, `TODO` for real
+  receipt-OCR/storage).
+- Output: `summarize_expenses` totals by category, ready to fold into that job's invoice
+  via `opskeep-get-paid`.
 
-This overlaps the "expense tracking" gap already flagged as a candidate `opskeep-tools`
-breakout skill in earlier scoping. Sketch, if built:
+## Open questions (remaining)
 
-- Capture: a receipt photo/description or a mileage entry, tagged to a job/client, same
-  interaction shape as `opskeep-time-tracking`'s backfill.
-- Store: running expense total per job (mirrors the MCP scaffold pattern used for
-  reminders and time entries — in-memory, `TODO` for real receipt-OCR/storage).
-- Output: expense line items ready to fold into that job's invoice via `opskeep-get-paid`.
-
-## Open questions
-
-1. Do the four adjustment notes above get written as real `references/sole-trader.md`
-   files now, or wait until a real sole-trader workflow validates them (same "validate
-   before promoting" bar used for `prototypes/`)?
-2. Should mileage/job-expense tracking be its own `opskeep-tools` breakout, or folded into
-   a broader `opskeep-expense-tracking` skill alongside non-mileage expenses?
-3. Where's the line between "sole trader" and "small team"? A two-person plumbing outfit
+1. Where's the line between "sole trader" and "small team"? A two-person plumbing outfit
    blurs this; past a certain team size these adjustments stop applying and it's just
    default Opskeep.
+2. Should `opskeep-expense-tracking` eventually get a hosted/Pro tier (like
+   `opskeep-time-tracking`'s real gateway-backed version) once real usage validates the
+   open-source scaffold, per [PRODUCT.md](../PRODUCT.md)'s tiering?
 
 ## Status
 
-Sketch only. Recommendation: don't build a new pack for this. If anything ships, it's (a)
-four short reference notes on existing skills, and (b) a possible new `opskeep-tools`
-breakout for mileage/job-expense capture — both smaller than a `verticals/` fork.
+Built. Four reference notes shipped on existing skills, plus `opskeep-expense-tracking` as
+a new breakout skill with its own open-source MCP scaffold. No new pack was created, per
+the original recommendation.

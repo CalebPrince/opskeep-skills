@@ -23,6 +23,7 @@ Turn fuzzy demand into work that can be delivered.
 - Use `references/initiate*.md` for context, stakeholders, problem framing, and viability.
 - Use `references/plan*.md` for requirements, scope, roadmap, RAID/RACI, and decisions.
 - Load `references/examples/define-work.md` when an example shape helps.
+- Load `references/sole-trader.md` when the requester is a solo tradesperson/freelancer, not a team engagement.
 
 ## Output Contract
 

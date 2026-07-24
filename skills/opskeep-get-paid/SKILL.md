@@ -21,6 +21,7 @@ Keep money follow-through visible and actionable.
 - Load `references/getting-paid.md` first.
 - Use `references/initiate-budget.md`, `references/monitor-budget.md`, and `references/execute-change-control.md` for budget, burn, margin, and money-impacting changes.
 - Load `references/examples/getting-paid.md` when an example shape helps.
+- Load `references/sole-trader.md` when the requester is a solo tradesperson/freelancer invoicing directly, not a team engagement.
 
 ## Output Contract
 
@@ -35,6 +36,7 @@ Keep money follow-through visible and actionable.
 - Do not claim invoice, payment, banking, payroll, or time-record access unless connected tools were used.
 - Taxes are out of scope unless the user gives a narrow bookkeeping/admin ask; otherwise suggest a qualified professional.
 - Time record create/update actions go through `opskeep-tools` to `opskeep-time-tracking`.
+- Mileage/job-material expense capture and lookup go through `opskeep-tools` to `opskeep-expense-tracking`.
 
 ## Gotchas
 

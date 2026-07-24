@@ -20,6 +20,7 @@ Protect trust after and around delivery.
 
 - Load `references/keep-clients.md` for the lane workflow.
 - Load `references/examples/keep-clients.md` when an example shape helps.
+- Load `references/sole-trader.md` when the requester is a solo tradesperson/freelancer, not a team engagement.
 
 ## Output Contract
 

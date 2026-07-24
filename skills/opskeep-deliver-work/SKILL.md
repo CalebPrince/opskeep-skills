@@ -22,6 +22,7 @@ Keep active client work moving.
 - Use `references/execute*.md` for coordination, iteration, and handoffs.
 - Use `references/monitor*.md` for status, triage, and risk.
 - Load `references/examples/deliver-work.md` when an example shape helps.
+- Load `references/sole-trader.md` when the requester is a solo tradesperson/freelancer, not a team engagement.
 
 ## Output Contract
 
