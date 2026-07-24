@@ -4,8 +4,8 @@
 
 Delivering the craft is only half the job. There's also winning the work, scoping it,
 coordinating delivery, getting paid, keeping the client, and getting better at all of it
-next time. Teams hire operators for that. Opskeep installs that know-how — and a few
-hosted tools — directly into your agent.
+next time. Teams hire operators for that. Opskeep installs that know-how (and a few
+hosted tools) directly into your agent.
 
 Opskeep skills give agents practical operator workflows for service-business work:
 pipeline signals, discovery briefs, delivery updates, blockers, invoicing follow-through,
@@ -41,13 +41,14 @@ cp -r opskeep-skills/skills/* .agents/skills/
 
 ## What Opskeep adds
 
-- **Six business lanes** — win work, scope work, run work, get paid, keep clients, sharpen the craft
-- **Two meta surfaces** — `opskeep-manage` for setup/config/memory/automation, and `opskeep-tools` for hosted utilities
+- **Six business lanes**: win work, scope work, run work, get paid, keep clients, sharpen the craft
+- **Two meta surfaces**: `opskeep-manage` for setup/config/memory/automation, and `opskeep-tools` for hosted utilities
 - Delivery planning, coordination, and follow-through for active client work
 - Money, relationship, handoff, closeout, and learning loops around delivery
 - Client-ready updates and internal operating briefs
 - Session recaps: turn sessions, plans, PRs, and docs into a listenable brief
 - Lane-owned references with gotchas, examples, and connector setup
+- An MCP server exposing the hosted tools as callable functions: see [mcp-server](mcp-server)
 
 ## Core router
 
@@ -80,4 +81,4 @@ for guidance on skill structure, eval coverage, and versioning.
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT: see [LICENSE](LICENSE).

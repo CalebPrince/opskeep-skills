@@ -6,12 +6,12 @@ lane: keep-clients
 
 # Keep clients
 
-Covers the relationship after the deliverable ships — the work that turns a one-off
+Covers the relationship after the deliverable ships: the work that turns a one-off
 project into repeat business.
 
 ## When to trigger
 
-- "It's been a month since we finished [project] — should I check in?"
+- "It's been a month since we finished [project], should I check in?"
 - "Draft a renewal outreach for [client]."
 - "Ask [client] for a testimonial."
 - Assessing whether a client relationship is healthy or at risk.
@@ -21,12 +21,12 @@ project into repeat business.
 - Delivery history and outcome for the client (pull from `opskeep-run-work` closeout notes
   if available).
 - Time since last contact and the nature of the relationship (one-off vs. retainer).
-- Any signals of dissatisfaction already on record — don't send a cheerful check-in over an
+- Any signals of dissatisfaction already on record. Don't send a cheerful check-in over an
   unresolved complaint.
 
 ## What to produce
 
-- A check-in or renewal message draft, specific to what was delivered — not a generic
+- A check-in or renewal message draft, specific to what was delivered, not a generic
   template.
 - A client health read: healthy / at-risk / dormant, with the specific signal driving that
   read.
@@ -40,5 +40,5 @@ project into repeat business.
 
 ## Guardrails
 
-- Don't ask for a testimonial or referral right after a rocky delivery — check the record
+- Don't ask for a testimonial or referral right after a rocky delivery. Check the record
   for unresolved issues first.

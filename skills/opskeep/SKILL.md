@@ -4,10 +4,10 @@ description: Routes business work, Opskeep setup, and Opskeep hosted tools into 
 lane: meta
 ---
 
-# Opskeep — core router
+# Opskeep: core router
 
 Opskeep is the entry point. Most users won't know (or care) which lane skill handles their
-request — they'll just say "invoice Client X" or "draft an update for the Meridian
+request; they'll just say "invoice Client X" or "draft an update for the Meridian
 project." This skill's job is to read the request, route it, and hand off enough context
 that the target skill doesn't have to re-ask the basics.
 
@@ -16,7 +16,7 @@ that the target skill doesn't have to re-ask the basics.
 - The request is about running the business side of service work (not the craft itself):
   pipeline, scoping, delivery status, invoicing, client relationships, retros.
 - The request mentions Opskeep by name, or asks "what can Opskeep do."
-- The request is ambiguous between two lanes — route here first, then hand off.
+- The request is ambiguous between two lanes: route here first, then hand off.
 
 ## Routing table
 
@@ -36,9 +36,9 @@ that the target skill doesn't have to re-ask the basics.
 Gather (or infer from context already in the session):
 
 1. **Which client/project** the request is about, if any.
-2. **What's already known** — don't make the target skill re-derive facts visible in the
+2. **What's already known**: don't make the target skill re-derive facts visible in the
    current session.
-3. **What "done" looks like** — an update sent, an invoice line added, a reminder
+3. **What "done" looks like**: an update sent, an invoice line added, a reminder
    scheduled, etc.
 
 If the lane is genuinely ambiguous after reading the request, ask one clarifying question

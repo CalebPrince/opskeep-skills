@@ -18,14 +18,14 @@ one-off solutions into reusable process.
 
 ## What to gather
 
-- What actually happened during delivery — pull from `opskeep-run-work` status history
+- What actually happened during delivery: pull from `opskeep-run-work` status history
   rather than relying on memory alone.
 - The original scope and outcome, to compare planned vs. actual.
 - Any prior retros for similar project types, to spot recurring patterns.
 
 ## What to produce
 
-- A retro summary: what went well, what didn't, and one or two concrete process changes —
+- A retro summary: what went well, what didn't, and one or two concrete process changes,
   not a vague "communication could be better."
 - A reusable template or SOP when a workflow proves repeatable (e.g., a scope-doc
   structure, an onboarding checklist).

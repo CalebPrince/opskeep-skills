@@ -1,6 +1,6 @@
 ---
 name: opskeep-scope-work
-description: Turns messy demand into defined work — discovery notes, scope documents, proposals, acceptance checks, and client or project onboarding — before delivery starts.
+description: Turns messy demand into defined work: discovery notes, scope documents, proposals, acceptance checks, and client or project onboarding, before delivery starts.
 lane: scope-work
 ---
 
@@ -18,14 +18,14 @@ for how much."
 
 ## What to gather
 
-- Raw discovery input: call notes, emails, a messy brain dump — whatever exists.
+- Raw discovery input: call notes, emails, a messy brain dump; whatever exists.
 - Any rate card, package, or prior similar-project scope to anchor pricing and scope size.
 - Constraints the client has stated (deadline, budget ceiling, must-haves).
 
 ## What to produce
 
 - A structured scope: deliverables, timeline, exclusions, assumptions, and acceptance
-  criteria — specific enough that "done" isn't a debate later.
+  criteria; specific enough that "done" isn't a debate later.
 - A proposal draft when asked, built from the scope rather than duplicating the work.
 - An onboarding checklist for a newly-signed client: access needed, kickoff date, first
   deliverable, and who owns each item.

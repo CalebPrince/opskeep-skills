@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Lists eval scenarios found under evals/. Scenario runners are added as the
-// eval format solidifies — for now this just confirms coverage exists.
+// eval format solidifies; for now this just confirms coverage exists.
 const fs = require("fs");
 const path = require("path");
 

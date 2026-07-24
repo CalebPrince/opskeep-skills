@@ -33,10 +33,10 @@ Everything in Pro, plus:
 | --- | --- | --- | --- |
 | Business-lane skills | ✅ | ✅ | ✅ |
 | Core router | ✅ | ✅ | ✅ |
-| Hosted client updates | — | ✅ | ✅ |
-| Hosted reminders | — | ✅ | ✅ |
-| Session recaps | — | ✅ | ✅ |
-| Time tracking sync | — | ✅ | ✅ |
-| Managed connectors | — | ✅ | ✅ |
-| Always-on operation | — | — | ✅ |
-| Custom tuning & support | — | — | ✅ |
+| Hosted client updates | n/a | ✅ | ✅ |
+| Hosted reminders | n/a | ✅ | ✅ |
+| Session recaps | n/a | ✅ | ✅ |
+| Time tracking sync | n/a | ✅ | ✅ |
+| Managed connectors | n/a | ✅ | ✅ |
+| Always-on operation | n/a | n/a | ✅ |
+| Custom tuning & support | n/a | n/a | ✅ |

@@ -1,6 +1,6 @@
 ---
 name: opskeep-get-paid
-description: Tracks money follow-through — invoices, payments, billable time, budgets, margin, and the money impact of change control — for work that's been scoped or delivered.
+description: Tracks money follow-through, invoices, payments, billable time, budgets, margin, and the money impact of change control for work that's been scoped or delivered.
 lane: get-paid
 ---
 
@@ -17,14 +17,14 @@ Covers everything money-related once there's a scope or delivered work to bill a
 
 ## What to gather
 
-- The relevant scope or rate (from `opskeep-scope-work` records, or ask if none exist —
+- The relevant scope or rate (from `opskeep-scope-work` records, or ask if none exist;
   never invent a number).
 - Payment terms already agreed (net-15/30, deposit structure, milestone billing).
 - Existing invoice/payment history for the client, to avoid double-billing or gaps.
 
 ## What to produce
 
-- An invoice line item or full invoice draft: description, amount, due date — tied
+- An invoice line item or full invoice draft: description, amount, due date; tied
   explicitly to the scope or time it's billing for.
 - An outstanding-balance summary when asked: who owes what, since when, and whether a
   reminder is due.

@@ -1,6 +1,6 @@
 ---
 name: opskeep-run-work
-description: Coordinates active delivery — status updates, blockers, risks, handoffs, dependencies, QA, and weekly updates — for work that's already been scoped and started.
+description: Coordinates active delivery: status updates, blockers, risks, handoffs, dependencies, QA, and weekly updates, for work that's already been scoped and started.
 lane: run-work
 ---
 
@@ -19,7 +19,7 @@ Covers active delivery: keeping the work moving and everyone (client and team) l
 
 - Recent activity: commits, tickets closed, messages, whatever signal exists for the
   project in this session or connected tools.
-- The audience for the output — internal update and client update read very differently.
+- The audience for the output: internal update and client update read very differently.
 - Any open blockers already on record, so a new one can be added rather than duplicated.
 
 ## What to produce
@@ -39,4 +39,4 @@ Covers active delivery: keeping the work moving and everyone (client and team) l
 ## Guardrails
 
 - Don't report something as "done" without a concrete signal (a closed ticket, a shipped
-  commit, explicit confirmation) — "in progress" is the honest default.
+  commit, explicit confirmation); "in progress" is the honest default.

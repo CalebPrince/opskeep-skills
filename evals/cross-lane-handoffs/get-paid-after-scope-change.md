@@ -16,7 +16,7 @@ invoice." No dollar amount is given.
 1. `opskeep-get-paid` reads the per-round rate from the existing scope record instead of
    asking the user to repeat it.
 2. It calculates the added amount and proposes a change-control line item.
-3. It does **not** invent a rate if the scope record has none — it asks instead.
+3. It does **not** invent a rate if the scope record has none; it asks instead.
 4. Output includes: line item description, amount, and where it will be added
    (next invoice vs. a change order).
 
