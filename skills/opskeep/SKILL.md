@@ -33,7 +33,7 @@ No command? Use conversation context to choose the best destination. Show the me
 | Run your business: Deliver work | `deliver work`, `execute`, `coordinate`, `status`, `monitor`, `blocker`, `risk`, `handoff`, `dependency`, `triage`, `weekly client update` | `opskeep-deliver-work` |
 | Run your business: Get paid | `get paid`, `getting paid`, `invoice`, `payment`, `budget`, `billable`, `time review`, `margin` | `opskeep-get-paid` |
 | Run your business: Keep clients | `keep clients`, `relationship`, `follow up`, `check-in`, `client health`, `stakeholder`, `retention`, `renewal`, `testimonial`, `referral` | `opskeep-keep-clients` |
-| Run your business: Improve operations | `improve operations`, `lessons`, `retrospective`, `close`, `archive`, `handover`, `benefits`, `reuse`, `SOP`, `template` | `opskeep-improve-operations` |
+| Run your business: Improve operations | `improve operations`, `lessons`, `retrospective`, `close`, `archive`, `handover`, `benefits`, `reuse`, `SOP`, `template`, `video tutorial`, `YouTube link`, `transcript` | `opskeep-improve-operations` |
 | Manage Opskeep | `manage opskeep`, `setup`, `onboard opskeep`, `business profile`, `preferences`, `company brain`, `memory`, `connect tools`, `connector`, `automation`, `trigger`, `loop`, `recurring workflow` | `opskeep-manage` |
 | Opskeep Tools | `opskeep tools`, `audio brief`, `voice session`, `talk by voice`, `follow-up reminder`, `email reminder`, `time tracking`, `time entry`, `expense tracking`, `job expense`, `mileage`, `composio`, `hosted utility` | `opskeep-tools` |
 | Handoff checks | `get-to-define`, `define-to-deliver`, `deliver-to-get-paid`, `deliver-to-relationships`, `improve-to-keep-clients` | source lane first, then named next lane follow-up |
@@ -68,6 +68,7 @@ No command? Use conversation context to choose the best destination. Show the me
 - `client portal` -> `define work` for setup, `deliver work` for active maintenance, `improve operations` for reusable template.
 - `weekly client update` -> `deliver work`; recurring update automation -> `opskeep-manage`.
 - `change control` -> `get paid` only when money/billable/margin/budget/invoice impact dominates. Scope/delivery changes stay `define work` or `deliver work`.
+- `video`/`YouTube link`/`transcript` -> `improve operations` when the goal is a reusable SOP/process doc. `opskeep-tools` to `opskeep-audio-brief` only when the user explicitly wants a listenable/audio brief instead.
 
 ## References
 

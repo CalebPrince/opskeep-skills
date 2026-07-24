@@ -16,6 +16,9 @@ as a whole (see `package.json`).
   by a new open-source MCP scaffold: `log_expense`, `list_expenses`,
   `summarize_expenses`, `delete_expense`) for job-tagged materials/mileage costs that
   `opskeep-get-paid` can fold into an invoice.
+- Added `references/video-to-sop.md` to `opskeep-improve-operations`: turns a video
+  tutorial, link, or transcript into a step-by-step SOP for the team, with the same
+  source-safety/prompt-injection handling used by `opskeep-audio-brief`.
 - Built `opskeep-retail` as a full sibling pack: 8 skills (router, six lanes, manage)
   under `verticals/opskeep-retail/skills/`, staged separately from the core pack. No
   hardcoded POS/inventory platform; live reads/writes route through shared
