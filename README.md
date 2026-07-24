@@ -71,7 +71,7 @@ cp -r opskeep-skills/skills/* .agents/skills/
 
 | Skill | Description |
 | --- | --- |
-| `opskeep-manage` | Onboards and manages Opskeep itself: business profile, preferences, memory, connectors, automations, and triggers. |
+| `opskeep-manage` | Onboards and manages Opskeep itself: business profile, preferences, memory, connectors, automations, triggers, and recurring reminders. |
 | `opskeep-tools` | Routes standalone utilities: audio briefs, voice huddles, follow-up reminders, time tracking, and Composio-backed tool access. |
 
 ## Breakout skills
