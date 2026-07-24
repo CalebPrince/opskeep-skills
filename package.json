@@ -6,7 +6,7 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/opskeep/opskeep-skills.git"
+    "url": "https://github.com/CalebPrince/opskeep-skills.git"
   },
   "scripts": {
     "lint:skills": "node scripts/validate-skills.js",

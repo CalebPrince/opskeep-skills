@@ -17,25 +17,25 @@ Independent, open-source project.
 
 ```bash
 # Install the full skill pack
-npx skills add opskeep/opskeep-skills
+npx skills add CalebPrince/opskeep-skills
 
 # Or install a single skill
-npx skills add opskeep/opskeep-skills --skill opskeep
+npx skills add CalebPrince/opskeep-skills --skill opskeep
 
 # List every available skill
-npx skills add opskeep/opskeep-skills --list
+npx skills add CalebPrince/opskeep-skills --list
 ```
 
 To update later:
 
 ```bash
-npx skills update opskeep/opskeep-skills
+npx skills update CalebPrince/opskeep-skills
 ```
 
 ### Clone instead
 
 ```bash
-git clone https://github.com/opskeep/opskeep-skills.git
+git clone https://github.com/CalebPrince/opskeep-skills.git
 cp -r opskeep-skills/skills/* .agents/skills/
 ```
 
