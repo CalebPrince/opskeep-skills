@@ -17,13 +17,13 @@ Use for Opskeep connected-tool setup, status, explanation, or troubleshooting.
 - Docs and knowledge: Notion, Google Drive, Google Docs, Sheets.
 - Calendar and meetings: Google Calendar, Outlook Calendar.
 - Money and records: Stripe, time tracking, finance tools.
-- Publishing and growth: YouTube, Reddit, social/search tools when available.
+- Publishing and growth: YouTube, Reddit, social/search tools, and image generation when available.
 
 ## Lane Map
 
 | Opskeep lane | Common connector categories |
 |---|---|
-| Get work | CRM, email, chat, work tracking, web/search, docs and knowledge |
+| Get work | CRM, email, chat, work tracking, web/search, docs and knowledge, publishing and growth |
 | Define work | email, chat, docs and knowledge, cloud storage, work tracking, calendar |
 | Deliver work | work tracking, chat, code hosting, calendar, docs and knowledge |
 | Get paid | money and records, time tracking, email, CRM, calendar, docs |

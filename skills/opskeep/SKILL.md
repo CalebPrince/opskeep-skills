@@ -28,7 +28,7 @@ No command? Use conversation context to choose the best destination. Show the me
 
 | Group | Commands and aliases | Primary route |
 |---|---|---|
-| Run your business: Get work | `get work`, `source work`, `lead`, `opportunity`, `pipeline`, `prospect`, `outreach`, `market signal`, `content idea`, `YouTube`, `content` | `opskeep-get-work` |
+| Run your business: Get work | `get work`, `source work`, `lead`, `opportunity`, `pipeline`, `prospect`, `outreach`, `market signal`, `content idea`, `YouTube`, `content`, `Reddit`, `social post` | `opskeep-get-work` |
 | Run your business: Define work | `define work`, `scope`, `requirements`, `brief`, `plan`, `charter`, `proposal`, `acceptance`, `decision`, `client portal setup`, `onboard client` | `opskeep-define-work` |
 | Run your business: Deliver work | `deliver work`, `execute`, `coordinate`, `status`, `monitor`, `blocker`, `risk`, `handoff`, `dependency`, `triage`, `weekly client update` | `opskeep-deliver-work` |
 | Run your business: Get paid | `get paid`, `getting paid`, `invoice`, `payment`, `budget`, `billable`, `time review`, `margin` | `opskeep-get-paid` |
@@ -69,6 +69,7 @@ No command? Use conversation context to choose the best destination. Show the me
 - `weekly client update` -> `deliver work`; recurring update automation -> `opskeep-manage`.
 - `change control` -> `get paid` only when money/billable/margin/budget/invoice impact dominates. Scope/delivery changes stay `define work` or `deliver work`.
 - `video`/`YouTube link`/`transcript` -> `improve operations` when the goal is a reusable SOP/process doc. `opskeep-tools` to `opskeep-audio-brief` only when the user explicitly wants a listenable/audio brief instead.
+- `Reddit`/`social post` -> `get work` when the goal is researching a topic to draft new content. `keep clients` for a testimonial/review-style social ask tied to a specific client relationship instead.
 
 ## References
 

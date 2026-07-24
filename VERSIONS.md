@@ -19,6 +19,11 @@ as a whole (see `package.json`).
 - Added `references/video-to-sop.md` to `opskeep-improve-operations`: turns a video
   tutorial, link, or transcript into a step-by-step SOP for the team, with the same
   source-safety/prompt-injection handling used by `opskeep-audio-brief`.
+- Added `references/reddit-social-content.md` to `opskeep-get-work`: researches Reddit
+  conversations on a topic through a connected Reddit toolkit, extracts source-grounded
+  signal, and drafts a social post (copy + image, or an image brief if no image tool is
+  connected). Image generation and publishing route through `opskeep-tools`/composio and
+  are gated on explicit, per-post approval — nothing publishes automatically.
 - Built `opskeep-retail` as a full sibling pack: 8 skills (router, six lanes, manage)
   under `verticals/opskeep-retail/skills/`, staged separately from the core pack. No
   hardcoded POS/inventory platform; live reads/writes route through shared
