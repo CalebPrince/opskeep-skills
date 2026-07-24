@@ -34,6 +34,7 @@ are consumed by agent runtimes (Claude Code, Cursor, Cline, Codex, and similar) 
 | `scripts/` | Repo tooling, validation, eval runners, packaging. |
 | `tasks/` | Working notes for in-progress skill work. Not shipped to installers. |
 | `prototypes/` | Experimental skills not yet promoted to `skills/`. |
+| `verticals/` | Sibling packs for non-service business models (retail, hospitality, etc.), each starting as a `DESIGN.md` sketch before any skills are built. |
 
 ## Before opening a PR
 
