@@ -1,0 +1,94 @@
+[
+  {
+    "query": "Opskeep get work from these lead notes and tell me what deserves action now.",
+    "should_trigger": true
+  },
+  {
+    "query": "Opskeep define work from this client thread into scope and acceptance checks.",
+    "should_trigger": true
+  },
+  {
+    "query": "Opskeep deliver work: current state, blockers, owners, and next actions.",
+    "should_trigger": true
+  },
+  {
+    "query": "Opskeep get paid: which invoices or billable-time items need action?",
+    "should_trigger": true
+  },
+  {
+    "query": "Opskeep keep clients: who needs a check-in this week?",
+    "should_trigger": true
+  },
+  {
+    "query": "Opskeep improve operations from this completed project.",
+    "should_trigger": true
+  },
+  {
+    "query": "Opskeep plan this scattered onboarding work into requirements and a baseline.",
+    "should_trigger": true
+  },
+  {
+    "query": "Opskeep monitor open work and tell me what needs attention now.",
+    "should_trigger": true
+  },
+  {
+    "query": "Opskeep close this project with signoff, handover, lessons, and archive readiness.",
+    "should_trigger": true
+  },
+  {
+    "query": "Opskeep audio brief this requirements doc so I can listen on my phone.",
+    "should_trigger": true
+  },
+  {
+    "query": "Opskeep voice session so I can talk this plan through while walking.",
+    "should_trigger": true
+  },
+  {
+    "query": "Opskeep manage this trigger for when a Linear issue is created.",
+    "should_trigger": true
+  },
+  {
+    "query": "Opskeep remind me by email next Friday at 9 to chase this invoice.",
+    "should_trigger": true
+  },
+  {
+    "query": "Opskeep track time for this client call.",
+    "should_trigger": true
+  },
+  {
+    "query": "Opskeep tools: use Composio to create a GitHub issue from this bug report.",
+    "should_trigger": true
+  },
+  {
+    "query": "Opskeep manage: connect Gmail and Linear for lead review and delivery status.",
+    "should_trigger": true
+  },
+  {
+    "query": "Build a React component for a pricing card grid.",
+    "should_trigger": false
+  },
+  {
+    "query": "Write SQL to backfill missing invoice totals.",
+    "should_trigger": false
+  },
+  {
+    "query": "Summarize this PR in five bullets.",
+    "should_trigger": false
+  },
+  {
+    "query": "Translate this marketing copy into Spanish.",
+    "should_trigger": false
+  },
+  {
+    "query": "Make a generic list of companies in fintech.",
+    "should_trigger": false
+  },
+  {
+    "query": "Start a voice session with my agent to shape this project.",
+    "should_trigger": true
+  },
+  {
+    "query": "Give me a project status update with current risks and next owner actions.",
+    "should_trigger": true
+  }
+]

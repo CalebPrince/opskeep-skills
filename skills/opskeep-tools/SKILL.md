@@ -1,56 +1,38 @@
 ---
 name: opskeep-tools
-description: Routes standalone hosted utilities: session recaps, follow-up reminders, and time tracking, when requested outside the context of a specific business lane.
+description: "Use when the user wants a standalone Opskeep utility or hosted capability: audio briefs, voice huddles, follow-up reminders, time tracking, Composio/tool access, or future small Opskeep utilities."
 lane: meta
+metadata:
+  version: 0.1.0
 ---
 
-# Opskeep tools
+# Opskeep Tools
 
-Covers the hosted utilities that are useful on their own, not just as part of a lane
-workflow. These are the Pro-tier hosted tools referenced in the product surfaces (see
-[PRODUCT.md](../../PRODUCT.md)).
+Route standalone utilities without turning them into business lanes.
 
-The actual sending, scheduling, and storing happens through the Opskeep MCP server (see
-[mcp-server](../../mcp-server)). This skill decides *when* and *what* to call; the MCP
-server does the mechanical work.
+## Tool Routes
 
-| Request | MCP tool |
-| --- | --- |
-| Deliver a client update | `send_client_update` |
-| Schedule a one-time reminder | `schedule_reminder` |
-| Cancel a reminder | `cancel_reminder` |
-| Create a session recap | `create_session_recap` |
-| Start/stop a timer | `start_timer` / `stop_timer` |
-| Backfill a time entry | `backfill_time_entry` |
-| Summarize logged time | `summarize_time` |
+- Audio/listenable/phone-friendly brief -> `opskeep-audio-brief`.
+- Live voice conversation or huddle -> `opskeep-huddle-beta`.
+- One-shot self-email reminder -> `opskeep-follow-up-reminders`.
+- Start/stop/switch/backfill/update/archive/summarize time records -> `opskeep-time-tracking`.
+- Live external app access or writes -> `composio` with discovery/schema-safe execution.
 
-## When to trigger
+## Output Contract
 
-- "Turn this session into an audio recap."
-- "Remind me by email tomorrow at 9am to send that invoice."
-- "Start a timer for [project]." / "Stop the timer." / "How much time did I log this week?"
+- Selected tool.
+- Why this is a utility instead of a business lane.
+- Required inputs and blockers.
+- Confirmation gate before external writes, publishing, reminders, huddles, or time-record changes.
+- Source/provenance when connected tools are used.
 
-## What to gather
+## Boundaries
 
-- For recaps: the source material (session, doc, PR, URL) and desired length/format.
-- For reminders: exact trigger time, timezone, and the message content; reminders are
-  one-shot and deterministic, never inferred to repeat unless explicitly asked.
-- For time tracking: project/client to attribute the entry to.
+- Business outcome requests route to the six business lane skills first.
+- Tool setup, connectors, automations, and company brain configuration go to `opskeep-manage`.
 
-## What to produce
+## Gotchas
 
-- A recap artifact with a shareable listening link.
-- A confirmed one-time reminder with the exact send time restated back to the user.
-- A time entry (start/stop/backfill) with project attribution and a running total on
-  request.
-
-## Handoffs
-
-- A reminder is really about invoice follow-up → `opskeep-get-paid` may want to log the
-  same follow-up as a money-tracking item, not just a personal reminder.
-- Time logged against a project feeds `opskeep-get-paid` budget/margin checks.
-
-## Guardrails
-
-- Reminders are one-shot only from this skill. A request for a recurring nudge belongs in
-  `opskeep-manage` as an automation, with explicit confirmation before it's created.
+- `brief this` is not an audio brief unless audio/listenable/spoken/phone-friendly wording is explicit.
+- `talk through` is not a voice huddle unless live voice wording is explicit.
+- External writes, published audio pages, reminders, huddles, and time-record changes require the destination skill's confirmation gate.

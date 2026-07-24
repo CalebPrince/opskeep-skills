@@ -20,7 +20,7 @@ skills/<skill-name>/
 ---
 name: opskeep-example
 description: One or two sentences a router uses to decide when to trigger this skill.
-lane: run-work        # one of the six business lanes, or "meta"
+lane: deliver-work     # one of the six business lanes, or "meta"
 ---
 ```
 

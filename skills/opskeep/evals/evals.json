@@ -1,0 +1,314 @@
+{
+  "skill_name": "opskeep",
+  "suite_name": "opskeep-operating-lane-routing",
+  "artifact_type": "public-generic-eval-suite",
+  "evals": [
+    {
+      "id": "opskeep-get-work-1",
+      "prompt": "Opskeep get work from these messy lead notes and tell me what deserves action now.",
+      "expected_output": "Routes to the get-work lane and returns opportunity, why now, fit/urgency/confidence, owner, next action, source, and unknowns.",
+      "assertions": [
+        "Does the output select `get work` as the primary Opskeep lane?",
+        "Does it include opportunity, why now, fit or urgency, confidence, owner, next action, and source or `TBD`?",
+        "Does it avoid claiming live CRM, inbox, Slack, Reddit, or web access unless a connected tool was actually used?"
+      ],
+      "files": []
+    },
+    {
+      "id": "opskeep-define-work-1",
+      "prompt": "Opskeep define work from this client thread. Scope is fuzzy and acceptance checks are missing.",
+      "expected_output": "Routes to the define-work lane and creates a working brief with scope, out-of-scope, acceptance checks, open questions, decisions, and source gaps.",
+      "assertions": [
+        "Does the output select `define work` as the primary Opskeep lane?",
+        "Does it include working brief, in scope, out of scope, acceptance checks, open questions, decision needed, and source or `TBD`?",
+        "Does it avoid routing to a live voice huddle unless voice wording is explicit?"
+      ],
+      "files": []
+    },
+    {
+      "id": "opskeep-deliver-work-1",
+      "prompt": "Opskeep deliver work: what is blocked, who owns it, and what needs escalation today?",
+      "expected_output": "Routes to the deliver-work lane and returns current state, blockers, owner gaps, next actions, escalation trigger, sources, and unknowns.",
+      "assertions": [
+        "Does the output select `deliver work` as the primary Opskeep lane?",
+        "Does it include current state, blockers or risks, owners, next actions, due or review dates, status, evidence/source, and `TBD` unknowns?",
+        "Does it avoid creating automation from status/update wording unless the user asks for recurring or event-driven behavior?"
+      ],
+      "files": []
+    },
+    {
+      "id": "opskeep-get-paid-1",
+      "prompt": "Opskeep get paid: which invoices or billable-time items need action before Friday?",
+      "expected_output": "Routes to the get-paid lane and returns money items, amount/account/project if known, status, risk, owner, due/review date, source, and follow-up.",
+      "assertions": [
+        "Does the output select `get paid` as the primary Opskeep lane?",
+        "Does it include money item, amount/account/project or `TBD`, status, risk, recommended follow-up, owner, due/review date, and source?",
+        "Does it avoid claiming payment, invoice, banking, payroll, or time-record access unless connected tools were used?"
+      ],
+      "files": []
+    },
+    {
+      "id": "opskeep-keep-clients-1",
+      "prompt": "Opskeep keep clients: who needs a check-in and what should I say?",
+      "expected_output": "Routes to the keep-clients lane and returns relationship signal, why now, suggested touch, owner, timing, source, and watchlist.",
+      "assertions": [
+        "Does the output select `keep clients` as the primary Opskeep lane?",
+        "Does it include relationship needing attention, why now, suggested touch, owner, timing, source, and watchlist?",
+        "Does it avoid scheduling a reminder or sending a message unless the user explicitly asks for that connected capability?"
+      ],
+      "files": []
+    },
+    {
+      "id": "opskeep-improve-operations-1",
+      "prompt": "Opskeep improve operations from this completed project so we can reuse the lesson next time.",
+      "expected_output": "Routes to the improve-operations lane and returns lessons, evidence, next-time change, owner, reuse location, and follow-ups.",
+      "assertions": [
+        "Does the output select `improve operations` as the primary Opskeep lane?",
+        "Does it include lesson, evidence, what changes next time, owner, reuse location or `TBD`, and follow-ups?",
+        "Does it avoid declaring closure without acceptance, handover, or archive evidence?"
+      ],
+      "files": []
+    },
+    {
+      "id": "opskeep-plan-compat-1",
+      "prompt": "Opskeep plan this onboarding work. Requirements are scattered, timeline pressure is high, and ownership is fuzzy.",
+      "expected_output": "Supports the old plan wording by reframing it into the define-work lane.",
+      "assertions": [
+        "Does the output route old `plan` wording into `define work`?",
+        "Does it avoid presenting lifecycle commands as the primary public model?",
+        "Does it preserve requirements, baseline, decisions, owners, and acceptance checks as possible outputs?"
+      ],
+      "files": []
+    },
+    {
+      "id": "opskeep-initiate-compat-1",
+      "prompt": "Opskeep initiate this new delivery project so we have reusable context, stakeholders, risks, and a plan-ready handoff.",
+      "expected_output": "Supports old initiate wording by reframing it into the define-work lane.",
+      "assertions": [
+        "Does the output route old `initiate` wording into `define work`?",
+        "Does it preserve project context, stakeholders, risks, and plan-ready handoff checks?",
+        "Does it avoid exposing lifecycle routes as the public command surface?"
+      ],
+      "files": []
+    },
+    {
+      "id": "opskeep-execute-compat-1",
+      "prompt": "Opskeep execute this delivery week: coordinate active work packages, owners, handoffs, and follow-through.",
+      "expected_output": "Supports old execute wording by reframing it into the deliver-work lane.",
+      "assertions": [
+        "Does the output route old `execute` wording into `deliver work`?",
+        "Does it choose one primary delivery action path rather than exposing lifecycle routes as the public model?",
+        "Does it preserve owners, next actions, due/review dates, status, evidence/source, and `TBD` unknowns?"
+      ],
+      "files": []
+    },
+    {
+      "id": "opskeep-monitor-compat-1",
+      "prompt": "Opskeep monitor this delivery week and tell me where we're stuck.",
+      "expected_output": "Supports old monitor wording by reframing it into the deliver-work lane unless money or relationship intent dominates.",
+      "assertions": [
+        "Does the output route old `monitor` wording into `deliver work`?",
+        "Does it include current state, blockers, owners, next actions, evidence/source, and unknowns?",
+        "Does it avoid exposing lifecycle routes as the public command surface?"
+      ],
+      "files": []
+    },
+    {
+      "id": "opskeep-close-compat-1",
+      "prompt": "Opskeep close this out. Signoff happened, but support handoff and archive readiness are unclear.",
+      "expected_output": "Supports old close wording by reframing it into the improve-operations lane.",
+      "assertions": [
+        "Does the output route old `close` wording into `improve operations`?",
+        "Does it evaluate signoff, handover, lessons, archive readiness, and unknowns?",
+        "Does it avoid implying final closure when handoff or archive evidence is missing?"
+      ],
+      "files": []
+    },
+    {
+      "id": "opskeep-help-menu-1",
+      "prompt": "Opskeep help",
+      "expected_output": "Returns the six business lanes plus concise Manage Opskeep and Opskeep Tools notes.",
+      "assertions": [
+        "Does the output list `get work`, `define work`, `deliver work`, `get paid`, `keep clients`, and `improve operations`?",
+        "Does it keep Manage Opskeep and Opskeep Tools separate from the six business lanes?",
+        "Does it avoid making lifecycle commands the first screen?"
+      ],
+      "files": []
+    },
+    {
+      "id": "opskeep-manage-connectors-1",
+      "prompt": "Opskeep manage: connect Gmail and Linear so Opskeep can review leads and delivery status.",
+      "expected_output": "Routes to opskeep-manage for connector setup/status and preserves Composio discovery/auth readiness without claiming access before verification.",
+      "assertions": [
+        "Does the output select `opskeep-manage` rather than a business lane or one-off tool action?",
+        "Does it identify target apps, needed permission categories, connection status, and setup/auth next action?",
+        "Does it avoid claiming Gmail or Linear access until a connection/status check succeeds?"
+      ],
+      "files": []
+    },
+    {
+      "id": "opskeep-tools-composio-utility-1",
+      "prompt": "Opskeep tools: use Composio to look up this GitHub issue and summarize the current status.",
+      "expected_output": "Routes to opskeep-tools/Composio for a one-off connected-app utility action and preserves discovery/schema/provenance rules.",
+      "assertions": [
+        "Does the output select `opskeep-tools`/Composio rather than `opskeep-manage`?",
+        "Does it require Composio tool discovery/schema-safe execution before claiming issue status?",
+        "Does it include provenance requirements for the GitHub issue or tool result?"
+      ],
+      "files": []
+    },
+    {
+      "id": "opskeep-no-command-context-1",
+      "prompt": "Opskeep. From the conversation above, we have messy client notes, fuzzy scope, and missing acceptance checks for the onboarding work.",
+      "expected_output": "Routes by conversation context into the define-work lane instead of showing the command menu.",
+      "assertions": [
+        "Does the output route to `define work` from conversation context even though no explicit command was supplied?",
+        "Does it avoid showing the generic help/menu as the primary response?",
+        "Does it preserve scope, acceptance checks, open questions, decisions, and source gaps?"
+      ],
+      "files": []
+    },
+    {
+      "id": "opskeep-audio-positive-1",
+      "prompt": "Opskeep audio brief this requirements doc so I can listen to it on my phone.",
+      "expected_output": "Routes to opskeep-audio-brief and preserves source extraction, audio generation, publishing, and blocker behavior.",
+      "assertions": [
+        "Does the output route to `opskeep-audio-brief` because the user explicitly asked for audio/listenable output?",
+        "Does it preserve source-readability blockers instead of producing a degraded audio brief?",
+        "Does it preserve the standalone workflow's generation and publishing contract?"
+      ],
+      "files": []
+    },
+    {
+      "id": "opskeep-audio-negative-1",
+      "prompt": "Opskeep brief this PR before standup.",
+      "expected_output": "Does not route to opskeep-audio-brief because the user did not ask for audio/listenable/spoken output.",
+      "assertions": [
+        "Does the output avoid selecting `opskeep-audio-brief`?",
+        "Does it treat `brief` as a generic define-work or deliver-work request unless audio/listenable wording is present?"
+      ],
+      "files": []
+    },
+    {
+      "id": "opskeep-huddle-beta-positive-1",
+      "prompt": "Opskeep voice session so I can talk this plan through while walking.",
+      "expected_output": "Routes to opskeep-huddle-beta and preserves live voice-session scope, transport/privacy blockers, and optional handoff behavior.",
+      "assertions": [
+        "Does the output route to `opskeep-huddle-beta` because the user explicitly asked for live voice conversation?",
+        "Does it avoid routing to `opskeep-audio-brief`?",
+        "Does it preserve the standalone workflow's transport, privacy, and optional handoff contract?"
+      ],
+      "files": []
+    },
+    {
+      "id": "opskeep-huddle-beta-negative-1",
+      "prompt": "Opskeep talk through this plan in writing and turn it into scope, acceptance checks, and next decisions.",
+      "expected_output": "Stays inside the define-work lane because the user did not ask for a live voice session.",
+      "assertions": [
+        "Does the output avoid selecting `opskeep-huddle-beta`?",
+        "Does it route written planning/talk-through wording to `define work`?",
+        "Does it avoid treating `talk through` alone as live voice intent?"
+      ],
+      "files": []
+    },
+    {
+      "id": "opskeep-follow-up-negative-1",
+      "prompt": "Opskeep follow up with the client about the delayed milestone.",
+      "expected_output": "Routes to keep-clients or deliver-work and does not schedule a self-email reminder because no future email reminder was requested.",
+      "assertions": [
+        "Does the output avoid selecting `opskeep-follow-up-reminders`?",
+        "Does it treat client follow-up as relationship or delivery follow-through?",
+        "Does it avoid claiming a reminder was scheduled?"
+      ],
+      "files": []
+    },
+    {
+      "id": "opskeep-follow-up-reminder-positive-1",
+      "prompt": "Opskeep remind me by email next Friday at 9 to chase this invoice.",
+      "expected_output": "Routes to opskeep-follow-up-reminders because the user asked for a specific future email reminder to themself.",
+      "assertions": [
+        "Does the output route to `opskeep-follow-up-reminders`?",
+        "Does it preserve one-shot reminder scope, timezone resolution, verified self-recipient guardrail, and confirmation before create?",
+        "Does it avoid turning this into recurring automation or inbox monitoring?"
+      ],
+      "files": []
+    },
+    {
+      "id": "opskeep-trigger-positive-1",
+      "prompt": "Opskeep deliver work every Friday at 9 with a Slack status update.",
+      "expected_output": "Routes to opskeep-triggers only after recognizing the recurring delivery request and preserves trigger proposal confirmation before create.",
+      "assertions": [
+        "Does the output route recurring/event-driven delivery to `opskeep-triggers` as a connected capability?",
+        "Does it require event/source/delivery details and final trigger proposal confirmation before create?",
+        "Does it keep the lane objective visible instead of flattening the work into generic automation?"
+      ],
+      "files": []
+    },
+    {
+      "id": "opskeep-trigger-negative-1",
+      "prompt": "Opskeep deliver work: give me a weekly status update now with blockers and next owner actions.",
+      "expected_output": "Produces a one-time deliver-work status update and does not route to opskeep-triggers because future recurring delivery was not requested.",
+      "assertions": [
+        "Does the output avoid selecting `opskeep-triggers`?",
+        "Does it treat `weekly` as the reporting horizon when no recurring automation wording is present?",
+        "Does it avoid creating or proposing automation without an explicit recurring/event-driven request?"
+      ],
+      "files": []
+    },
+    {
+      "id": "opskeep-composio-positive-1",
+      "prompt": "Opskeep get work from Gmail and Linear, then create a GitHub issue for the best opportunity.",
+      "expected_output": "Routes through Composio discovery/schema rules for live external app access and does not invent tool slugs or write externally without confirmation.",
+      "assertions": [
+        "Does the output route external app access/action through `composio`?",
+        "Does it require tool discovery or verified tool information before execute?",
+        "Does it avoid inventing Composio tool slugs or claiming live records before fetching them?"
+      ],
+      "files": []
+    },
+    {
+      "id": "opskeep-composio-negative-1",
+      "prompt": "Opskeep get work from these pasted lead notes and recommend the next outreach angle.",
+      "expected_output": "Stays in the get-work lane and does not route to Composio because the source material is already supplied and no live external app action was requested.",
+      "assertions": [
+        "Does the output avoid selecting `composio`?",
+        "Does it work from the pasted source material instead of claiming live app access?",
+        "Does it avoid inventing external app records, tool slugs, or fetched sources?"
+      ],
+      "files": []
+    },
+    {
+      "id": "opskeep-time-tracking-positive-1",
+      "prompt": "Opskeep get paid: review billable time records for this week and summarize what can be invoiced.",
+      "expected_output": "Routes to opskeep-time-tracking for explicit time-record review while preserving the get-paid objective and keeping unsupported invoicing/payroll claims out of scope.",
+      "assertions": [
+        "Does the output select `opskeep-time-tracking` for explicit time-record review?",
+        "Does it avoid claiming invoice or payroll support from time tracking alone?",
+        "Does it preserve the get-paid money objective?"
+      ],
+      "files": []
+    },
+    {
+      "id": "opskeep-time-tracking-negative-1",
+      "prompt": "Opskeep get paid: review invoice risk and margin for this project from the summary below.",
+      "expected_output": "Stays in the get-paid lane and does not route to opskeep-time-tracking because no time-entry operation was requested.",
+      "assertions": [
+        "Does the output avoid selecting `opskeep-time-tracking`?",
+        "Does it treat invoice risk and margin review as `get paid` work?",
+        "Does it avoid claiming time-record access when the prompt only supplied a summary?"
+      ],
+      "files": []
+    },
+    {
+      "id": "opskeep-unknown-command-1",
+      "prompt": "Opskeep frobnicate this delivery plan.",
+      "expected_output": "Avoids inventing a frobnicate workflow and routes by the clear delivery-plan context when safe; otherwise shows help with one clarification path.",
+      "assertions": [
+        "Does the output avoid inventing a `frobnicate` workflow?",
+        "Does it route by the clear delivery-plan context or show the six business lanes plus Manage Opskeep/Opskeep Tools only if routing is unsafe?",
+        "Does it ask at most one clarifying question if needed?"
+      ],
+      "files": []
+    }
+  ]
+}

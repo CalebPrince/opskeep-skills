@@ -1,0 +1,35 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "opskeep-voice-relay",
+  "main": "worker.mjs",
+  "compatibility_date": "2026-06-03",
+  "routes": [
+    {
+      "pattern": "voice.opskeep.example/*",
+      "zone_name": "opskeep.example"
+    }
+  ],
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "VOICE_SESSION",
+        "class_name": "VoiceSession"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": ["VoiceSession"]
+    }
+  ],
+  "vars": {
+    "PUBLIC_BASE_URL": "https://voice.opskeep.example",
+    "ALLOWED_ORIGINS": "https://voice.opskeep.example",
+    "PAIRING_TTL_SECONDS": "900",
+    "IDLE_TIMEOUT_SECONDS": "600",
+    "RECONNECT_GRACE_SECONDS": "15",
+    "MAX_MESSAGE_BYTES": "32000",
+    "REVOKE_SESSIONS_BEFORE_UNIX_MS": "0"
+  }
+}

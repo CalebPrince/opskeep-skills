@@ -1,44 +1,43 @@
 ---
 name: opskeep-keep-clients
-description: Maintains client trust after delivery through follow-ups, check-ins, health checks, renewals, referrals, and testimonials.
+description: "Use when the user wants Opskeep to maintain client trust: follow-ups, check-ins, client health, retention, renewals, referrals, testimonials, stakeholder care, and relationship-sensitive next actions."
 lane: keep-clients
+metadata:
+  version: 0.1.0
 ---
 
-# Keep clients
+# Opskeep Keep Clients
 
-Covers the relationship after the deliverable ships: the work that turns a one-off
-project into repeat business.
+Protect trust after and around delivery.
 
-## When to trigger
+## Use For
 
-- "It's been a month since we finished [project], should I check in?"
-- "Draft a renewal outreach for [client]."
-- "Ask [client] for a testimonial."
-- Assessing whether a client relationship is healthy or at risk.
+- Client check-ins, relationship health, retention, renewals, referrals, and testimonials.
+- Follow-up wording when the user wants to keep trust or recover momentum.
+- Relationship risks surfaced by delivery or closeout.
 
-## What to gather
+## References
 
-- Delivery history and outcome for the client (pull from `opskeep-run-work` closeout notes
-  if available).
-- Time since last contact and the nature of the relationship (one-off vs. retainer).
-- Any signals of dissatisfaction already on record. Don't send a cheerful check-in over an
-  unresolved complaint.
+- Load `references/keep-clients.md` for the lane workflow.
+- Load `references/examples/keep-clients.md` when an example shape helps.
 
-## What to produce
+## Output Contract
 
-- A check-in or renewal message draft, specific to what was delivered, not a generic
-  template.
-- A client health read: healthy / at-risk / dormant, with the specific signal driving that
-  read.
-- A testimonial or referral ask, timed appropriately (after a clear win, not mid-delivery).
+- Client or relationship signal.
+- Why now.
+- Suggested touch or ask.
+- Owner and timing.
+- Source/evidence or `TBD`.
+- Watchlist items.
 
-## Handoffs
+## Boundaries
 
-- A check-in surfaces new work → `opskeep-win-work` to log it as a fresh opportunity.
-- A client raises a concern → `opskeep-run-work` if it's about active delivery, or flag for
-  human follow-up if it's a relationship issue outside scope.
+- Do not send messages or schedule reminders unless explicitly asked.
+- One-shot self-email reminders go through `opskeep-tools` to `opskeep-follow-up-reminders`.
+- Active delivery status stays `opskeep-deliver-work` unless relationship health dominates.
 
-## Guardrails
+## Gotchas
 
-- Don't ask for a testimonial or referral right after a rocky delivery. Check the record
-  for unresolved issues first.
+- Do not fake relationship history; mark unknown context as `TBD`.
+- Generic follow-up is client work, not a reminder, unless future self-email wording is explicit.
+- Testimonials, referrals, and renewals should be grounded in delivered value or client signal.

@@ -1,43 +1,42 @@
 ---
 name: opskeep-manage
-description: Onboards and manages Opskeep itself: business profile, preferences, memory, connectors, automations, and triggers. Use for setup and configuration requests, not for day-to-day business-lane work.
+description: "Use when the user wants to operate Opskeep itself: onboard Opskeep into their business, update business profile/preferences, manage company brain or memory, connect tools, configure automations/triggers/loops, or audit what Opskeep knows and can access."
 lane: meta
+metadata:
+  version: 0.1.0
 ---
 
-# Manage Opskeep
+# Opskeep Manage
 
-Covers operating Opskeep, as distinct from operating the business. Setup, preferences,
-memory, and the automations that run on top of the lane skills.
+Set up and maintain Opskeep as an operations agent.
 
-## When to trigger
+## Use For
 
-- First-time setup: "help me set up Opskeep."
-- "Remember that I always net-15 new clients."
-- "Connect my Slack / GitHub / Gmail."
-- "Set up a weekly automation that posts my status update to Slack."
+- Onboarding Opskeep into a business: services, clients, tools, workflows, cadence, preferences, and first job.
+- Business profile, company brain, memory, permissions, and access review.
+- Connected tool setup, connector status, and Composio connection readiness.
+- Automations, triggers, loops, scheduled workflows, and recurring work setup.
 
-## What to gather
+## References
 
-- Business profile basics: what the business does, typical engagement shape, standard
-  rates or terms; only what's needed to make lane skills more accurate, not exhaustive.
-- Existing preferences already recorded, so setup doesn't repeat questions.
-- For connectors: which tool, and what specifically needs to be read or written (avoid
-  requesting broader access than the automation needs).
+- Load `references/connectors.md` for connected-tool setup, connector status, and Composio connection readiness.
 
-## What to produce
+## Output Contract
 
-- A saved preference or profile fact, applied consistently by other skills going forward.
-- A connector authorization flow, scoped to what was asked for.
-- An automation/trigger definition: what fires it, what it does, and confirmation before
-  it goes live; automations are never created silently.
+- Configuration objective.
+- Current setup state or `TBD`.
+- Needed inputs, access, or decisions.
+- Safety/permission check.
+- Next setup action.
 
-## Handoffs
+## Boundaries
 
-- Once setup is done, route the actual business request to the relevant lane skill via
-  `opskeep`.
+- If the user is doing business work now, route to the relevant business lane.
+- If the user wants a standalone utility output, route to `opskeep-tools`.
+- Do not create automations, connect tools, or write memory without explicit confirmation when the action changes external state.
 
-## Guardrails
+## Gotchas
 
-- Always confirm before creating a recurring automation or trigger: describe exactly what
-  will run and when, and wait for explicit go-ahead.
-- Don't request tool access broader than the stated use case.
+- Setup should capture only useful operating context: services, clients, tools, workflows, cadence, preferences, and first job.
+- Tool connection status must be verified before claiming access.
+- Company brain writes need user intent and a clear destination.

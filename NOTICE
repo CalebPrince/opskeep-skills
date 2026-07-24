@@ -1,0 +1,44 @@
+Opskeep Skills — third-party notice
+
+The following files/directories under skills/ are derived from pipa-skills
+(https://github.com/lunchpaillola/pipa-skills), Copyright Lola / Lunch Pail Labs,
+licensed under the MIT License:
+
+  skills/opskeep              (from pipa-skills' "pipa" router)
+  skills/opskeep-get-work     (from "pipa-get-work")
+  skills/opskeep-define-work  (from "pipa-define-work")
+  skills/opskeep-deliver-work (from "pipa-deliver-work")
+  skills/opskeep-get-paid     (from "pipa-get-paid")
+  skills/opskeep-keep-clients (from "pipa-keep-clients")
+  skills/opskeep-improve-operations (from "pipa-improve-operations")
+  skills/opskeep-manage       (from "pipa-manage")
+  skills/opskeep-tools        (from "pipa-tools")
+  skills/opskeep-audio-brief  (from "pipa-audio-brief")
+  skills/opskeep-huddle-beta  (from "pipa-huddle-beta")
+  skills/opskeep-follow-up-reminders (from "pipa-follow-up-reminders")
+  skills/opskeep-time-tracking (from "pipa-time-tracking")
+  skills/opskeep-triggers     (from "pipa-triggers")
+  skills/composio-mcp         (from "composio-mcp")
+
+MIT permits this reuse and modification. This NOTICE exists to satisfy the license's
+requirement to retain the original copyright notice; see the upstream repository at the
+URL above for its authoritative LICENSE text.
+
+Modifications made in this fork:
+
+  - Renamed "Pipa"/"pipa-*" to "Opskeep"/"opskeep-*" throughout skill names, frontmatter,
+    descriptions, and cross-references.
+  - Removed Pipa's brand assets: the logo mark image and sound-design audio cues that
+    shipped with opskeep-huddle-beta (formerly pipa-huddle-beta). That skill needs its
+    own replacement assets before its UI is complete.
+  - Genericized infrastructure configuration that pointed at Pipa's own deployed
+    services: opskeep-huddle-beta's Cloudflare Worker previously targeted Pipa's live
+    zone (usepipa.com) with real session-pairing/timeout settings. Those values were
+    replaced with placeholders (opskeep.example) — this skill will not function until
+    it has its own deployed voice-relay backend under a domain/zone you actually control.
+  - References to the original pipa-skills GitHub repository were repointed to this
+    repository's URL.
+
+Everything else in this repository (the website-facing marketing copy, mcp-server/,
+the original nine skills this fork replaced, and all top-level docs) is original work,
+not derived from pipa-skills.

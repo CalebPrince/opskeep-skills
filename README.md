@@ -41,14 +41,14 @@ cp -r opskeep-skills/skills/* .agents/skills/
 
 ## What Opskeep adds
 
-- **Six business lanes**: win work, scope work, run work, get paid, keep clients, sharpen the craft
+- **Six business lanes**: get work, define work, deliver work, get paid, keep clients, improve operations
 - **Two meta surfaces**: `opskeep-manage` for setup/config/memory/automation, and `opskeep-tools` for hosted utilities
 - Delivery planning, coordination, and follow-through for active client work
 - Money, relationship, handoff, closeout, and learning loops around delivery
 - Client-ready updates and internal operating briefs
-- Session recaps: turn sessions, plans, PRs, and docs into a listenable brief
+- Audio briefs, voice huddles, follow-up reminders, time tracking, and Composio-backed tool access as standalone breakout skills
 - Lane-owned references with gotchas, examples, and connector setup
-- An MCP server exposing the hosted tools as callable functions: see [mcp-server](mcp-server)
+- An MCP server exposing the reminders/time-tracking hosted tools as callable functions: see [mcp-server](mcp-server)
 
 ## Core router
 
@@ -60,25 +60,48 @@ cp -r opskeep-skills/skills/* .agents/skills/
 
 | Skill | Description |
 | --- | --- |
-| `opskeep-win-work` | Helps service businesses build and qualify a pipeline from content, inbound, referrals, outreach, and market signals. |
-| `opskeep-scope-work` | Turns messy demand into defined work: discovery, scope, proposals, acceptance checks, and client onboarding. |
-| `opskeep-run-work` | Coordinates active delivery: status, blockers, risks, handoffs, dependencies, QA, and weekly updates. |
+| `opskeep-get-work` | Helps service businesses build and qualify a pipeline from content, inbound, referrals, outreach, and market signals. |
+| `opskeep-define-work` | Turns messy demand into defined work: discovery, scope, proposals, acceptance checks, and client onboarding. |
+| `opskeep-deliver-work` | Coordinates active delivery: status, blockers, risks, handoffs, dependencies, QA, and weekly updates. |
 | `opskeep-get-paid` | Tracks money follow-through: invoices, payments, billable time, budgets, and change-control money impact. |
 | `opskeep-keep-clients` | Maintains client trust through follow-ups, check-ins, health checks, renewals, referrals, and testimonials. |
-| `opskeep-sharpen-craft` | Turns finished work into better process: retrospectives, lessons, SOPs, templates, and reusable playbooks. |
+| `opskeep-improve-operations` | Turns finished work into better process: retrospectives, lessons, SOPs, templates, and reusable playbooks. |
 
 ## Meta skills
 
 | Skill | Description |
 | --- | --- |
 | `opskeep-manage` | Onboards and manages Opskeep itself: business profile, preferences, memory, connectors, automations, and triggers. |
-| `opskeep-tools` | Routes standalone utilities: session recaps, follow-up reminders, time tracking, and future hosted tools. |
+| `opskeep-tools` | Routes standalone utilities: audio briefs, voice huddles, follow-up reminders, time tracking, and Composio-backed tool access. |
+
+## Breakout skills
+
+These remain separately installable because they're tool-specific or useful outside the main router.
+
+| Skill | Description |
+| --- | --- |
+| `opskeep-audio-brief` | Turns sessions, PRs, plans, specs, docs, URLs, and pasted markdown into a listenable brief with a shareable listening page. |
+| `opskeep-huddle-beta` | Starts a voice huddle with Opskeep for live talk-throughs, planning conversation, and concise context handoff. **Needs its own deployed voice-relay backend to actually work — see the skill's README.** |
+| `composio-mcp` | Routes external app work through the Composio MCP with tool discovery, authorization links, schema-safe execution, and concise provenance. |
+| `opskeep-follow-up-reminders` | Creates and cancels deterministic one-shot email follow-up reminders, only when the user wants a specific future reminder. |
+| `opskeep-time-tracking` | Starts, stops, switches, backfills, updates, archives, and summarizes time entries. |
+| `opskeep-triggers` | Creates, inspects, and deletes event-triggered automations with explicit trigger proposal confirmation. |
 
 ## Contributing
 
 Found a way to improve a Opskeep skill? Open a PR. See [CONTRIBUTING.md](CONTRIBUTING.md)
 for guidance on skill structure, eval coverage, and versioning.
 
+## Provenance
+
+The business-lane, meta, and breakout skills in `skills/` are a rebranded fork of
+[pipa-skills](https://github.com/lunchpaillola/pipa-skills) by Lola at Lunch Pail Labs,
+used and modified under its MIT license. See [NOTICE](NOTICE) for the original copyright
+and license text. `opskeep-huddle-beta`'s Cloudflare Worker config pointed at Pipa's own
+deployed infrastructure and has been genericized — it needs its own deployed backend
+before it will actually work; everything else runs as soon as an agent reads it.
+
 ## License
 
-MIT: see [LICENSE](LICENSE).
+MIT: see [LICENSE](LICENSE). Forked skill content also carries the attribution in
+[NOTICE](NOTICE) as required by the upstream MIT license.

@@ -1,44 +1,43 @@
 ---
 name: opskeep-get-paid
-description: Tracks money follow-through, invoices, payments, billable time, budgets, margin, and the money impact of change control for work that's been scoped or delivered.
+description: "Use when the user wants Opskeep to help a service business get paid: invoices, payments, billable time, budgets, margin, change-control money impact, and payment follow-through."
 lane: get-paid
+metadata:
+  version: 0.1.0
 ---
 
-# Get paid
+# Opskeep Get Paid
 
-Covers everything money-related once there's a scope or delivered work to bill against.
+Keep money follow-through visible and actionable.
 
-## When to trigger
+## Use For
 
-- "Invoice [client] for [project]."
-- "What's outstanding right now?"
-- "Add these two extra revision rounds to the bill."
-- Logging billable time, checking budget/margin on a project.
+- Invoices, payments, billable time, budget health, margin, and money-risk review.
+- Change-control impact when scope changes affect money.
+- Payment follow-up planning.
 
-## What to gather
+## References
 
-- The relevant scope or rate (from `opskeep-scope-work` records, or ask if none exist;
-  never invent a number).
-- Payment terms already agreed (net-15/30, deposit structure, milestone billing).
-- Existing invoice/payment history for the client, to avoid double-billing or gaps.
+- Load `references/getting-paid.md` first.
+- Use `references/initiate-budget.md`, `references/monitor-budget.md`, and `references/execute-change-control.md` for budget, burn, margin, and money-impacting changes.
+- Load `references/examples/getting-paid.md` when an example shape helps.
 
-## What to produce
+## Output Contract
 
-- An invoice line item or full invoice draft: description, amount, due date; tied
-  explicitly to the scope or time it's billing for.
-- An outstanding-balance summary when asked: who owes what, since when, and whether a
-  reminder is due.
-- A budget/margin check: hours or spend so far against what was scoped, flagged early if
-  trending over.
+- Money item.
+- Amount/account/project or `TBD`.
+- Status, risk, and recommended follow-up.
+- Owner and due/review date.
+- Source/evidence or `TBD`.
 
-## Handoffs
+## Boundaries
 
-- A scope change needs billing → confirm with `opskeep-scope-work`'s record before adding
-  a line item.
-- A payment reminder needs to go out on a schedule → `opskeep-tools` for the hosted
-  reminder utility.
+- Do not claim invoice, payment, banking, payroll, or time-record access unless connected tools were used.
+- Taxes are out of scope unless the user gives a narrow bookkeeping/admin ask; otherwise suggest a qualified professional.
+- Time record create/update actions go through `opskeep-tools` to `opskeep-time-tracking`.
 
-## Guardrails
+## Gotchas
 
-- Never fabricate a dollar amount, rate, or due date. If the source scope record doesn't
-  have one, ask instead of estimating.
+- Financial claims need source evidence or `TBD`.
+- Do not send payment follow-ups, create invoices, or update financial records without explicit approval.
+- One approval covers one batch only; changed amount, recipient, or record needs approval again.
