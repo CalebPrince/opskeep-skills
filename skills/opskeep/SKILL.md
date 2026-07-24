@@ -35,7 +35,7 @@ No command? Use conversation context to choose the best destination. Show the me
 | Run your business: Keep clients | `keep clients`, `relationship`, `follow up`, `check-in`, `client health`, `stakeholder`, `retention`, `renewal`, `testimonial`, `referral` | `opskeep-keep-clients` |
 | Run your business: Improve operations | `improve operations`, `lessons`, `retrospective`, `close`, `archive`, `handover`, `benefits`, `reuse`, `SOP`, `template`, `video tutorial`, `YouTube link`, `transcript` | `opskeep-improve-operations` |
 | Manage Opskeep | `manage opskeep`, `setup`, `onboard opskeep`, `business profile`, `preferences`, `company brain`, `memory`, `connect tools`, `connector`, `automation`, `trigger`, `loop`, `recurring workflow` | `opskeep-manage` |
-| Opskeep Tools | `opskeep tools`, `audio brief`, `voice session`, `talk by voice`, `follow-up reminder`, `email reminder`, `time tracking`, `time entry`, `expense tracking`, `job expense`, `mileage`, `composio`, `hosted utility` | `opskeep-tools` |
+| Opskeep Tools | `opskeep tools`, `audio brief`, `voice session`, `talk by voice`, `follow-up reminder`, `email reminder`, `time tracking`, `time entry`, `expense tracking`, `job expense`, `mileage`, `escalate`, `escalation`, `composio`, `hosted utility` | `opskeep-tools` |
 | Handoff checks | `get-to-define`, `define-to-deliver`, `deliver-to-get-paid`, `deliver-to-relationships`, `improve-to-keep-clients` | source lane first, then named next lane follow-up |
 | Help | `help`, `menu`, sparse context, unsafe/unknown route | `references/help-menu.md` |
 
@@ -84,6 +84,6 @@ No command? Use conversation context to choose the best destination. Show the me
 - Do not route generic coding, writing, or research into Opskeep.
 - Do not present Opskeep as an acronym.
 - Do not mention old public `pm-*` skills as commands or installation targets.
-- Do not edit/copy internals of `opskeep-audio-brief`, `opskeep-huddle-beta`, `opskeep-follow-up-reminders`, `opskeep-time-tracking`, `opskeep-expense-tracking`, `opskeep-triggers`, or `composio`; standalone skills own them.
+- Do not edit/copy internals of `opskeep-audio-brief`, `opskeep-huddle-beta`, `opskeep-follow-up-reminders`, `opskeep-time-tracking`, `opskeep-expense-tracking`, `opskeep-escalate-to-owner`, `opskeep-triggers`, or `composio`; standalone skills own them.
 - Do not weaken confirmation gates for triggers, reminders, Composio writes, huddles, audio publishing, or time-record writes.
 - Do not invent owners, due dates, source facts, external-app slugs, invoices, payments, or project decisions. Use `TBD` for unknowns.

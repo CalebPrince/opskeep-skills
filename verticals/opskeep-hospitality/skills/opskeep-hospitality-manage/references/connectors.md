@@ -22,7 +22,7 @@ examples of what a venue might connect, not a fixed integration list.
 - Delivery platforms: third-party order and payout systems.
 - Supplier ordering: ingredient purchasing and invoicing.
 - Money and records: payment processing, payroll, accounting/bookkeeping tools.
-- Loyalty and marketing: guest contact, loyalty program, review platforms.
+- Loyalty and marketing: guest contact (including WhatsApp), loyalty program, review platforms.
 
 ## Lane Map
 

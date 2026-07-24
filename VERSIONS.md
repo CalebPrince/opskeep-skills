@@ -5,6 +5,20 @@ as a whole (see `package.json`).
 
 ## Unreleased
 
+- Added opt-in autonomous sale completion to `opskeep-retail-sell`, off by default. A shop
+  can turn on `autonomous_with_escalation` (`opskeep-retail-manage`, new
+  `references/transaction-autonomy.md`) so the agent completes a routine, already-priced
+  sale end-to-end without holding for per-message approval, escalating anything outside
+  that authorization to a new `opskeep-escalate-to-owner` skill instead of guessing. That
+  skill checks via `composio-mcp` for real live conversation handoff (WhatsApp Business
+  API's "claim conversation" takeover, confirmed to exist and preserve full context,
+  requires the API tier not the free app) before falling back to a notify-and-pause
+  escalation, backed by a new open-source MCP scaffold (`escalate_to_owner`,
+  `resolve_escalation`, `list_escalations`). Scoped to `opskeep-retail` only for now.
+- Added WhatsApp as a Communication connector category in `opskeep-manage`,
+  `opskeep-retail-manage`, and `opskeep-hospitality-manage`, and to `PRODUCT.md`'s Pro/
+  Managed tier connector lists, to match a marketing repositioning toward WhatsApp-first
+  small businesses.
 - Initial scaffold: core router, six business-lane skills, two meta skills.
 - Added recurring (daily/weekly/monthly) email reminders under `opskeep-manage`, backed by
   a new open-source MCP scaffold (`schedule_recurring_reminder`, `cancel_recurring_reminder`,

@@ -109,6 +109,19 @@ point, ready to send to the supplier" is.
    skills, no invented credentials or gateway endpoints. If a hosted tier is warranted
    later (mirroring `opskeep-time-tracking`'s real gateway-backed version), that's a
    separate decision once real usage validates the open-source version.
+4. **Autonomous sale completion** — resolved as: opt-in, off by default, scoped to
+   `opskeep-retail-sell` only for now. A shop can turn on `autonomous_with_escalation`
+   (set in `opskeep-retail-manage`, see `references/transaction-autonomy.md`) so the
+   agent completes a routine, already-priced sale end-to-end without holding for
+   per-message approval. On anything outside that authorization — a price/terms
+   deviation, an ambiguous request, a dispute, a high-value order, or low confidence —
+   it routes to the new `opskeep-escalate-to-owner` skill instead of guessing. That skill
+   checks via `composio-mcp` whether the connected channel supports a real live
+   conversation handoff (confirmed real for WhatsApp Business **API** — not the free
+   consumer app — via third-party providers' "claim conversation" takeover, which
+   preserves full context and stops the agent immediately) and only falls back to a
+   notify-and-pause escalation when live handoff isn't available. Extending autonomy to
+   other lanes (get-paid, stock-up, plan-drop) is left for later, once this is validated.
 
 ## Remaining open question
 

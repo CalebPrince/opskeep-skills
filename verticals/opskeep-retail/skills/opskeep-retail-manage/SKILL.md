@@ -17,11 +17,15 @@ Set up and maintain Opskeep Retail as the shop's operations agent.
 - Shop profile, product/supplier catalog reference, and preferences.
 - Connected tool setup, connector status, and Composio connection readiness.
 - Multi-location scoping when the shop has more than one location.
+- Setting how much autonomy the agent has to complete a sale on its own versus holding
+  every message for review.
 
 ## References
 
 - Load `references/connectors.md` for POS/inventory/supplier connector setup, status, and
   Composio connection readiness.
+- Load `references/transaction-autonomy.md` for setting or changing autonomous-sale mode
+  and its escalation triggers.
 
 ## Output Contract
 
@@ -45,3 +49,6 @@ Set up and maintain Opskeep Retail as the shop's operations agent.
 - Tool connection status must be verified before claiming access.
 - One shop location is the default assumption; if the shop has multiple locations, capture
   that during setup so lane skills know to ask which location a request applies to.
+- Default every lane to `approval_required`. Turning on `autonomous_with_escalation` for
+  a lane is a real behavior change; require explicit confirmation restating exactly what
+  it authorizes before applying it.

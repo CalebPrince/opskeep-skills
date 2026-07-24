@@ -14,16 +14,17 @@ changes stay consistent with what's actually offered.
 
 Everything in Open Source, plus hosted tools that require server-side infrastructure:
 
-- Client updates and follow-up reminders sent by Opskeep's hosted service
+- Customer replies and follow-up reminders sent by Opskeep's hosted service
 - Session recaps (audio) generated server-side
-- Time tracking synced across sessions
-- Managed connectors: Slack, GitHub, Gmail, Stripe, Notion, Linear, Google Drive, Figma
+- Time and expense tracking synced across sessions
+- Managed connectors: WhatsApp, Slack, GitHub, Gmail, Stripe, Notion, Linear, Google Drive, Google Sheets, Figma
 
 ## Managed (custom)
 
 Everything in Pro, plus:
 
 - Opskeep staff configure and tune the agent for a specific workflow
+- Channel setup done for the customer (e.g. connecting WhatsApp) instead of self-serve
 - Always-on / scheduled operation, not just session-triggered
 - Priority support and onboarding
 
@@ -33,10 +34,10 @@ Everything in Pro, plus:
 | --- | --- | --- | --- |
 | Business-lane skills | ✅ | ✅ | ✅ |
 | Core router | ✅ | ✅ | ✅ |
-| Hosted client updates | n/a | ✅ | ✅ |
+| Hosted customer replies | n/a | ✅ | ✅ |
 | Hosted reminders | n/a | ✅ | ✅ |
 | Session recaps | n/a | ✅ | ✅ |
-| Time tracking sync | n/a | ✅ | ✅ |
+| Time &amp; expense tracking sync | n/a | ✅ | ✅ |
 | Managed connectors | n/a | ✅ | ✅ |
 | Always-on operation | n/a | n/a | ✅ |
 | Custom tuning & support | n/a | n/a | ✅ |

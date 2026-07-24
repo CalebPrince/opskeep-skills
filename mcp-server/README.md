@@ -1,7 +1,8 @@
 # Opskeep MCP server
 
 An MCP server exposing Opskeep's hosted tools as callable functions: client update
-delivery, one-time reminders, session recaps, and time tracking. This is the mechanical,
+delivery, reminders, session recaps, time and expense tracking, and owner escalations.
+This is the mechanical,
 stateful half of `opskeep-tools`: the judgment (what to write, when to check in) stays in
 the skill; this server does the sending, scheduling, and storing.
 
@@ -23,14 +24,17 @@ the skill; this server does the sending, scheduling, and storing.
 | `list_expenses` | Lists logged expenses, optionally by job and/or category |
 | `summarize_expenses` | Totals a job's expenses by category, ready to fold into an invoice |
 | `delete_expense` | Removes a logged expense by ID |
+| `escalate_to_owner` | Pauses an autonomous transaction and records an escalation for the business owner |
+| `resolve_escalation` | Records how a paused escalation was resolved |
+| `list_escalations` | Lists escalations, optionally by status |
 
 ## Status
 
-This is a **scaffold**, not production infra. Reminders, recaps, and time entries are
-held in memory (see `src/store.js`) and reset on restart. Email/Slack delivery and
-TTS generation are stubbed with `TODO` comments marking where a real provider goes.
-The tool contracts (names, input schemas, response shape) are the stable part: build
-against those.
+This is a **scaffold**, not production infra. Reminders, recaps, time entries, and
+escalations are held in memory (see `src/store.js`) and reset on restart. Email/Slack
+delivery, TTS generation, and owner escalation notifications are stubbed with `TODO`
+comments marking where a real provider goes. The tool contracts (names, input schemas,
+response shape) are the stable part: build against those.
 
 ## Install & run
 

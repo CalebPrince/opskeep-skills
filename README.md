@@ -108,6 +108,7 @@ These remain separately installable because they're tool-specific or useful outs
 | `opskeep-follow-up-reminders` | Creates and cancels deterministic one-shot email follow-up reminders, only when the user wants a specific future reminder. |
 | `opskeep-time-tracking` | Starts, stops, switches, backfills, updates, archives, and summarizes time entries. |
 | `opskeep-expense-tracking` | Logs, lists, and summarizes job-tagged expenses (materials, mileage, other costs) ready to fold into an invoice. |
+| `opskeep-escalate-to-owner` | Pauses an autonomous transaction and brings in the business owner, via live conversation handoff when the connected channel supports it, or a notify-and-pause fallback. |
 | `opskeep-triggers` | Creates, inspects, and deletes event-triggered automations with explicit trigger proposal confirmation. |
 
 ## Other business models

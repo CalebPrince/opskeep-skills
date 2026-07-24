@@ -46,8 +46,8 @@ Retail setup/config, or a shared Opskeep utility? Do not force Opskeep Retail.
 | Get paid | `get paid`, `till`, `reconciliation`, `refund`, `exchange`, `supplier bill`, `margin` | `opskeep-retail-get-paid` |
 | Keep customers | `keep customers`, `loyalty`, `review request`, `win-back`, `restock alert`, `repeat customer` | `opskeep-retail-keep-customers` |
 | Improve operations | `improve operations`, `sell-through`, `shrinkage`, `reorder point`, `markdown review` | `opskeep-retail-improve-operations` |
-| Manage Opskeep Retail | `manage`, `setup`, `shop profile`, `supplier profile`, `staff roster`, `connect tools`, `connector`, `POS setup` | `opskeep-retail-manage` |
-| Opskeep Tools (shared) | `audio brief`, `voice session`, `follow-up reminder`, `time tracking`, `expense tracking`, `composio`, `hosted utility` | `opskeep-tools` |
+| Manage Opskeep Retail | `manage`, `setup`, `shop profile`, `supplier profile`, `staff roster`, `connect tools`, `connector`, `POS setup`, `autonomy`, `autonomous mode` | `opskeep-retail-manage` |
+| Opskeep Tools (shared) | `audio brief`, `voice session`, `follow-up reminder`, `time tracking`, `expense tracking`, `escalate`, `escalation`, `composio`, `hosted utility` | `opskeep-tools` |
 | Help | `help`, `menu`, sparse context, unsafe/unknown route | show command menu inline (see Help below) |
 
 ## Routing Rules
@@ -66,6 +66,9 @@ Retail setup/config, or a shared Opskeep utility? Do not force Opskeep Retail.
 7. Multiple matches -> one primary destination plus secondary follow-ups, unless the user
    asks for a chain.
 8. Sparse or unsafe route -> help/menu plus one clarifying question only if needed.
+9. Default every lane to `approval_required`. A shop-facing request to complete sales
+   autonomously routes to `opskeep-retail-manage` to turn it on explicitly; do not treat
+   autonomy as already on without confirming it in setup.
 
 ## Tie-Breakers
 
@@ -98,7 +101,7 @@ Manage Opskeep Retail:
 - `setup`, `connect tools`, `shop profile`, `supplier profile`, `staff roster`
 
 Opskeep Tools (shared with core Opskeep):
-- `audio brief`, `voice session`, `follow-up reminder`, `time tracking`, `expense tracking`, `composio`
+- `audio brief`, `voice session`, `follow-up reminder`, `time tracking`, `expense tracking`, `escalate to owner`, `composio`
 
 Decision stub: next action, owner, date, evidence. Use `TBD` when missing.
 ```
@@ -121,3 +124,6 @@ Decision stub: next action, owner, date, evidence. Use `TBD` when missing.
   numbers. Use `TBD` for unknowns.
 - One shop location is assumed by default. If multi-location context is present, ask
   which location before acting.
+- Autonomous sale completion is opt-in per shop, set in `opskeep-retail-manage`. Never
+  assume it's on; a lane skill with an unknown autonomy setting defaults to holding for
+  approval.

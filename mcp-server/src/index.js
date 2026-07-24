@@ -22,6 +22,11 @@ import {
   summarizeExpensesTool,
   deleteExpenseTool,
 } from "./tools/expenseTracking.js";
+import {
+  escalateToOwnerTool,
+  resolveEscalationTool,
+  listEscalationsTool,
+} from "./tools/escalations.js";
 
 const server = new McpServer({
   name: "opskeep-tools",
@@ -44,6 +49,9 @@ const tools = [
   listExpensesTool,
   summarizeExpensesTool,
   deleteExpenseTool,
+  escalateToOwnerTool,
+  resolveEscalationTool,
+  listEscalationsTool,
 ];
 
 for (const tool of tools) {

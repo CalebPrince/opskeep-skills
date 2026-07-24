@@ -20,7 +20,7 @@ a fixed integration list.
 - Point of sale: in-store transaction platforms.
 - Inventory/supplier ordering: stock levels, purchase orders, supplier catalogs.
 - E-commerce: online storefront, order sync between channels.
-- Loyalty and marketing: customer contact, loyalty program, review platforms.
+- Loyalty and marketing: customer contact (including WhatsApp), loyalty program, review platforms.
 - Money and records: payment processing, accounting/bookkeeping tools.
 
 ## Lane Map

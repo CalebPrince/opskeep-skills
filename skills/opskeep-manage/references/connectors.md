@@ -12,7 +12,7 @@ Use for Opskeep connected-tool setup, status, explanation, or troubleshooting.
 
 ## Connector Categories
 
-- Communication: Slack, Gmail, Outlook, Teams.
+- Communication: Slack, Gmail, Outlook, Teams, WhatsApp.
 - Work tracking: Linear, GitHub, Jira, ClickUp, Asana, Trello.
 - Docs and knowledge: Notion, Google Drive, Google Docs, Sheets.
 - Calendar and meetings: Google Calendar, Outlook Calendar.

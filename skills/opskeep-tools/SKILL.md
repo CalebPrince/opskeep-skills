@@ -1,6 +1,6 @@
 ---
 name: opskeep-tools
-description: "Use when the user wants a standalone Opskeep utility or hosted capability: audio briefs, voice huddles, follow-up reminders, time tracking, job expense tracking, Composio/tool access, or future small Opskeep utilities."
+description: "Use when the user wants a standalone Opskeep utility or hosted capability: audio briefs, voice huddles, follow-up reminders, time tracking, job expense tracking, escalating an autonomous conversation to a business owner, Composio/tool access, or future small Opskeep utilities."
 metadata:
   lane: meta
   version: 0.1.0
@@ -17,6 +17,7 @@ Route standalone utilities without turning them into business lanes.
 - One-shot self-email reminder -> `opskeep-follow-up-reminders`.
 - Start/stop/switch/backfill/update/archive/summarize time records -> `opskeep-time-tracking`.
 - Log/list/summarize/delete a job-tagged expense (materials, mileage, other cost) -> `opskeep-expense-tracking`.
+- Pause an autonomous conversation and bring in the business owner -> `opskeep-escalate-to-owner`.
 - Live external app access or writes -> `composio` with discovery/schema-safe execution.
 
 ## Output Contract
