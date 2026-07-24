@@ -2,7 +2,8 @@ import { z } from "zod";
 import { reminders, newId } from "../store.js";
 
 // One-shot, deterministic reminders only. No recurrence here. A request for
-// a recurring nudge belongs to the opskeep-manage automation flow instead.
+// a recurring nudge belongs to the opskeep-manage automation flow instead
+// (see recurringReminders.js and skills/opskeep-manage/references/recurring-reminders.md).
 
 export const scheduleReminderTool = {
   name: "schedule_reminder",

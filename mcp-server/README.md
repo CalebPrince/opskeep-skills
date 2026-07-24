@@ -12,6 +12,9 @@ the skill; this server does the sending, scheduling, and storing.
 | `send_client_update` | Delivers an already-composed update via email or Slack |
 | `schedule_reminder` | Schedules a one-time future email reminder |
 | `cancel_reminder` | Cancels a scheduled reminder by ID |
+| `schedule_recurring_reminder` | Creates a recurring (daily/weekly/monthly) email reminder rule |
+| `cancel_recurring_reminder` | Cancels a recurring reminder rule by ID |
+| `list_recurring_reminders` | Lists recurring reminder rules, optionally by status |
 | `create_session_recap` | Turns source text into a recap artifact with a listen link |
 | `start_timer` / `stop_timer` | Starts/stops a running timer for a project |
 | `backfill_time_entry` | Logs a completed time block without a live timer |

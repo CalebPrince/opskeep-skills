@@ -1,6 +1,6 @@
 ---
 name: opskeep-follow-up-reminders
-description: Create and cancel simple one-shot email follow-up reminders through Opskeep. Use this when the user wants Opskeep to email them a specific reminder at a future time, such as “email me tomorrow at 9 to follow up,” “remind me by email next Friday,” or “send me a reminder in two hours.” Also use it to cancel a previously scheduled Opskeep Follow-Up reminder. Do not use for generic follow-up work, recurring reminders, Gmail scheduled send, drafting emails, reply detection, inbox monitoring, Slack/SMS reminders, or reminders to other people.
+description: Create and cancel simple one-shot email follow-up reminders through Opskeep. Use this when the user wants Opskeep to email them a specific reminder at a future time, such as “email me tomorrow at 9 to follow up,” “remind me by email next Friday,” or “send me a reminder in two hours.” Also use it to cancel a previously scheduled Opskeep Follow-Up reminder. Do not use for generic follow-up work, Gmail scheduled send, drafting emails, reply detection, inbox monitoring, Slack/SMS reminders, or reminders to other people. For recurring reminders (daily/weekly/monthly cadence), route to `opskeep-manage` instead.
 lane: meta
 metadata:
   version: 0.1.2
@@ -23,7 +23,8 @@ Keep a short todo list while executing this skill so context stays clean: mode, 
    - User asks for a future email reminder, such as “email me tomorrow,” “remind me by email,” or “follow up with me in two hours” -> **create mode**. Continue step 2.
    - User asks to cancel a scheduled Opskeep Follow-Up reminder -> **cancel mode**. Continue step 2.
    - User asks to buy credits, top up, or a create request fails with `insufficient_credits` -> **top-up mode**. Continue step 2.
-   - User asks for reminder listing, updates, recurring reminders, inbox monitoring, reply detection, Gmail scheduled send, SMS, Slack, or reminders to another person -> explain V1 does not support that flow, then stop.
+   - User asks for a recurring/repeating reminder (daily, weekly, monthly, "every Friday") -> explain this skill is one-shot only and hand off to `opskeep-manage`, then stop.
+   - User asks for reminder listing, updates, inbox monitoring, reply detection, Gmail scheduled send, SMS, Slack, or reminders to another person -> explain V1 does not support that flow, then stop.
 
    Skip ahead: If the conversation already contains a successful API response and the user asks about that result, answer from the known response. Do not call unsupported read/list APIs.
 

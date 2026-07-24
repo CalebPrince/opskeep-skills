@@ -48,7 +48,7 @@ No command? Use conversation context to choose the best destination. Show the me
 5. `opskeep-manage` owns Opskeep onboarding, business profile, preferences, company brain, connected tools, automations, triggers, and recurring loops.
 6. `opskeep-tools` owns standalone hosted utilities and exact utility jobs: audio briefs, voice huddles, follow-up reminders, time tracking, and Composio-backed tool access.
 7. Generic client follow-up stays `keep clients` or `deliver work`. One-shot self-email reminders go through `opskeep-tools` to `opskeep-follow-up-reminders`.
-8. One-time status/update work stays `deliver work`. Event-driven or recurring setup goes through `opskeep-manage` to `opskeep-triggers`.
+8. One-time status/update work stays `deliver work`. Event-driven setup goes through `opskeep-manage` to `opskeep-triggers`. Recurring/repeating reminder setup (daily/weekly/monthly cadence) goes through `opskeep-manage` directly.
 9. Live external app access or writes go through `opskeep-tools`/Composio discovery/schema rules. Never guess slugs.
 10. Multiple matches -> one primary destination plus secondary follow-ups, unless user asks for chain.
 11. Handoff checks -> return `Objective`, `Source Check` or `Tool Access Check`, `Current Signal`, actions with owner/date/evidence, `TBD` gaps, and next lane follow-ups. Do not execute multiple lanes unless asked.

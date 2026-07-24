@@ -4,6 +4,11 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 
 import { sendClientUpdateTool } from "./tools/clientUpdates.js";
 import { scheduleReminderTool, cancelReminderTool } from "./tools/reminders.js";
+import {
+  scheduleRecurringReminderTool,
+  cancelRecurringReminderTool,
+  listRecurringRemindersTool,
+} from "./tools/recurringReminders.js";
 import { createSessionRecapTool } from "./tools/sessionRecaps.js";
 import {
   startTimerTool,
@@ -21,6 +26,9 @@ const tools = [
   sendClientUpdateTool,
   scheduleReminderTool,
   cancelReminderTool,
+  scheduleRecurringReminderTool,
+  cancelRecurringReminderTool,
+  listRecurringRemindersTool,
   createSessionRecapTool,
   startTimerTool,
   stopTimerTool,

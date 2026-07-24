@@ -20,6 +20,7 @@ Set up and maintain Opskeep as an operations agent.
 ## References
 
 - Load `references/connectors.md` for connected-tool setup, connector status, and Composio connection readiness.
+- Load `references/recurring-reminders.md` for a repeating self-email nudge on a daily/weekly/monthly cadence (not a one-shot reminder, not an external-app event trigger).
 
 ## Output Contract
 
