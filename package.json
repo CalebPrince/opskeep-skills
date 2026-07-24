@@ -1,0 +1,20 @@
+{
+  "name": "opskeep-skills",
+  "version": "0.1.0",
+  "description": "Operations skills for the agent you already use.",
+  "license": "MIT",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/opskeep/opskeep-skills.git"
+  },
+  "scripts": {
+    "lint:skills": "node scripts/validate-skills.js",
+    "test:evals": "node scripts/run-evals.js"
+  },
+  "keywords": [
+    "agent-skills",
+    "operations",
+    "opskeep"
+  ]
+}
