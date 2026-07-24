@@ -1,8 +1,8 @@
 ---
 name: opskeep-audio-brief
 description: "Use when the user wants a listenable brief for work produced by AI agents, coding tools, or document workflows: agent sessions, code changes, pull requests, plans, specs, research reports, documentation pages, blog posts, URLs, local files, or pasted markdown. Also use for casual requests like give me the brief, audio brief, listenable walkthrough, phone-friendly review, or static review page for understanding work artifacts without reading everything line by line. Do not use for generic TTS or podcast creation from scratch."
-lane: meta
 metadata:
+  lane: meta
   version: 0.1.0
 ---
 

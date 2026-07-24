@@ -1,8 +1,8 @@
 ---
 name: opskeep-hospitality-manage
 description: "Use when the user wants to operate Opskeep Hospitality itself: onboard Opskeep Hospitality into a restaurant/venue, update venue/cuisine profile, manage staff roster and certifications, connect POS/reservation/delivery tools, or audit what Opskeep Hospitality knows and can access."
-lane: meta
 metadata:
+  lane: meta
   version: 0.1.0
 ---
 

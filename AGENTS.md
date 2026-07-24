@@ -5,9 +5,11 @@ Instructions for any agent (human-directed or autonomous) working inside this re
 ## What this repo is
 
 A collection of installable "skills": markdown-defined workflows plus optional scripts
-that teach a coding/operations agent how to run the business side of service work. Skills
-are consumed by agent runtimes (Claude Code, Cursor, Cline, Codex, and similar) via the
-`skills/` directory.
+that teach a coding/operations agent how to run the business side of service work. Every
+skill here follows the [Agent Skills open standard](https://agentskills.io/specification)
+(a folder with a `SKILL.md` plus optional `scripts/`/`references/`/`assets/`), which is
+consumed by agent runtimes including Claude Code, Cursor, Cline, Codex CLI, ChatGPT, and
+others — see the README's "Other agent runtimes" section for verified per-tool paths.
 
 ## Ground rules
 

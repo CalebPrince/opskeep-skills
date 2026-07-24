@@ -1,8 +1,8 @@
 ---
 name: opskeep-retail-improve-operations
 description: "Use when the user wants Opskeep Retail to improve how the shop runs: sell-through review, markdown effectiveness, shrinkage, and reorder-point tuning."
-lane: improve-operations
 metadata:
+  lane: improve-operations
   version: 0.1.0
 ---
 

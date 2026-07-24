@@ -1,8 +1,8 @@
 ---
 name: opskeep-retail-get-paid
 description: "Use when the user wants Opskeep Retail to help a shop get paid: till reconciliation, refunds/exchanges, supplier bill payment, and margin review."
-lane: get-paid
 metadata:
+  lane: get-paid
   version: 0.1.0
 ---
 

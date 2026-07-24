@@ -1,8 +1,8 @@
 ---
 name: opskeep-expense-tracking
 description: Log, list, and summarize job-tagged expenses (materials, mileage, other costs) through Opskeep's generic agent utility tools. Use when the user wants to log a receipt, materials cost, or mileage against a job, list what's been logged, or total a job's expenses before invoicing. Do not use for billable time (that's opskeep-time-tracking) or for creating/sending invoices (that's opskeep-get-paid).
-lane: meta
 metadata:
+  lane: meta
   version: 0.1.0
 ---
 

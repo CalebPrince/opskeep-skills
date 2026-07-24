@@ -14,15 +14,24 @@ skills/<skill-name>/
   examples/           # optional: sample inputs/outputs
 ```
 
-`SKILL.md` frontmatter:
+`SKILL.md` frontmatter follows the [Agent Skills open standard](https://agentskills.io/specification):
+only `name`, `description`, `license`, `compatibility`, `metadata`, and `allowed-tools` are
+valid top-level fields. This pack's `lane` field is not part of the spec, so it lives
+under `metadata`, not top-level:
 
 ```yaml
 ---
 name: opskeep-example
 description: One or two sentences a router uses to decide when to trigger this skill.
-lane: deliver-work     # one of the six business lanes, or "meta"
+metadata:
+  lane: deliver-work     # one of the six business lanes, or "meta"
+  version: 0.1.0
 ---
 ```
+
+`name` must match the parent directory name exactly, be lowercase letters/numbers/hyphens
+only, and not start/end with or double up a hyphen. `npm run lint:skills` checks all of
+this, including that `lane` isn't accidentally left at the top level.
 
 Keep the body focused on:
 

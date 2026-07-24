@@ -1,10 +1,13 @@
 #!/usr/bin/env node
-// Validates that every <skills-dir>/<name>/SKILL.md has the required frontmatter fields.
-// Covers the core pack (skills/) and any vertical packs staged under verticals/*/skills/.
+// Validates every <skills-dir>/<name>/SKILL.md against the Agent Skills open standard
+// (https://agentskills.io/specification): required top-level frontmatter fields, name
+// format/length, and that this pack's custom `lane` field lives under `metadata` rather
+// than as an unrecognized top-level key. Covers the core pack (skills/) and any vertical
+// packs staged under verticals/*/skills/.
 const fs = require("fs");
 const path = require("path");
 
-const required = ["name", "description", "lane"];
+const NAME_PATTERN = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 let hasError = false;
 
 function validateSkillsDir(skillsDir, label) {
@@ -15,6 +18,8 @@ function validateSkillsDir(skillsDir, label) {
 
     const skillPath = path.join(skillsDir, entry.name, "SKILL.md");
     const tag = `${label}${entry.name}`;
+    const errors = [];
+
     if (!fs.existsSync(skillPath)) {
       console.error(`✗ ${tag}: missing SKILL.md`);
       hasError = true;
@@ -22,7 +27,7 @@ function validateSkillsDir(skillsDir, label) {
     }
 
     const contents = fs.readFileSync(skillPath, "utf8");
-    const frontmatterMatch = contents.match(/^---\n([\s\S]*?)\n---/);
+    const frontmatterMatch = contents.match(/^---\r?\n([\s\S]*?)\r?\n---/);
     if (!frontmatterMatch) {
       console.error(`✗ ${tag}: SKILL.md has no frontmatter block`);
       hasError = true;
@@ -30,9 +35,33 @@ function validateSkillsDir(skillsDir, label) {
     }
 
     const frontmatter = frontmatterMatch[1];
-    const missing = required.filter((key) => !new RegExp(`^${key}:`, "m").test(frontmatter));
-    if (missing.length) {
-      console.error(`✗ ${tag}: missing frontmatter field(s): ${missing.join(", ")}`);
+
+    const nameMatch = frontmatter.match(/^name:\s*(\S+)\s*$/m);
+    if (!nameMatch) {
+      errors.push("missing top-level field: name");
+    } else {
+      const name = nameMatch[1];
+      if (name.length > 64) errors.push(`name exceeds 64 characters: ${name}`);
+      if (!NAME_PATTERN.test(name)) errors.push(`name fails spec pattern (lowercase, hyphens, no leading/trailing/double hyphen): ${name}`);
+      if (name !== entry.name) errors.push(`name "${name}" does not match parent directory "${entry.name}"`);
+    }
+
+    if (!/^description:/m.test(frontmatter)) {
+      errors.push("missing top-level field: description");
+    }
+
+    const hasMetadataBlock = /^metadata:\s*$/m.test(frontmatter);
+    const hasMetadataLane = /^\s+lane:\s*\S+/m.test(frontmatter);
+    if (!hasMetadataBlock || !hasMetadataLane) {
+      errors.push("missing metadata.lane (this pack's routing field belongs under metadata:, not top-level)");
+    }
+
+    if (/^lane:/m.test(frontmatter)) {
+      errors.push("lane is top-level, not spec-conformant; move it under metadata:");
+    }
+
+    if (errors.length) {
+      console.error(`✗ ${tag}: ${errors.join("; ")}`);
       hasError = true;
       continue;
     }

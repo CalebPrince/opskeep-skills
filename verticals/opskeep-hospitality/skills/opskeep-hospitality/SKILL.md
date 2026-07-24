@@ -1,8 +1,8 @@
 ---
 name: opskeep-hospitality
 description: "Use when the user invokes Opskeep Hospitality and needs routing across restaurant/venue operations: stock up, plan service, serve, get paid, keep customers, improve operations; or Opskeep Hospitality Manage for venue setup, connectors, and preferences. Routes to opskeep-tools for standalone hosted utilities shared with the core Opskeep pack."
-lane: meta
 metadata:
+  lane: meta
   version: 0.1.0
 ---
 

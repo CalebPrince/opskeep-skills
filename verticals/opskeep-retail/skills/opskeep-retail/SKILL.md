@@ -1,8 +1,8 @@
 ---
 name: opskeep-retail
 description: "Use when the user invokes Opskeep Retail and needs routing across shop operations: stock up, plan the drop, sell, get paid, keep customers, improve operations; or Opskeep Retail Manage for shop setup, connectors, and preferences. Routes to opskeep-tools for standalone hosted utilities shared with the core Opskeep pack."
-lane: meta
 metadata:
+  lane: meta
   version: 0.1.0
 ---
 

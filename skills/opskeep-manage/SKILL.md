@@ -1,8 +1,8 @@
 ---
 name: opskeep-manage
 description: "Use when the user wants to operate Opskeep itself: onboard Opskeep into their business, update business profile/preferences, manage company brain or memory, connect tools, configure automations/triggers/loops, or audit what Opskeep knows and can access."
-lane: meta
 metadata:
+  lane: meta
   version: 0.1.0
 ---
 

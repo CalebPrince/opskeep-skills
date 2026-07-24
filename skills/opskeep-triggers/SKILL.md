@@ -1,8 +1,8 @@
 ---
 name: opskeep-triggers
 description: Handle event-triggered automations for Opskeep. Use this whenever the user wants Opskeep to run a workflow when an external event happens, such as a GitHub PR opening, a Linear issue being created, a Slack channel changing, a new ticket arriving, or asks to list, inspect, or delete existing event triggers. This skill owns trigger proposal, confirmation, and gateway trigger-subscription API calls.
-lane: meta
 metadata:
+  lane: meta
   version: 0.1.0
 ---
 

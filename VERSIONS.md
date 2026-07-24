@@ -34,6 +34,14 @@ as a whole (see `package.json`).
   no-fabricated-hosted-infra resolutions as `opskeep-retail`, plus food-safety/labor-
   compliance handled as a cross-cutting Boundaries rule on the affected lane skills
   (surface the flag, never adjudicate legality) rather than its own lane.
+- Migrated `lane` (and, in `composio-mcp`, `tags`) from a top-level frontmatter field into
+  `metadata` across all 32 skills (core + both verticals), for conformance with the
+  [Agent Skills open standard](https://agentskills.io/specification), which only allows
+  `name`/`description`/`license`/`compatibility`/`metadata`/`allowed-tools` at the top
+  level. `scripts/validate-skills.js` now checks name format/length, that `name` matches
+  its parent directory, and that `lane` isn't left at the top level. Documented verified
+  install paths for Cursor, Codex CLI, Cline, and ChatGPT (via Skills upload) in the
+  README's new "Other agent runtimes" section.
 
 ## 0.1.0 (2026-07-24)
 

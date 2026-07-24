@@ -1,8 +1,8 @@
 ---
 name: opskeep-define-work
 description: "Use when the user wants Opskeep to turn messy service-business demand into defined work: discovery, scope, requirements, proposals, acceptance checks, decisions, client/project onboarding, and setup for delivery."
-lane: define-work
 metadata:
+  lane: define-work
   version: 0.1.0
 ---
 

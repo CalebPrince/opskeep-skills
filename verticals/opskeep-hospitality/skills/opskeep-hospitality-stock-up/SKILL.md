@@ -1,8 +1,8 @@
 ---
 name: opskeep-hospitality-stock-up
 description: "Use when the user wants Opskeep Hospitality to help a restaurant/venue stock up: ingredient ordering, par levels, supplier delivery reconciliation, and low-stock flags."
-lane: stock-up
 metadata:
+  lane: stock-up
   version: 0.1.0
 ---
 

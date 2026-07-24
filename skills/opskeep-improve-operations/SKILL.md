@@ -1,8 +1,8 @@
 ---
 name: opskeep-improve-operations
 description: "Use when the user wants Opskeep to improve how the service business runs: retrospectives, lessons, SOPs, templates, reusable processes, archive readiness, closeout learning, operational improvements, and turning a video tutorial, YouTube link, or transcript into a step-by-step SOP for the team."
-lane: improve-operations
 metadata:
+  lane: improve-operations
   version: 0.1.0
 ---
 

@@ -1,8 +1,8 @@
 ---
 name: opskeep-get-paid
 description: "Use when the user wants Opskeep to help a service business get paid: invoices, payments, billable time, budgets, margin, change-control money impact, and payment follow-through."
-lane: get-paid
 metadata:
+  lane: get-paid
   version: 0.1.0
 ---
 

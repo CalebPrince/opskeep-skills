@@ -1,8 +1,8 @@
 ---
 name: opskeep
 description: "Use when the user invokes Opskeep and needs routing across service-business operations, Opskeep setup/management, or Opskeep tools. Routes to business lanes: get work, define work, deliver work, get paid, keep clients, improve operations; to Manage Opskeep for setup, tools, automations, memory, and preferences; or to Opskeep Tools for audio briefs, huddles, reminders, time tracking, and Composio-backed utilities."
-lane: meta
 metadata:
+  lane: meta
   version: 2.0.0
 ---
 

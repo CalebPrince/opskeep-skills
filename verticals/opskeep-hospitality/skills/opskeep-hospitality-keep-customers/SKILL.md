@@ -1,8 +1,8 @@
 ---
 name: opskeep-hospitality-keep-customers
 description: "Use when the user wants Opskeep Hospitality to maintain guest trust and repeat visits: review requests, complaint recovery, and regulars/loyalty tracking."
-lane: keep-customers
 metadata:
+  lane: keep-customers
   version: 0.1.0
 ---
 

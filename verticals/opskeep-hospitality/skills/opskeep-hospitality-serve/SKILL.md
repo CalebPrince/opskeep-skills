@@ -1,8 +1,8 @@
 ---
 name: opskeep-hospitality-serve
 description: "Use when the user wants Opskeep Hospitality to help with the serve moment: reservation/table status, waitlist, kitchen ticket execution, and order-taking."
-lane: serve
 metadata:
+  lane: serve
   version: 0.1.0
 ---
 

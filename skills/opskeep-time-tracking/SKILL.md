@@ -1,8 +1,8 @@
 ---
 name: opskeep-time-tracking
 description: Track work time through Opskeep generic agent utility records. Use when user asks to start, stop, switch, inspect, backfill, update, archive, or summarize time entries.
-lane: meta
 metadata:
+  lane: meta
   version: 0.1.0
 ---
 

@@ -1,8 +1,8 @@
 ---
 name: opskeep-hospitality-get-paid
 description: "Use when the user wants Opskeep Hospitality to help a restaurant/venue get paid: nightly close-out, tips split, delivery-platform fee reconciliation, supplier bill payment, and margin review."
-lane: get-paid
 metadata:
+  lane: get-paid
   version: 0.1.0
 ---
 

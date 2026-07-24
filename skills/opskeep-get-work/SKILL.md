@@ -1,8 +1,8 @@
 ---
 name: opskeep-get-work
 description: "Use when the user wants Opskeep to help a small service business get work: content, inbound, leads, pipeline, opportunities, referrals, outreach, market signals, next opportunity actions, and turning Reddit research on a topic into a drafted social post with copy and an image."
-lane: get-work
 metadata:
+  lane: get-work
   version: 0.1.0
 ---
 

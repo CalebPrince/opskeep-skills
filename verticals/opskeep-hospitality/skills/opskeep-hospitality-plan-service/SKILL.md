@@ -1,8 +1,8 @@
 ---
 name: opskeep-hospitality-plan-service
 description: "Use when the user wants Opskeep Hospitality to plan an upcoming service: weekly/seasonal menu, prep lists, and shift rota staffing."
-lane: plan-service
 metadata:
+  lane: plan-service
   version: 0.1.0
 ---
 

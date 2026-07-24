@@ -1,8 +1,8 @@
 ---
 name: opskeep-hospitality-improve-operations
 description: "Use when the user wants Opskeep Hospitality to improve how the restaurant/venue runs: food cost percentage, waste log review, labor percent of sales, and inspection readiness."
-lane: improve-operations
 metadata:
+  lane: improve-operations
   version: 0.1.0
 ---
 

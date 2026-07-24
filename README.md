@@ -39,6 +39,28 @@ git clone https://github.com/CalebPrince/opskeep-skills.git
 cp -r opskeep-skills/skills/* .agents/skills/
 ```
 
+### Other agent runtimes
+
+Every skill here follows the [Agent Skills open standard](https://agentskills.io)
+(originally published by Anthropic, now adopted broadly) — a folder with a `SKILL.md`
+plus optional `scripts/`/`references/`/`assets/`. No conversion needed; just copy into
+the path your tool discovers:
+
+| Tool | Project-level path | Personal/global path |
+| --- | --- | --- |
+| Claude Code | `.claude/skills/` | `~/.claude/skills/` |
+| Cursor | `.agents/skills/` or `.cursor/skills/` | `~/.agents/skills/` or `~/.cursor/skills/` |
+| Codex CLI | `.agents/skills/` (walks up to repo root) | `~/.agents/skills/` |
+| Cline | `.cline/skills/` | `~/.cline/skills/` |
+
+`.agents/skills/` is shared by Cursor and Codex CLI, so the `cp -r` command above already
+covers both.
+
+**ChatGPT** doesn't auto-discover a skills folder — it takes a packaged upload instead:
+Plugins → Skills → Create → Upload from your computer, pointing at a skill's folder (e.g.
+`skills/opskeep-get-work`). It follows the same open standard, so no rewriting is needed,
+just a manual upload per skill instead of a filesystem copy.
+
 ## What Opskeep adds
 
 - **Six business lanes**: get work, define work, deliver work, get paid, keep clients, improve operations

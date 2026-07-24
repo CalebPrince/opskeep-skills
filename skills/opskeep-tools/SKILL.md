@@ -1,8 +1,8 @@
 ---
 name: opskeep-tools
 description: "Use when the user wants a standalone Opskeep utility or hosted capability: audio briefs, voice huddles, follow-up reminders, time tracking, job expense tracking, Composio/tool access, or future small Opskeep utilities."
-lane: meta
 metadata:
+  lane: meta
   version: 0.1.0
 ---
 

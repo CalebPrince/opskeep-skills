@@ -1,9 +1,9 @@
 ---
 name: composio-mcp
 description: Use the Composio MCP with Opskeep to discover and operate external app tools safely.
-lane: meta
-tags: [composio, mcp, opskeep, tools, external-apps, automation, connected-accounts]
 metadata:
+  lane: meta
+  tags: "composio, mcp, opskeep, tools, external-apps, automation, connected-accounts"
   version: 0.2.0
 ---
 

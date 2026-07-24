@@ -1,8 +1,8 @@
 ---
 name: opskeep-deliver-work
 description: "Use when the user wants Opskeep to coordinate active service delivery: status, blockers, risks, owners, handoffs, dependencies, triage, weekly client updates, QA, and next actions."
-lane: deliver-work
 metadata:
+  lane: deliver-work
   version: 0.1.0
 ---
 

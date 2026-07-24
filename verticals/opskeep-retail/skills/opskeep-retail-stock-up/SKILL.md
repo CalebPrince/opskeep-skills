@@ -1,8 +1,8 @@
 ---
 name: opskeep-retail-stock-up
 description: "Use when the user wants Opskeep Retail to help a shop stock up: reorder drafts, supplier ordering, SKU/variant intake, low-stock flags, and reorder-point checks."
-lane: stock-up
 metadata:
+  lane: stock-up
   version: 0.1.0
 ---
 

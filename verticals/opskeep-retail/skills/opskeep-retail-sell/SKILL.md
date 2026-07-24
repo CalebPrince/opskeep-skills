@@ -1,8 +1,8 @@
 ---
 name: opskeep-retail-sell
 description: "Use when the user wants Opskeep Retail to help with the sell moment: POS transaction status, in-store/online fulfillment sync, order handoff, and exceptions like oversell or backorder."
-lane: sell
 metadata:
+  lane: sell
   version: 0.1.0
 ---
 

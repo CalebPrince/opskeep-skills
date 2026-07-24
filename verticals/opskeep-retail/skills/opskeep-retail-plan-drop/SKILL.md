@@ -1,8 +1,8 @@
 ---
 name: opskeep-retail-plan-drop
 description: "Use when the user wants Opskeep Retail to plan what the shop sells this cycle: pricing, merchandising calendar, seasonal launches, and markdown timing decisions."
-lane: plan-drop
 metadata:
+  lane: plan-drop
   version: 0.1.0
 ---
 

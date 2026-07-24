@@ -1,8 +1,8 @@
 ---
 name: opskeep-retail-keep-customers
 description: "Use when the user wants Opskeep Retail to maintain customer trust and repeat business: loyalty outreach, review requests, restock-alert sends, win-back lists, and repeat-visit nudges."
-lane: keep-customers
 metadata:
+  lane: keep-customers
   version: 0.1.0
 ---
 

@@ -1,8 +1,8 @@
 ---
 name: opskeep-keep-clients
 description: "Use when the user wants Opskeep to maintain client trust: follow-ups, check-ins, client health, retention, renewals, referrals, testimonials, stakeholder care, and relationship-sensitive next actions."
-lane: keep-clients
 metadata:
+  lane: keep-clients
   version: 0.1.0
 ---
 

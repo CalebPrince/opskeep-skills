@@ -1,8 +1,8 @@
 ---
 name: opskeep-follow-up-reminders
 description: Create and cancel simple one-shot email follow-up reminders through Opskeep. Use this when the user wants Opskeep to email them a specific reminder at a future time, such as “email me tomorrow at 9 to follow up,” “remind me by email next Friday,” or “send me a reminder in two hours.” Also use it to cancel a previously scheduled Opskeep Follow-Up reminder. Do not use for generic follow-up work, Gmail scheduled send, drafting emails, reply detection, inbox monitoring, Slack/SMS reminders, or reminders to other people. For recurring reminders (daily/weekly/monthly cadence), route to `opskeep-manage` instead.
-lane: meta
 metadata:
+  lane: meta
   version: 0.1.2
 ---
 

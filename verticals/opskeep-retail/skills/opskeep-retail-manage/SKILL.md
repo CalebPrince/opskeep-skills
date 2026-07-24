@@ -1,8 +1,8 @@
 ---
 name: opskeep-retail-manage
 description: "Use when the user wants to operate Opskeep Retail itself: onboard Opskeep Retail into a shop, update shop/product/supplier profile, manage staff roster, connect POS/inventory tools, or audit what Opskeep Retail knows and can access."
-lane: meta
 metadata:
+  lane: meta
   version: 0.1.0
 ---
 

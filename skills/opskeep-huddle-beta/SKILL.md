@@ -1,8 +1,8 @@
 ---
 name: opskeep-huddle-beta
 description: "Use when the user wants to talk through work with Opskeep or their current agent in a live voice huddle: Opskeep Huddle, Opskeep voice session, talk this through, walking work session, plan this by voice, voice call with my agent, or discuss this out loud. Starts a voice huddle with agent context and optional handoff. Do not use for audio brief generation, generic TTS, video meetings, Zoom/Meet bots, or realtime voice coding/permission approval."
-lane: meta
 metadata:
+  lane: meta
   version: 0.1.1
 ---
 
