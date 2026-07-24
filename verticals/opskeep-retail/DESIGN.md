@@ -1,9 +1,10 @@
 # Opskeep Retail — design principles
 
-Status: sketch. Not built. This document proposes a lane structure for stock-and-sell
-businesses (boutiques, fashion, general retail), sibling to the service-business Opskeep
-pack rather than a variant of it. See root [DESIGN.md](../../DESIGN.md) for the pattern
-this forks from.
+Status: built. See [`skills/`](skills) for the eight implemented skills and
+[`README.md`](README.md) for install instructions. This document proposes a lane
+structure for stock-and-sell businesses (boutiques, fashion, general retail), sibling to
+the service-business Opskeep pack rather than a variant of it. See root
+[DESIGN.md](../../DESIGN.md) for the pattern this forks from.
 
 ## Why a separate pack instead of new lanes on Opskeep
 
@@ -91,19 +92,33 @@ point, ready to send to the supplier" is.
 | Keep customers | Purchase history, review/loyalty signals | Loyalty outreach draft, review-request send, win-back list |
 | Improve operations | Sell-through, markdown history, shrinkage log | Reorder-point adjustments, markdown-timing note, SKU retire/keep call |
 
-## Open questions before building
+## Decisions made when building
 
-1. **POS/inventory connector set** — which platforms (Shopify, Square, Lightspeed) are
-   must-have for v1 vs. later.
-2. **Multi-location** — sketch above assumes one shop; multi-location adds a scoping
-   dimension to every lane (which location's stock, whose till).
-3. **Hosted vs. open-source split** — does retail follow the same tiering as
-   [PRODUCT.md](../../PRODUCT.md) (hosted connectors/automation as Pro), or does POS
-   integration require hosted infra from day one given real-time inventory sync?
+1. **POS/inventory connector set** — resolved as: don't hardcode any platform. Every lane
+   skill routes live reads/writes through `composio-mcp` discovery (shared with the core
+   pack), same as `opskeep-get-work`/`opskeep-keep-clients` do for CRM/inbox access.
+   Shopify/Square/Lightspeed are named only as examples in `opskeep-retail-manage`, not
+   assumed integrations.
+2. **Multi-location** — resolved as: single-location is the default assumption across all
+   eight skills. Each lane skill's Gotchas say to ask which location before acting if
+   multi-location context is present. `opskeep-retail-manage` captures location count
+   during setup. No per-lane multi-location scoping system was built; that's still open if
+   real usage shows it's needed.
+3. **Hosted vs. open-source split** — resolved as: no hosted infra was built for this
+   pack. All eight skills are pure workflow/prompt skills like the core pack's lane
+   skills, no invented credentials or gateway endpoints. If a hosted tier is warranted
+   later (mirroring `opskeep-time-tracking`'s real gateway-backed version), that's a
+   separate decision once real usage validates the open-source version.
+
+## Remaining open question
+
+**Location** — skills live in `verticals/opskeep-retail/skills/`, staged separately from
+the core pack's `skills/`, so installing one pack never bundles the other. See
+[`README.md`](README.md) for install instructions.
 
 ## Status
 
-Sketch only. No skills have been written against this design. Promote lane-by-lane into
-`skills/` (or a `verticals/opskeep-retail/skills/` staging area, to be decided) once the
-open questions above are resolved and the first lane is validated with a real shop
-workflow.
+Built. All eight skills exist, are lint-clean, and follow the same output-contract
+discipline as the core pack. Not yet validated against a real shop's day-to-day workflow —
+that's the next gate before calling this production-ready, same bar the sole-trader
+adjustments and recurring-reminders work were held to before shipping.

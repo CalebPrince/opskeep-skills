@@ -16,6 +16,11 @@ as a whole (see `package.json`).
   by a new open-source MCP scaffold: `log_expense`, `list_expenses`,
   `summarize_expenses`, `delete_expense`) for job-tagged materials/mileage costs that
   `opskeep-get-paid` can fold into an invoice.
+- Built `opskeep-retail` as a full sibling pack: 8 skills (router, six lanes, manage)
+  under `verticals/opskeep-retail/skills/`, staged separately from the core pack. No
+  hardcoded POS/inventory platform; live reads/writes route through shared
+  `composio-mcp` discovery. `scripts/validate-skills.js` now also lints skills staged
+  under `verticals/*/skills/`.
 
 ## 0.1.0 (2026-07-24)
 

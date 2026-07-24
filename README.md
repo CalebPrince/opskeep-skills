@@ -88,6 +88,14 @@ These remain separately installable because they're tool-specific or useful outs
 | `opskeep-expense-tracking` | Logs, lists, and summarizes job-tagged expenses (materials, mileage, other costs) ready to fold into an invoice. |
 | `opskeep-triggers` | Creates, inspects, and deletes event-triggered automations with explicit trigger proposal confirmation. |
 
+## Other business models
+
+The skills above assume project-based service work. For businesses with a different
+operating loop (stock-and-sell retail, restaurant service), see
+[`verticals/`](verticals) for sibling packs built on the same design principles but their
+own lane structure. [`opskeep-retail`](verticals/opskeep-retail/README.md) is built and
+installable; others are design sketches.
+
 ## Contributing
 
 Found a way to improve a Opskeep skill? Open a PR. See [CONTRIBUTING.md](CONTRIBUTING.md)
