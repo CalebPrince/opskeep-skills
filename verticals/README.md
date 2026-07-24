@@ -7,4 +7,4 @@ gets its own `DESIGN.md` sketch before any skills are built.
 | Vertical | Status |
 | --- | --- |
 | [`opskeep-retail`](opskeep-retail/DESIGN.md) | Built — see [`skills/`](opskeep-retail/skills), not yet validated with a real shop |
-| [`opskeep-hospitality`](opskeep-hospitality/DESIGN.md) | Sketch — no skills built yet |
+| [`opskeep-hospitality`](opskeep-hospitality/DESIGN.md) | Built — see [`skills/`](opskeep-hospitality/skills), not yet validated with a real venue |

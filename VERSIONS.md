@@ -21,6 +21,11 @@ as a whole (see `package.json`).
   hardcoded POS/inventory platform; live reads/writes route through shared
   `composio-mcp` discovery. `scripts/validate-skills.js` now also lints skills staged
   under `verticals/*/skills/`.
+- Built `opskeep-hospitality` as a full sibling pack: 8 skills (router, six lanes,
+  manage) under `verticals/opskeep-hospitality/skills/`. Same no-hardcoded-platform and
+  no-fabricated-hosted-infra resolutions as `opskeep-retail`, plus food-safety/labor-
+  compliance handled as a cross-cutting Boundaries rule on the affected lane skills
+  (surface the flag, never adjudicate legality) rather than its own lane.
 
 ## 0.1.0 (2026-07-24)
 

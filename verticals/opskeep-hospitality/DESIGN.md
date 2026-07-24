@@ -1,9 +1,11 @@
 # Opskeep Hospitality — design principles
 
-Status: sketch. Not built. This document proposes a lane structure for restaurants and
-similar service-on-the-spot hospitality businesses, sibling to the core Opskeep pack and
-to [`opskeep-retail`](../opskeep-retail/DESIGN.md) rather than a variant of either. See
-root [DESIGN.md](../../DESIGN.md) for the pattern this forks from.
+Status: built. See [`skills/`](skills) for the eight implemented skills and
+[`README.md`](README.md) for install instructions. This document proposes a lane
+structure for restaurants and similar service-on-the-spot hospitality businesses, sibling
+to the core Opskeep pack and to [`opskeep-retail`](../opskeep-retail/DESIGN.md) rather
+than a variant of either. See root [DESIGN.md](../../DESIGN.md) for the pattern this
+forks from.
 
 ## Why a separate pack instead of reusing retail
 
@@ -106,22 +108,39 @@ constraint every relevant lane skill should respect:
 - `opskeep-hospitality-improve-operations` owns inspection-readiness tracking as one of
   its concrete outputs (see table above), not general compliance advice.
 
-## Open questions before building
+## Decisions made when building
 
-1. **POS/reservation/delivery connector set** — which platforms (Toast, Square,
-   OpenTable, Resy, Uber Eats/DoorDash) are must-have for v1 vs. later.
-2. **Daypart and multi-location scoping** — sketch above assumes one venue and one
-   continuous service; breakfast/lunch/dinner dayparts and multi-location add a scoping
-   dimension to every lane.
-3. **Compliance boundary** — how much the agent should surface vs. actively decide for
-   safety/labor rules that carry legal risk if wrong (see above).
-4. **Hosted vs. open-source split** — does hospitality follow the same tiering as
-   [PRODUCT.md](../../PRODUCT.md), or does real-time POS/reservation sync require hosted
-   infra from day one, same open question as `opskeep-retail`.
+1. **POS/reservation/delivery connector set** — resolved as: don't hardcode any
+   platform. Every lane skill routes live reads/writes through `composio-mcp` discovery
+   (shared with the core pack). Toast/Square/OpenTable/Resy/Uber Eats/DoorDash are named
+   only as examples in `opskeep-hospitality-manage`, not assumed integrations. Same
+   resolution as `opskeep-retail`.
+2. **Daypart and multi-location scoping** — resolved as: single-venue, single continuous
+   service is the default assumption across all eight skills. Each lane skill's Gotchas
+   say to ask which daypart/location before acting if that context is present.
+   `opskeep-hospitality-manage` captures daypart/location count during setup. No per-lane
+   scoping system was built; that's still open if real usage shows it's needed.
+3. **Compliance boundary** — resolved as: every relevant lane skill surfaces
+   temperature/allergen/tip-pooling/overtime flags as part of normal output, but none of
+   them adjudicate legality or compliance. `opskeep-hospitality-get-paid` applies a
+   venue's *stated* tip policy without judging it; `opskeep-hospitality-improve-operations`
+   tracks inspection readiness as checklist status, not a pass/fail legal call. This is
+   written directly into each affected skill's Boundaries section, not left as a general
+   principle.
+4. **Hosted vs. open-source split** — resolved as: no hosted infra was built for this
+   pack. All eight skills are pure workflow/prompt skills, no invented credentials or
+   gateway endpoints, same resolution as `opskeep-retail`.
+
+## Remaining open question
+
+**Location** — skills live in `verticals/opskeep-hospitality/skills/`, staged separately
+from the core pack's `skills/` and from `opskeep-retail`'s skills. See
+[`README.md`](README.md) for install instructions.
 
 ## Status
 
-Sketch only. No skills have been written against this design. Promote lane-by-lane into
-`skills/` (or a `verticals/opskeep-hospitality/skills/` staging area, to be decided) once
-the open questions above are resolved and the first lane is validated with a real venue's
-workflow.
+Built. All eight skills exist, are lint-clean, and follow the same output-contract
+discipline as the core pack and `opskeep-retail`. Not yet validated against a real
+venue's day-to-day workflow — that's the next gate before calling this
+production-ready, same bar every other build in this repo has been held to before
+shipping.

@@ -93,7 +93,8 @@ These remain separately installable because they're tool-specific or useful outs
 The skills above assume project-based service work. For businesses with a different
 operating loop (stock-and-sell retail, restaurant service), see
 [`verticals/`](verticals) for sibling packs built on the same design principles but their
-own lane structure. [`opskeep-retail`](verticals/opskeep-retail/README.md) is built and
+own lane structure. [`opskeep-retail`](verticals/opskeep-retail/README.md) and
+[`opskeep-hospitality`](verticals/opskeep-hospitality/README.md) are built and
 installable; others are design sketches.
 
 ## Contributing
