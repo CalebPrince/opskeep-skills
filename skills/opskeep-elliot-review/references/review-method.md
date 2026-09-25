@@ -66,7 +66,7 @@ Only mark runtime behavior verified when the user authorized execution, the comm
 
 ## 10. Baseline drift
 
-When an Elliot baseline exists, compare each applicable requirement to observable repository evidence:
+When an Opskeep Elliot baseline exists, compare each applicable requirement to observable repository evidence:
 
 - `ALIGNED`: implementation evidence plausibly matches the stated requirement
 - `DRIFT`: repository evidence contradicts or bypasses it

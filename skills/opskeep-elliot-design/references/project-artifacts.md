@@ -8,7 +8,7 @@ Use these files as a coordinated project record. Copy the starters from `assets/
 |---|---|
 | Discovery | Create named drafts; record owner, version/status, known facts, unknowns, and links between artifacts. |
 | Pre-build review | Complete architecture and security decisions at the selected risk depth. Define interface surfaces and contracts without claiming implementation. Use `NOT BUILT` or `MOCK ONLY` honestly. |
-| Owner approval | Reconcile all four artifacts with the exact reviewed baseline. Explicit approval applies only to its recorded scope; document review does not bypass Elliot's approval boundary. |
+| Owner approval | Reconcile all four artifacts with the exact reviewed baseline. Explicit approval applies only to its recorded scope; document review does not bypass Opskeep Elliot's approval boundary. |
 | Implementation handoff | Hand off approved contracts, hard boundaries, owners, and acceptance/evidence expectations. Implementation can begin only when the security development lock permits it. |
 | Build and verification | Update capability and control status from observed evidence. Keep proposals, implementation, and verification distinct. |
 | Material change | Update affected artifacts, add the required change record, suspend affected approval when material, and obtain explicit reapproval. |
@@ -21,7 +21,7 @@ Use these files as a coordinated project record. Copy the starters from `assets/
 - `SECURITY.md` is the readable security view. `security-baseline.yaml` is authoritative for status, approval, scope, locks, controls, gates, and evidence IDs. Do not manually invent a second approval state.
 - `GUI.md` owns the frontend handoff and UI capability truth. Backend behavior documented there is a consumed contract, not permission to change the backend.
 
-Resolve contradictions before work crosses the affected gate. If reconciliation changes a trust boundary, identity, sensitive flow, control, gate, or approved decision, use Elliot's material-change process.
+Resolve contradictions before work crosses the affected gate. If reconciliation changes a trust boundary, identity, sensitive flow, control, gate, or approved decision, use Opskeep Elliot's material-change process.
 
 ## GUI capability rules
 

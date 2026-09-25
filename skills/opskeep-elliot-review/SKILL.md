@@ -6,7 +6,7 @@ metadata:
   standard: "PC-SBD Review 1.0"
 ---
 
-# Elliot Review
+# Opskeep Elliot Review
 
 Assess the security posture of an existing local repository without changing it. Produce an initial assessment that helps the owner decide what to fix next; do not imply certification, vulnerability freedom, or runtime verification that did not occur.
 
@@ -17,8 +17,8 @@ Assess the security posture of an existing local repository without changing it.
 - Preserve uncommitted work. Record the working-tree state when Git is available, but do not stage, restore, clean, or rewrite anything.
 - Never reproduce a detected secret. Report its type, file, and line with the value redacted. Recommend revocation when exposure is credible.
 - Distinguish `OBSERVED`, `INFERRED`, and `NOT_ASSESSED`. Static inspection cannot prove runtime behavior.
-- If the repository has no Elliot baseline, continue with a standalone initial assessment. Offer baseline creation as a separate next step; do not silently invoke a design workflow.
-- If the task is to design a new project before implementation, use Elliot Design instead.
+- If the repository has no Opskeep Elliot baseline, continue with a standalone initial assessment. Offer baseline creation as a separate next step; do not silently invoke a design workflow.
+- If the task is to design a new project before implementation, use Opskeep Elliot Design instead.
 
 ## Assessment depth
 
@@ -39,8 +39,8 @@ Read [review method](references/review-method.md) before a `STANDARD` or `DEEP` 
 5. Develop findings only when supported by repository evidence. For each finding record severity, confidence, state, affected asset, evidence location, impact, reasoning, recommendation, and verification step.
 6. Prioritize recommendations by expected risk reduction, exploitability, blast radius, dependency order, and implementation effort. Separate immediate containment from durable remediation.
 7. Create both deliverables outside the reviewed repository unless the user explicitly authorizes writing there:
-   - `elliot-review-dashboard.html`: self-contained visual dashboard with no remote assets, scripts, analytics, or network requests.
-   - `elliot-review-report.md`: durable report containing the same facts, evidence, recommendations, coverage, and limitations.
+   - `opskeep-elliot-review-dashboard.html`: self-contained visual dashboard with no remote assets, scripts, analytics, or network requests.
+   - `opskeep-elliot-review-report.md`: durable report containing the same facts, evidence, recommendations, coverage, and limitations.
 8. Open or show the dashboard when the environment supports it. End with the most important findings, the output locations, and what was not assessed.
 
 ## Finding discipline

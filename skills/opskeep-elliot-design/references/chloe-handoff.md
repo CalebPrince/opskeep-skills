@@ -1,6 +1,6 @@
 # Optional Chloe monitoring handoff
 
-Chloe means an optional monitoring/drift-detection service or agent that consumes an approved baseline; it is not part of Elliot and must not be improvised if absent.
+Chloe means an optional monitoring/drift-detection service or agent that consumes an approved baseline; it is not part of Opskeep Elliot and must not be improvised if absent.
 
 ## Contract
 
@@ -13,7 +13,7 @@ Export or maintain `monitoring.handoff` in the baseline with:
 - credential scope: read-only where possible, no unrestricted infrastructure credentials;
 - acknowledgement and last verification evidence.
 
-Chloe may observe, alert, and open a reassessment request. It cannot grant approval, change the baseline, silently accept drift, or authorize destructive remediation. Material drift routes back to Elliot and the owner and suspends affected approval when policy requires.
+Chloe may observe, alert, and open a reassessment request. It cannot grant approval, change the baseline, silently accept drift, or authorize destructive remediation. Material drift routes back to Opskeep Elliot and the owner and suspends affected approval when policy requires.
 
 ## Fallback
 

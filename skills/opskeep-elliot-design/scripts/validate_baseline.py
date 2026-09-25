@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate an Elliot Design security-baseline.yaml (schema 2.1).
+"""Validate an Opskeep Elliot Design security-baseline.yaml (schema 2.1).
 
 Modes
   lint (default)          structure, allowed values, IDs, references, traceability,
@@ -498,7 +498,7 @@ def ci_gate(r, ctx, expected_digest, target, stage):
 
 
 def main(argv=None):
-    ap = argparse.ArgumentParser(description="Validate an Elliot Design security-baseline.yaml")
+    ap = argparse.ArgumentParser(description="Validate an Opskeep Elliot Design security-baseline.yaml")
     ap.add_argument("file")
     ap.add_argument("--print-digest", action="store_true", help="print the design digest and exit")
     ap.add_argument("--require-approved", action="store_true", help="CI mode: fail closed unless approved")
