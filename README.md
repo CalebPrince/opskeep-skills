@@ -1,6 +1,6 @@
 # Opskeep Skills
 
-![Opskeep](web/logo-lockup.svg)
+![Opskeep — operations skills for the agent you already use](.github/banner.webp)
 
 **Operations skills for the agent you already use.**
 
