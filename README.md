@@ -2,6 +2,11 @@
 
 ![Opskeep — operations skills for the agent you already use](.github/banner.webp)
 
+[![MIT License](https://img.shields.io/github/license/CalebPrince/opskeep-skills?color=FF5A36)](LICENSE)
+[![GitHub Stars](https://img.shields.io/github/stars/CalebPrince/opskeep-skills?color=FF5A36)](https://github.com/CalebPrince/opskeep-skills/stargazers)
+[![Agent Skills](https://img.shields.io/badge/Agent%20Skills-open%20standard-FF5A36)](https://agentskills.io)
+[![Live Demo](https://img.shields.io/badge/Live-opskeep--skills.vercel.app-FF5A36)](https://opskeep-skills.vercel.app/)
+
 **Operations skills for the agent you already use.**
 
 Delivering the craft is only half the job. There's also winning the work, scoping it,
@@ -14,8 +19,6 @@ pipeline signals, discovery briefs, delivery updates, blockers, invoicing follow
 client relationships, closeout notes, retros, and a couple of hosted utilities.
 
 Independent, open-source project.
-
-**[View the landing page →](https://opskeep-skills.vercel.app/)**
 
 ## Install
 
