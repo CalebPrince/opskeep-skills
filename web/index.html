@@ -69,7 +69,11 @@
 <symbol id="i-logo-roocode" viewBox="0 0 34 21"><path fill="currentColor" d="M27.6939 0.698856L27.0853 2.88004C27.0531 2.99552 26.9315 3.06224 26.8157 3.02799L16.6072 0.00893058C16.5393 -0.0111487 16.4658 0.00308892 16.4106 0.047029L6.30049 8.08333C6.27097 8.10679 6.23575 8.12215 6.19836 8.12786L0.18292 9.04674C0.0715357 9.06375 -0.0078759 9.16286 0.000622655 9.27425L0.0267609 9.61687C0.035109 9.72631 0.125665 9.81172 0.236347 9.81456L7.22353 9.99359L7.30322 9.9958L12.4661 7.2622C12.5383 7.22393 12.6263 7.22955 12.693 7.27669L16.3507 9.86111C16.408 9.90164 16.4418 9.96737 16.4412 10.0372L16.4103 13.4664C16.4099 13.5108 16.4235 13.5542 16.4491 13.5906L21.5943 20.9084C21.6346 20.9658 21.7007 21 21.7713 21H23.4001C23.5626 21 23.6668 20.8287 23.5909 20.6863L19.9237 13.8002C19.8878 13.7328 19.8908 13.6516 19.9315 13.5871L21.8435 10.551C21.8643 10.5179 21.8939 10.4912 21.9289 10.4735L28.7648 7.03514C28.8342 7.00021 28.9173 7.00508 28.9821 7.0479L30.9355 8.33851C30.971 8.36193 31.0126 8.37442 31.0552 8.37442H32.83C33.0019 8.37442 33.1047 8.18497 33.0101 8.04276L28.082 0.63809C27.98 0.484786 27.7433 0.521844 27.6939 0.698856Z"/></symbol>
 <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v3M12 18.5v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2.5 12h3M18.5 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></symbol>
 <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z"/></symbol>
+<symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
 <symbol id="i-github" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.5-1.1-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.7.4-1.1.6-1.4-2.3-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.5-1.3.1-2.6 0 0 .8-.3 2.7 1a9.4 9.4 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .6 1.3.2 2.3.1 2.6.6.7 1 1.6 1 2.7 0 3.9-2.3 4.7-4.6 5 .4.3.7 1 .7 2v2.9c0 .3.2.6.7.5A10 10 0 0 0 12 2Z"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 24 24"><path d="M6 7h12l1 14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1Z"/><path d="M9 7V5a3 3 0 0 1 6 0v2"/></symbol>
+  <symbol id="i-bowl" viewBox="0 0 24 24"><path d="M3.5 11h17a8.5 8.5 0 0 1-17 0Z"/><path d="M8 11l1.5-4M12 11l1-4M16 11l1.5-4"/></symbol>
 </defs>
 </svg>
 
@@ -90,12 +94,36 @@
       <svg class="icon icon-sun" viewBox="0 0 24 24"><use href="#i-sun"/></svg>
       <svg class="icon icon-moon" viewBox="0 0 24 24"><use href="#i-moon"/></svg>
     </button>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+      <svg class="icon icon-menu" viewBox="0 0 24 24"><use href="#i-menu"/></svg>
+      <svg class="icon icon-close" viewBox="0 0 24 24"><use href="#i-x"/></svg>
+    </button>
     <a class="btn btn-primary btn-sm" href="https://github.com/CalebPrince/opskeep-skills" target="_blank" rel="noopener">
       <svg class="icon" viewBox="0 0 24 24"><use href="#i-github"/></svg>
       View on GitHub
     </a>
   </div>
 </header>
+
+<aside class="mobile-menu" id="mobile-menu" aria-hidden="true" aria-label="Menu">
+  <button class="menu-close" id="menu-close" aria-label="Close menu">
+    <svg class="icon" viewBox="0 0 24 24"><use href="#i-x"/></svg>
+  </button>
+  <nav class="menu-nav">
+    <a href="#directory">Skill directory</a>
+    <a href="#runtimes">Works with</a>
+    <a href="#mcp">MCP server</a>
+    <a href="#provenance">License</a>
+  </nav>
+  <div class="menu-actions">
+    <a class="btn btn-primary btn-block" href="https://github.com/CalebPrince/opskeep-skills" target="_blank" rel="noopener">
+      <svg class="icon" viewBox="0 0 24 24"><use href="#i-github"/></svg>
+      View on GitHub
+    </a>
+    <a class="text-link menu-github-link" href="https://github.com/CalebPrince/opskeep-skills" target="_blank" rel="noopener">github.com/CalebPrince/opskeep-skills</a>
+  </div>
+</aside>
+<div class="menu-backdrop" id="menu-backdrop"></div>
 
 <main id="top">
 
@@ -298,6 +326,52 @@
     </div>
   </section>
 
+  <!-- SAFE & PRACTICAL BREAKOUTS -->
+  <section class="breakout" id="breakout">
+    <div class="section-head section-head-row">
+      <div>
+        <p class="eyebrow"><span class="dot"></span>Safe &amp; practical</p>
+        <h2>Breakout utilities that keep the agent honest.</h2>
+        <p class="section-lede">Agents operating autonomously in a local business will hit things they should not guess at. These three breakout skills are the guardrails: a hard stop that brings in the human owner, and a capture layer that turns a hands-full voice note into structured time and expense records.</p>
+      </div>
+    </div>
+
+    <div class="breakout-layout">
+      <div class="breakout-copy">
+        <p class="lead">None of these need a spreadsheet or a logbook. The agent does the bookkeeping and the flagging, you keep doing the job.</p>
+        <div class="dictate" aria-label="Example: dictating a field update">
+          <p class="dictate-label">Field worker, hands full</p>
+          <div class="dictate-bubble">&ldquo;Just wrapped up at the Oak St. job, spent $45 on copper pipes&rdquo;</div>
+          <p class="dictate-result">Expense logged &middot; $45 copper pipes on job Oak St.<br>Time clocked &middot; entry started at 4:02 PM</p>
+        </div>
+      </div>
+
+      <div class="breakout-cards">
+        <article class="breakout-card breakout-card-primary">
+          <span class="icon-badge"><svg class="icon" viewBox="0 0 24 24"><use href="#i-alert"/></svg></span>
+          <div>
+            <h3>opskeep-escalate-to-owner</h3>
+            <p>The most critical skill for a business owner. On an angry customer text, a pricing negotiation the agent can&rsquo;t handle, or an unknown edge case, it pauses and alerts you instead of guessing.</p>
+          </div>
+        </article>
+        <article class="breakout-card">
+          <span class="icon-badge"><svg class="icon" viewBox="0 0 24 24"><use href="#i-clock"/></svg></span>
+          <div>
+            <h3>opskeep-time-tracking</h3>
+            <p>For a field worker, exact hours are a constant pain point. The agent starts, stops, backfills, and summarizes time entries so nothing slips.</p>
+          </div>
+        </article>
+        <article class="breakout-card">
+          <span class="icon-badge"><svg class="icon" viewBox="0 0 24 24"><use href="#i-receipt"/></svg></span>
+          <div>
+            <h3>opskeep-expense-tracking</h3>
+            <p>Mileage, raw materials, and other job costs, tagged to the job and ready to fold straight into an invoice.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <!-- SKILL DIRECTORY -->
   <section class="directory" id="directory">
     <div class="section-head section-head-row">
@@ -459,6 +533,75 @@
       </li>
 
     </ul>
+  </section>
+
+  <!-- VERTICAL PACKS -->
+  <section class="verticals" id="verticals">
+    <div class="section-head section-head-row">
+      <div>
+        <p class="eyebrow"><span class="dot"></span>Sibling packs</p>
+        <h2>The same loop, for shops and venues.</h2>
+        <p class="section-lede">Core Opskeep assumes project-based service work. Two full sibling packs cover the other business models that run on the same rhythm: <code>opskeep-retail</code> for a shop that stocks and sells, <code>opskeep-hospitality</code> for a restaurant or venue that serves. Each runs the same discipline against its own loop.</p>
+      </div>
+      <a class="btn btn-outline btn-sm" href="https://github.com/CalebPrince/opskeep-skills/tree/main/verticals" target="_blank" rel="noopener">Browse both packs <svg class="icon" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></a>
+    </div>
+
+    <div class="vertical-grid">
+      <article class="vertical-card">
+        <div class="vertical-card-head">
+          <span class="icon-badge"><svg class="icon" viewBox="0 0 24 24"><use href="#i-bag"/></svg></span>
+          <div>
+            <h3>opskeep-retail</h3>
+            <p class="vertical-tagline">Stock up, sell, reconcile, keep the customer</p>
+          </div>
+        </div>
+        <p class="vertical-lede">Reorder and supplier orders, pricing and launches, the till, refunds and margin, then loyalty, reviews, and win-backs. Same six-lane discipline, one different loop.</p>
+        <ul class="vertical-lanes">
+          <li>Stock up and purchase orders from low-stock flags</li>
+          <li>Plan the drop, pricing, and markdowns</li>
+          <li>Sell and reconcile against the till</li>
+          <li>Keep customers: loyalty, reviews, win-backs</li>
+        </ul>
+        <a class="text-link vertical-link" href="https://github.com/CalebPrince/opskeep-skills/blob/main/verticals/opskeep-retail/README.md" target="_blank" rel="noopener">Read the opskeep-retail README <svg class="icon" viewBox="0 0 24 24"><use href="#i-external"/></svg></a>
+      </article>
+
+      <article class="vertical-card">
+        <div class="vertical-card-head">
+          <span class="icon-badge"><svg class="icon" viewBox="0 0 24 24"><use href="#i-bowl"/></svg></span>
+          <div>
+            <h3>opskeep-hospitality</h3>
+            <p class="vertical-tagline">Stock up, plan service, serve, keep the guest</p>
+          </div>
+        </div>
+        <p class="vertical-lede">Par levels and ingredient orders, prep lists and reservations, nightly close-out and tip splits, then reviews, complaint recovery, and regulars. Food-safety and labor rules stay a surfaced flag, never an anonymous verdict.</p>
+        <ul class="vertical-lanes">
+          <li>Stock up: par levels, food-safety flags</li>
+          <li>Plan service: prep lists, reservations, tables</li>
+          <li>Serve and close out: tips split, platform fees</li>
+          <li>Keep guests: reviews, recovery, regulars</li>
+        </ul>
+        <a class="text-link vertical-link" href="https://github.com/CalebPrince/opskeep-skills/blob/main/verticals/opskeep-hospitality/README.md" target="_blank" rel="noopener">Read the opskeep-hospitality README <svg class="icon" viewBox="0 0 24 24"><use href="#i-external"/></svg></a>
+      </article>
+    </div>
+
+    <div class="vertical-install">
+      <div class="terminal">
+        <div class="terminal-bar">
+          <span class="terminal-dots" aria-hidden="true"><i class="dot-red"></i><i class="dot-yellow"></i><i class="dot-green"></i></span>
+          <button class="copy-btn" data-copy="git clone https://github.com/CalebPrince/opskeep-skills; cp -r opskeep-skills/verticals/opskeep-retail/skills/* ~/.agents/skills/" type="button">
+            <svg class="icon" viewBox="0 0 24 24"><use href="#i-copy"/></svg>
+          </button>
+        </div>
+        <pre class="terminal-body"><code><span class="tk-comment"># separate pack, not part of the 19-skill install</span>
+<span class="tk-cmd">git</span> clone https://github.com/CalebPrince/opskeep-skills
+<span class="tk-cmd">cp</span> -r opskeep-skills/verticals/opskeep-retail/skills/* ~/.agents/skills/
+<span class="tk-comment"># swap in opskeep-hospitality for a venue; add opskeep-tools + breakout skills from the core pack</span></code></pre>
+      </div>
+      <div class="vertical-install-copy">
+        <h4>Separately installable, built to be reused</h4>
+        <p>Vertical packs live under <code>verticals/</code> so a service business never picks them up by accident. Both reuse the shared utilities from the core pack (<code>opskeep-tools</code>, time and expense tracking, escalation), so copy those alongside whichever pack you add.</p>
+      </div>
+    </div>
   </section>
 
   <!-- RUNTIMES -->
