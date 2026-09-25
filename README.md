@@ -19,7 +19,8 @@ Independent, open-source project.
 # Install the full skill pack
 npx skills add CalebPrince/opskeep-skills
 
-# Or install a single skill
+# Or install a single skill — swap in any skill name from the tables below,
+# e.g. opskeep-get-work, opskeep-elliot-design, opskeep-elliot-review
 npx skills add CalebPrince/opskeep-skills --skill opskeep
 
 # List every available skill
@@ -36,7 +37,12 @@ npx skills update CalebPrince/opskeep-skills
 
 ```bash
 git clone https://github.com/CalebPrince/opskeep-skills.git
+
+# All skills
 cp -r opskeep-skills/skills/* .agents/skills/
+
+# Or just one
+cp -r opskeep-skills/skills/opskeep-elliot-review .agents/skills/
 ```
 
 ### Other agent runtimes
@@ -60,6 +66,43 @@ covers both.
 Plugins → Skills → Create → Upload from your computer, pointing at a skill's folder (e.g.
 `skills/opskeep-get-work`). It follows the same open standard, so no rewriting is needed,
 just a manual upload per skill instead of a filesystem copy.
+
+## Using the MCP server
+
+Some skills (`opskeep-tools` and the breakout skills it routes to) call out to a
+companion MCP server for the stateful/hosted half of the work — sending reminders,
+tracking time and expenses, escalating to the owner, and so on. Installing the skill
+gives an agent the judgment; connecting the MCP server gives it the tools to act on it.
+
+```bash
+git clone https://github.com/CalebPrince/opskeep-skills.git
+cd opskeep-skills/mcp-server
+npm install
+npm start
+```
+
+The server speaks MCP over stdio. Point any MCP-compatible agent (Claude Code, Claude
+Desktop, Cursor, etc.) at it with a JSON config:
+
+```json
+{
+  "mcpServers": {
+    "opskeep-tools": {
+      "command": "node",
+      "args": ["/absolute/path/to/opskeep-skills/mcp-server/src/index.js"]
+    }
+  }
+}
+```
+
+For Claude Code specifically:
+
+```bash
+claude mcp add opskeep-tools -- node /absolute/path/to/opskeep-skills/mcp-server/src/index.js
+```
+
+See [mcp-server](mcp-server) for the full tool list, its scaffold/status caveats, and
+the optional usage-metering setup for the hosted product.
 
 ## What Opskeep adds
 
@@ -110,6 +153,15 @@ These remain separately installable because they're tool-specific or useful outs
 | `opskeep-expense-tracking` | Logs, lists, and summarizes job-tagged expenses (materials, mileage, other costs) ready to fold into an invoice. |
 | `opskeep-escalate-to-owner` | Pauses an autonomous transaction and brings in the business owner, via live conversation handoff when the connected channel supports it, or a notify-and-pause fallback. |
 | `opskeep-triggers` | Creates, inspects, and deletes event-triggered automations with explicit trigger proposal confirmation. |
+
+## Security skills
+
+Tool-agnostic Secure by Design skills, useful on their own outside the Opskeep router.
+
+| Skill | Description |
+| --- | --- |
+| `opskeep-elliot-design` | Designs or reassesses a risk-proportional Secure by Design baseline before project implementation, first commit, production promotion, or a material architecture change. |
+| `opskeep-elliot-review` | Reviews an already-existing local repository and produces an evidence-backed security assessment, visual dashboard, and prioritized recommendations. |
 
 ## Other business models
 
