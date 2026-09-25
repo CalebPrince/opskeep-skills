@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Opskeep Skills — operations skills for the agent you already use</title>
+<meta name="description" content="Agent Skills that give Claude Code, Cursor, Codex, Cline, and ChatGPT the operator know-how to get work, deliver it, get paid, keep clients, and get better at it — plus a companion MCP server and a Secure by Design skill pair.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23cf5c36'/%3E%3Cpath d='M9 21V11h4.5a3 3 0 0 1 0 6H11' stroke='%23f6f1e7' stroke-width='2.2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M19 11v10' stroke='%23f6f1e7' stroke-width='2.2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+
+<header class="site-header">
+  <a class="brand" href="#top">
+    <span class="brand-mark" aria-hidden="true">
+      <svg viewBox="0 0 32 32" width="22" height="22"><rect width="32" height="32" rx="7" fill="var(--rust)"/><path d="M9 21V11h4.5a3 3 0 0 1 0 6H11" stroke="var(--paper)" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M19 11v10" stroke="var(--paper)" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>
+    </span>
+    Opskeep&nbsp;Skills
+  </a>
+  <nav class="site-nav">
+    <a href="#directory">Skill directory</a>
+    <a href="#runtimes">Works with</a>
+    <a href="#mcp">MCP server</a>
+    <a href="#provenance">License</a>
+  </nav>
+  <div class="header-actions">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+      <svg class="icon-sun" viewBox="0 0 24 24" width="17" height="17"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v3M12 18.5v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2.5 12h3M18.5 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1" stroke-linecap="round"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" width="17" height="17"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z"/></svg>
+    </button>
+    <a class="btn btn-ghost" href="https://github.com/CalebPrince/opskeep-skills" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-copy">
+      <p class="eyebrow"><span class="dot"></span>Agent Skills · open standard</p>
+      <h1>Operations skills for<br>the agent you already use.</h1>
+      <p class="lede">
+        Delivering the craft is only half the job. There's also winning the work, scoping
+        it, coordinating delivery, getting paid, keeping the client, and getting better at
+        all of it next time. Opskeep installs that know-how, plus a few hosted tools,
+        straight into your agent.
+      </p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#install">Install a skill</a>
+        <a class="btn btn-outline" href="#directory">Browse the directory</a>
+      </div>
+      <p class="hero-note">Independent, open-source, MIT licensed. Nineteen skills, one open format.</p>
+    </div>
+
+    <div class="hero-panel" id="install">
+      <div class="terminal" role="group" aria-label="Install command">
+        <div class="terminal-bar">
+          <span class="terminal-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="terminal-label">shell</span>
+          <button class="copy-btn" data-copy="npx skills add CalebPrince/opskeep-skills" type="button">Copy</button>
+        </div>
+        <pre class="terminal-body"><code><span class="tk-comment"># install the full pack</span>
+<span class="tk-cmd">npx</span> skills add CalebPrince/opskeep-skills
+
+<span class="tk-comment"># or install a single skill</span>
+<span class="tk-cmd">npx</span> skills add CalebPrince/opskeep-skills \
+  --skill opskeep-elliot-review
+
+<span class="tk-comment"># see everything on offer</span>
+<span class="tk-cmd">npx</span> skills add CalebPrince/opskeep-skills --list</code></pre>
+      </div>
+      <p class="hero-panel-caption">Works the same for a whole pack or a single folder — see <a href="#runtimes">every supported runtime</a> below.</p>
+    </div>
+  </section>
+
+  <!-- STAT STRIP -->
+  <section class="stat-strip" aria-label="What Opskeep adds">
+    <div class="stat"><span class="stat-num">6</span><span class="stat-label">business&nbsp;lanes</span></div>
+    <div class="stat-sep" aria-hidden="true">/</div>
+    <div class="stat"><span class="stat-num">2</span><span class="stat-label">meta&nbsp;surfaces</span></div>
+    <div class="stat-sep" aria-hidden="true">/</div>
+    <div class="stat"><span class="stat-num">8</span><span class="stat-label">breakout&nbsp;skills</span></div>
+    <div class="stat-sep" aria-hidden="true">/</div>
+    <div class="stat"><span class="stat-num">2</span><span class="stat-label">Secure&nbsp;by&nbsp;Design</span></div>
+    <div class="stat-sep" aria-hidden="true">/</div>
+    <div class="stat"><span class="stat-num">1</span><span class="stat-label">MCP&nbsp;server</span></div>
+  </section>
+
+  <!-- SKILL DIRECTORY -->
+  <section class="directory" id="directory">
+    <div class="section-head">
+      <p class="eyebrow"><span class="dot"></span>Skill directory</p>
+      <h2>Nineteen skills, filed like a job box.</h2>
+      <p class="section-lede">Every skill is a plain folder — <code>SKILL.md</code> plus optional
+        <code>scripts/</code>, <code>references/</code>, <code>assets/</code>. Pick a lane below,
+        or install the whole box.</p>
+    </div>
+
+    <div class="tabs" role="tablist" aria-label="Skill categories">
+      <button class="tab is-active" role="tab" aria-selected="true" data-filter="all">All (19)</button>
+      <button class="tab" role="tab" aria-selected="false" data-filter="core">Core router</button>
+      <button class="tab" role="tab" aria-selected="false" data-filter="lane">Business lanes</button>
+      <button class="tab" role="tab" aria-selected="false" data-filter="meta">Meta</button>
+      <button class="tab" role="tab" aria-selected="false" data-filter="breakout">Breakout</button>
+      <button class="tab" role="tab" aria-selected="false" data-filter="security">Security</button>
+    </div>
+
+    <ul class="skill-grid" id="skill-grid">
+
+      <li class="skill-card" data-cat="core">
+        <p class="skill-tag tag-core">core router</p>
+        <h3>opskeep</h3>
+        <p>Routes business work, Opskeep setup, and Opskeep utilities into the right skill with clear next actions, owners, dates, and unknowns.</p>
+      </li>
+
+      <li class="skill-card" data-cat="lane">
+        <p class="skill-tag tag-lane">business lane</p>
+        <h3>opskeep-get-work</h3>
+        <p>Helps service businesses build and qualify a pipeline from content, inbound, referrals, outreach, and market signals.</p>
+      </li>
+      <li class="skill-card" data-cat="lane">
+        <p class="skill-tag tag-lane">business lane</p>
+        <h3>opskeep-define-work</h3>
+        <p>Turns messy demand into defined work: discovery, scope, proposals, acceptance checks, and client onboarding.</p>
+      </li>
+      <li class="skill-card" data-cat="lane">
+        <p class="skill-tag tag-lane">business lane</p>
+        <h3>opskeep-deliver-work</h3>
+        <p>Coordinates active delivery: status, blockers, risks, handoffs, dependencies, QA, and weekly updates.</p>
+      </li>
+      <li class="skill-card" data-cat="lane">
+        <p class="skill-tag tag-lane">business lane</p>
+        <h3>opskeep-get-paid</h3>
+        <p>Tracks money follow-through: invoices, payments, billable time, budgets, and change-control money impact.</p>
+      </li>
+      <li class="skill-card" data-cat="lane">
+        <p class="skill-tag tag-lane">business lane</p>
+        <h3>opskeep-keep-clients</h3>
+        <p>Maintains client trust through follow-ups, check-ins, health checks, renewals, referrals, and testimonials.</p>
+      </li>
+      <li class="skill-card" data-cat="lane">
+        <p class="skill-tag tag-lane">business lane</p>
+        <h3>opskeep-improve-operations</h3>
+        <p>Turns finished work into better process: retrospectives, lessons, SOPs, templates, and reusable playbooks.</p>
+      </li>
+
+      <li class="skill-card" data-cat="meta">
+        <p class="skill-tag tag-meta">meta</p>
+        <h3>opskeep-manage</h3>
+        <p>Onboards and manages Opskeep itself: business profile, preferences, memory, connectors, automations, triggers, and recurring reminders.</p>
+      </li>
+      <li class="skill-card" data-cat="meta">
+        <p class="skill-tag tag-meta">meta</p>
+        <h3>opskeep-tools</h3>
+        <p>Routes standalone utilities: audio briefs, voice huddles, follow-up reminders, time tracking, and Composio-backed tool access.</p>
+      </li>
+
+      <li class="skill-card" data-cat="breakout">
+        <p class="skill-tag tag-breakout">breakout</p>
+        <h3>opskeep-audio-brief</h3>
+        <p>Turns sessions, PRs, plans, specs, docs, URLs, and pasted markdown into a listenable brief with a shareable listening page.</p>
+      </li>
+      <li class="skill-card" data-cat="breakout">
+        <p class="skill-tag tag-breakout">breakout</p>
+        <h3>opskeep-huddle-beta</h3>
+        <p>Starts a voice huddle with Opskeep for live talk-throughs, planning conversation, and concise context handoff. Needs its own deployed voice-relay backend.</p>
+      </li>
+      <li class="skill-card" data-cat="breakout">
+        <p class="skill-tag tag-breakout">breakout</p>
+        <h3>composio-mcp</h3>
+        <p>Routes external app work through the Composio MCP with tool discovery, authorization links, schema-safe execution, and concise provenance.</p>
+      </li>
+      <li class="skill-card" data-cat="breakout">
+        <p class="skill-tag tag-breakout">breakout</p>
+        <h3>opskeep-follow-up-reminders</h3>
+        <p>Creates and cancels deterministic one-shot email follow-up reminders, only when the user wants a specific future reminder.</p>
+      </li>
+      <li class="skill-card" data-cat="breakout">
+        <p class="skill-tag tag-breakout">breakout</p>
+        <h3>opskeep-time-tracking</h3>
+        <p>Starts, stops, switches, backfills, updates, archives, and summarizes time entries.</p>
+      </li>
+      <li class="skill-card" data-cat="breakout">
+        <p class="skill-tag tag-breakout">breakout</p>
+        <h3>opskeep-expense-tracking</h3>
+        <p>Logs, lists, and summarizes job-tagged expenses — materials, mileage, other costs — ready to fold into an invoice.</p>
+      </li>
+      <li class="skill-card" data-cat="breakout">
+        <p class="skill-tag tag-breakout">breakout</p>
+        <h3>opskeep-escalate-to-owner</h3>
+        <p>Pauses an autonomous transaction and brings in the business owner, via live handoff or a notify-and-pause fallback.</p>
+      </li>
+      <li class="skill-card" data-cat="breakout">
+        <p class="skill-tag tag-breakout">breakout</p>
+        <h3>opskeep-triggers</h3>
+        <p>Creates, inspects, and deletes event-triggered automations with explicit trigger proposal confirmation.</p>
+      </li>
+
+      <li class="skill-card" data-cat="security">
+        <p class="skill-tag tag-security">security</p>
+        <h3>opskeep-elliot-design</h3>
+        <p>Designs or reassesses a risk-proportional Secure by Design baseline before project implementation, first commit, or a material architecture change.</p>
+      </li>
+      <li class="skill-card" data-cat="security">
+        <p class="skill-tag tag-security">security</p>
+        <h3>opskeep-elliot-review</h3>
+        <p>Reviews an already-existing local repository and produces an evidence-backed security assessment, visual dashboard, and prioritized recommendations.</p>
+      </li>
+
+    </ul>
+  </section>
+
+  <!-- RUNTIMES -->
+  <section class="runtimes" id="runtimes">
+    <div class="section-head">
+      <p class="eyebrow"><span class="dot"></span>Works with</p>
+      <h2>One folder format, every agent.</h2>
+      <p class="section-lede">Every skill follows the <a href="https://agentskills.io" target="_blank" rel="noopener">Agent Skills open standard</a> — no conversion, just copy it to the path your tool discovers.</p>
+    </div>
+
+    <div class="runtime-table" role="table">
+      <div class="runtime-row runtime-head" role="row">
+        <span role="columnheader">Tool</span>
+        <span role="columnheader">Project-level path</span>
+        <span role="columnheader">Personal / global path</span>
+      </div>
+      <div class="runtime-row" role="row">
+        <span class="runtime-name" role="cell">Claude Code</span>
+        <span role="cell"><code>.claude/skills/</code></span>
+        <span role="cell"><code>~/.claude/skills/</code></span>
+      </div>
+      <div class="runtime-row" role="row">
+        <span class="runtime-name" role="cell">Cursor</span>
+        <span role="cell"><code>.agents/skills/</code> or <code>.cursor/skills/</code></span>
+        <span role="cell"><code>~/.agents/skills/</code> or <code>~/.cursor/skills/</code></span>
+      </div>
+      <div class="runtime-row" role="row">
+        <span class="runtime-name" role="cell">Codex CLI</span>
+        <span role="cell"><code>.agents/skills/</code></span>
+        <span role="cell"><code>~/.agents/skills/</code></span>
+      </div>
+      <div class="runtime-row" role="row">
+        <span class="runtime-name" role="cell">Cline</span>
+        <span role="cell"><code>.cline/skills/</code></span>
+        <span role="cell"><code>~/.cline/skills/</code></span>
+      </div>
+      <div class="runtime-row" role="row">
+        <span class="runtime-name" role="cell">ChatGPT</span>
+        <span class="runtime-note" role="cell" style="grid-column: 2 / span 2;">No auto-discovered folder — Plugins → Skills → Create → Upload, pointed at a skill's folder.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- MCP -->
+  <section class="mcp" id="mcp">
+    <div class="mcp-copy">
+      <p class="eyebrow"><span class="dot"></span>Companion server</p>
+      <h2>The judgment lives in the skill.<br>The doing lives in the MCP server.</h2>
+      <p>
+        <code>opskeep-tools</code> and the breakout skills it routes to call out to a
+        companion MCP server for the stateful half of the work: sending reminders,
+        tracking time and expenses, recording escalations. Installing the skill gives an
+        agent the judgment; connecting the server gives it hands.
+      </p>
+      <ul class="mcp-list">
+        <li><span>send_client_update</span> · schedule / cancel reminders · session recaps</li>
+        <li><span>start_timer</span> / <span>stop_timer</span> · backfill and summarize time</li>
+        <li><span>log_expense</span> · list and summarize job-tagged costs</li>
+        <li><span>escalate_to_owner</span> · pause, record, and resolve</li>
+      </ul>
+      <a class="btn btn-outline" href="https://github.com/CalebPrince/opskeep-skills/tree/main/mcp-server" target="_blank" rel="noopener">Full tool list &amp; metering →</a>
+    </div>
+
+    <div class="mcp-panel">
+      <div class="terminal">
+        <div class="terminal-bar">
+          <span class="terminal-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="terminal-label">mcp-server</span>
+        </div>
+        <pre class="terminal-body"><code><span class="tk-comment"># run it</span>
+<span class="tk-cmd">cd</span> mcp-server && npm install && npm start
+
+<span class="tk-comment"># connect it (Claude Code)</span>
+<span class="tk-cmd">claude</span> mcp add opskeep-tools -- \
+  node ./mcp-server/src/index.js</code></pre>
+      </div>
+      <div class="terminal">
+        <div class="terminal-bar">
+          <span class="terminal-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="terminal-label">mcp.json</span>
+        </div>
+        <pre class="terminal-body"><code>{
+  <span class="tk-key">"mcpServers"</span>: {
+    <span class="tk-key">"opskeep-tools"</span>: {
+      <span class="tk-key">"command"</span>: <span class="tk-str">"node"</span>,
+      <span class="tk-key">"args"</span>: [<span class="tk-str">"./mcp-server/src/index.js"</span>]
+    }
+  }
+}</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROVENANCE / FOOTER -->
+  <section class="provenance" id="provenance">
+    <div class="provenance-inner">
+      <p class="eyebrow"><span class="dot"></span>License &amp; provenance</p>
+      <p>
+        MIT licensed. The business-lane, meta, and breakout skills are a rebranded fork of
+        <a href="https://github.com/lunchpaillola/pipa-skills" target="_blank" rel="noopener">pipa-skills</a>
+        by Lola at Lunch Pail Labs, used and modified under its MIT license — see
+        <a href="https://github.com/CalebPrince/opskeep-skills/blob/main/NOTICE" target="_blank" rel="noopener">NOTICE</a>.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <span>Opskeep Skills — independent, open-source project.</span>
+  <div class="footer-links">
+    <a href="https://github.com/CalebPrince/opskeep-skills" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://github.com/CalebPrince/opskeep-skills/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">Contributing</a>
+    <a href="https://github.com/CalebPrince/opskeep-skills/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
