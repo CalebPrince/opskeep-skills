@@ -35,6 +35,8 @@ render correctly anywhere (GitHub, Slack, image viewers) without needing the pag
 Google Fonts.
 
 The "Works with" and hero-diagram sections use each tool's own logo (Claude, OpenAI,
-Cursor, Cline) to show real compatibility, sourced from [Simple Icons](https://simpleicons.org)
-(CC0). Those marks are trademarks of their respective owners; used here only to indicate
+Cursor, Cline, Google Gemini, GitHub) to show real compatibility, sourced from
+[Simple Icons](https://simpleicons.org) (CC0); Roo Code's mark is cropped from its own
+published logo (via [agentskills.io](https://agentskills.io)'s client showcase assets).
+Those marks are trademarks of their respective owners; used here only to indicate
 support, not endorsement.

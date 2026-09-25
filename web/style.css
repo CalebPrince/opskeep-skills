@@ -442,6 +442,7 @@ section { padding: clamp(56px, 8vw, 88px) clamp(20px, 4vw, 56px); }
 }
 .runtime-chip .icon { width: 22px; height: 22px; color: var(--orange); }
 .runtime-chip .icon-logo { color: var(--ink); }
+.icon-logo-wide { width: 34px !important; height: 21px !important; }
 .icon-logo { fill: currentColor; stroke: none; }
 .runtime-chip h4 { font-size: 14px; margin: 12px 0 6px; }
 .runtime-chip p { margin: 0; font-size: 12px; color: var(--ink-soft); }
