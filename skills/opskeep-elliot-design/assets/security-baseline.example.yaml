@@ -1,0 +1,194 @@
+schema_version: "2.1"
+baseline_version: "1.0.0"
+record_digest: null
+project:
+  id: "PRJ-PORTFOLIO-001"
+  name: "Acme Studio Site"
+  purpose: "Public brochure site with a contact form"
+  owner: "site-owner"
+risk:
+  tier: "LOW"
+  mode: "FAST_TRACK"
+  rationale:
+    - "Public content and a limited contact form"
+    - "No accounts, payments, or privileged user workflows"
+  likely_production_tier: "LOW"
+lifecycle:
+  status: "REVIEW_REQUIRED"
+  production_posture: "ELIGIBLE_WHEN_APPROVED"
+  spike_expires_at: null
+  development_lock: "LOCKED"
+  deployment_lock: "LOCKED"
+classification_levels: [PUBLIC, INTERNAL, CONFIDENTIAL, SENSITIVE, RESTRICTED]
+assets:
+  - id: "AST-001"
+    name: "Contact submissions"
+    classification: "CONFIDENTIAL"
+    owner: "site-owner"
+    retention: "30 days"
+  - id: "AST-002"
+    name: "Deployment credentials"
+    classification: "RESTRICTED"
+    owner: "developer"
+    retention: "Short-lived OIDC tokens only; no stored secret"
+components:
+  - id: "CMP-001"
+    name: "Static web frontend"
+    exposure: "INTERNET"
+    provider: "example-host"
+  - id: "CMP-002"
+    name: "Contact form handler"
+    exposure: "INTERNET"
+    provider: "example-functions"
+  - id: "CMP-003"
+    name: "CI/CD pipeline"
+    exposure: "THIRD_PARTY"
+    provider: "example-ci"
+trust_boundaries:
+  - id: "TB-001"
+    name: "Internet to application"
+    from: "PUBLIC_INTERNET"
+    to: ["CMP-001", "CMP-002"]
+  - id: "TB-002"
+    name: "CI to hosting provider"
+    from: "CMP-003"
+    to: ["CMP-001", "CMP-002"]
+data_flows:
+  - id: "FLW-001"
+    name: "Submit contact message"
+    origin: "Website visitor"
+    processing: "Validate, rate-limit, and forward"
+    destination: "Site owner inbox"
+    classification: "CONFIDENTIAL"
+    retention: "30 days"
+    boundaries: ["TB-001"]
+identities:
+  - id: "ID-001"
+    name: "Deployment workflow"
+    type: "WORKLOAD"
+    authentication: "OIDC federation"
+    resources: ["CMP-001", "CMP-002"]
+    permissions: ["deploy reviewed build"]
+    forbidden_actions: ["read contact submissions", "manage organization billing"]
+    human_approval: "production environment approval"
+threats:
+  - id: "THR-001"
+    component_ids: ["CMP-002"]
+    scenario: "Automated form abuse causes spam or service exhaustion"
+    likelihood: "MEDIUM"
+    impact: "LOW"
+    control_ids: ["CTL-API-001"]
+    residual_risk: "LOW"
+    owner: "site-owner"
+    status: "OPEN"
+  - id: "THR-002"
+    component_ids: ["CMP-001", "CMP-003"]
+    scenario: "A committed secret or vulnerable dependency ships to production"
+    likelihood: "MEDIUM"
+    impact: "MEDIUM"
+    control_ids: ["CTL-SC-001"]
+    residual_risk: "LOW"
+    owner: "developer"
+    status: "OPEN"
+  - id: "THR-003"
+    component_ids: ["CMP-003"]
+    scenario: "Implementation or deployment proceeds from an unreviewed design"
+    likelihood: "MEDIUM"
+    impact: "MEDIUM"
+    control_ids: ["CTL-GOV-001"]
+    residual_risk: "LOW"
+    owner: "site-owner"
+    status: "OPEN"
+controls:
+  - id: "CTL-GOV-001"
+    domain: "GOVERNANCE"
+    requirement: "No repository, implementation, or deployment until the owner explicitly approves this baseline version"
+    status: "PLANNED"
+    owner: "site-owner"
+    acceptance: "CI rejects a change when the baseline is not APPROVED with a matching digest from a protected source"
+    evidence_ids: []
+  - id: "CTL-API-001"
+    domain: "API"
+    requirement: "Validate input and rate-limit contact submissions"
+    status: "PLANNED"
+    owner: "developer"
+    acceptance: "Invalid input is rejected and an abuse test demonstrates throttling"
+    evidence_ids: []
+  - id: "CTL-SC-001"
+    domain: "SUPPLY_CHAIN"
+    requirement: "Block committed secrets and high-severity dependency findings"
+    status: "PLANNED"
+    owner: "developer"
+    acceptance: "Protected checks fail on a seeded secret and a vulnerable test dependency"
+    evidence_ids: []
+gates:
+  - id: "GATE-001"
+    name: "Baseline approval gate"
+    stage: "PRE_IMPLEMENTATION"
+    blocking: true
+    control_ids: ["CTL-GOV-001"]
+    required_evidence: ["EVD-001"]
+    status: "NOT_YET_BUILT"
+    evidence_ids: []
+  - id: "GATE-002"
+    name: "Security checks"
+    stage: "PULL_REQUEST"
+    blocking: true
+    control_ids: ["CTL-SC-001", "CTL-API-001"]
+    required_evidence: ["EVD-002"]
+    status: "NOT_YET_BUILT"
+    evidence_ids: []
+decisions:
+  - id: "DEC-001"
+    question: "Which approved mail service and retention configuration will receive messages?"
+    owner: "site-owner"
+    required_decision: "Provider and deletion mechanism"
+    blocks_approval: true
+    status: "OPEN"
+evidence:
+  - id: "EVD-001"
+    type: "OWNER_APPROVAL"
+    status: "NOT_YET_BUILT"
+    observed_at: null
+    observer: null
+    location: null
+  - id: "EVD-002"
+    type: "CI_RUN"
+    status: "NOT_YET_BUILT"
+    observed_at: null
+    observer: null
+    location: null
+monitoring:
+  handoff:
+    provider: "NONE"
+    owner: "site-owner"
+    configuration_status: "NOT_CONFIGURED"
+    baseline_version: "1.0.0"
+    record_digest: null
+    environments: ["production"]
+    handed_off_at: null
+    acknowledged_at: null
+  signals:
+    - id: "MON-001"
+      name: "Contact handler error rate"
+      source: "function logs"
+      severity: "MEDIUM"
+      threshold: "Error rate above 5% for 10 minutes"
+      route: "site-owner"
+      runbook: "SECURITY.md#contact-handler"
+      status: "PLANNED"
+recovery:
+  owner: "site-owner"
+  backup: {status: "NOT_APPLICABLE", reason: "Site source is versioned; submissions are transient", details: ""}
+  restore: {status: "PLANNED", details: "Redeploy last known-good immutable build"}
+  rollback: {status: "PLANNED", details: "Hosting provider rollback to prior deployment"}
+  incident_response: {status: "PLANNED", details: "Disable form endpoint, revoke deployment identity, preserve logs"}
+approval:
+  decision: "PENDING"
+  approver: null
+  approved_at: null
+  baseline_version: null
+  record_digest: null
+  scope: []
+  expires_at: null
+changes: []

@@ -1,0 +1,56 @@
+schema_version: "2.1"
+baseline_version: "0.1.0"
+record_digest: null
+project:
+  id: "PRJ-001"
+  name: ""
+  purpose: ""
+  owner: ""
+risk:
+  tier: "LOW"
+  mode: "FAST_TRACK"
+  rationale: []
+  likely_production_tier: null
+lifecycle:
+  status: "DRAFT"
+  production_posture: "ELIGIBLE_WHEN_APPROVED"
+  spike_expires_at: null
+  development_lock: "LOCKED"
+  deployment_lock: "LOCKED"
+classification_levels: [PUBLIC, INTERNAL, CONFIDENTIAL, SENSITIVE, RESTRICTED]
+assets: []
+components: []
+trust_boundaries: []
+data_flows: []
+identities: []
+threats: []
+controls: []
+gates: []
+decisions: []
+evidence: []
+monitoring:
+  handoff:
+    provider: "NONE"
+    owner: ""
+    configuration_status: "NOT_CONFIGURED"
+    baseline_version: "0.1.0"
+    record_digest: null
+    environments: []
+    handed_off_at: null
+    acknowledged_at: null
+  signals: []
+recovery:
+  owner: ""
+  backup: {status: "UNRESOLVED", blocks_approval: false, details: ""}
+  restore: {status: "UNRESOLVED", blocks_approval: false, details: ""}
+  rollback: {status: "UNRESOLVED", blocks_approval: false, details: ""}
+  incident_response: {status: "UNRESOLVED", blocks_approval: false, details: ""}
+approval:
+  decision: "PENDING"
+  approver: null
+  approved_at: null
+  baseline_version: null
+  record_digest: null
+  scope: []
+  expires_at: null
+changes: []

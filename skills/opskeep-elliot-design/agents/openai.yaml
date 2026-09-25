@@ -1,0 +1,13 @@
+interface:
+  display_name: Elliot Design
+  short_description: Risk-proportional Secure by Design baseline
+  default_prompt: Use Elliot Design to select the appropriate risk depth, create the security dashboard and canonical baseline, then stop for my explicit review.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

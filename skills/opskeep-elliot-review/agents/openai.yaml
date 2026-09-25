@@ -1,0 +1,6 @@
+interface:
+  display_name: "Elliot Review"
+  short_description: "Security assessments for existing local repos"
+  default_prompt: "Use $opskeep-elliot-review to assess this existing local repository and produce the dashboard and recommendations."
+policy:
+  allow_implicit_invocation: true
