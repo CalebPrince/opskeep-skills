@@ -13,6 +13,8 @@ client relationships, closeout notes, retros, and a couple of hosted utilities.
 
 Independent, open-source project.
 
+**[View the landing page →](https://opskeep-skills.vercel.app/)**
+
 ## Install
 
 ```bash

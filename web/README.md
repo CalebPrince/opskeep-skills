@@ -3,6 +3,8 @@
 A static landing page for the repo: install instructions, the full skill directory
 (filterable by lane), supported agent runtimes, and the MCP server quick-start.
 
+Live at **[opskeep-skills.vercel.app](https://opskeep-skills.vercel.app/)**.
+
 No build step — plain `index.html` / `style.css` / `script.js`.
 
 ## Run it locally
