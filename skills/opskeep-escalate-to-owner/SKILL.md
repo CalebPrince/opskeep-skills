@@ -1,8 +1,8 @@
 ---
 name: opskeep-escalate-to-owner
 description: Pause an autonomous, in-progress customer conversation and bring the business owner in, either through a live same-thread handoff (when the connected channel supports it, e.g. WhatsApp Business API conversation takeover) or by notifying the owner and pausing the transaction (when it doesn't). Use only when a lane skill operating in autonomous mode hits something outside its authorization: a price deviation, an ambiguous request, a dispute or complaint, a high-value order, or low confidence. Do not use for routine questions a lane skill can answer on its own, and do not use when the business is running in the default approval-required mode (there, the lane skill just holds the draft for review instead).
-lane: meta
 metadata:
+  lane: meta
   version: 0.1.0
 ---
 

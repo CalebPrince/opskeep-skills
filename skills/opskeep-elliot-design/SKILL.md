@@ -2,6 +2,7 @@
 name: opskeep-elliot-design
 description: Design or reassess a risk-proportional Secure by Design baseline before project implementation, first commit, production promotion, or a material architecture change.
 metadata:
+  lane: security
   version: "2.2.0"
   standard: "PC-SBD 2.1"
 ---

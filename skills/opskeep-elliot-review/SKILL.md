@@ -2,6 +2,7 @@
 name: opskeep-elliot-review
 description: Review an already-existing local repository and produce an evidence-backed security assessment, visual dashboard, and prioritized recommendations. Use for repo security reviews and baseline-versus-implementation drift checks; do not use for designing a new project before implementation.
 metadata:
+  lane: security
   version: "1.0.0"
   standard: "PC-SBD Review 1.0"
 ---
