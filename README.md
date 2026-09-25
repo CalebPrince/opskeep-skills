@@ -1,5 +1,7 @@
 # Opskeep Skills
 
+![Opskeep](web/logo-lockup.svg)
+
 **Operations skills for the agent you already use.**
 
 Delivering the craft is only half the job. There's also winning the work, scoping it,
