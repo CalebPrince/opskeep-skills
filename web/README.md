@@ -36,7 +36,9 @@ Google Fonts.
 
 The "Works with" and hero-diagram sections use each tool's own logo (Claude, OpenAI,
 Cursor, Cline, Google Gemini, GitHub, OpenCode) to show real compatibility, sourced from
-[Simple Icons](https://simpleicons.org) (CC0); Roo Code's mark is cropped from its own
-published logo (via [agentskills.io](https://agentskills.io)'s client showcase assets).
+[Simple Icons](https://simpleicons.org) (CC0); Roo Code's and OpenClaw's marks are cropped
+from their own published logos (via [agentskills.io](https://agentskills.io)'s client
+showcase assets). OpenClaw's is the only one kept in full color, since it's a colorful
+mascot rather than a flat mark — everything else renders in the page's neutral ink color.
 Those marks are trademarks of their respective owners; used here only to indicate
 support, not endorsement.
