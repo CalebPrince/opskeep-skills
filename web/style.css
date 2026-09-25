@@ -484,6 +484,7 @@ section { padding: clamp(56px, 8vw, 88px) clamp(20px, 4vw, 56px); }
 }
 .brand-sm { font-size: 15px; }
 .site-footer > span { margin-right: auto; }
+.site-footer > span a { color: var(--orange-ink); text-decoration: underline; }
 .footer-links { display: flex; gap: 20px; }
 .footer-links a { color: var(--ink-soft); }
 .footer-links a:hover { color: var(--orange-ink); }
