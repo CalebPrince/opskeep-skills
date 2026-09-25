@@ -6,6 +6,12 @@
 [![GitHub Stars](https://img.shields.io/github/stars/CalebPrince/opskeep-skills?color=FF5A36)](https://github.com/CalebPrince/opskeep-skills/stargazers)
 [![Agent Skills](https://img.shields.io/badge/Agent%20Skills-open%20standard-FF5A36)](https://agentskills.io)
 [![Live Demo](https://img.shields.io/badge/Live-opskeep--skills.vercel.app-FF5A36)](https://opskeep-skills.vercel.app/)
+![GitHub stars](https://img.shields.io/github/stars/CalebPrince/opskeep-skills)
+![GitHub forks](https://img.shields.io/github/forks/CalebPrince/opskeep-skills)
+![Last commit](https://img.shields.io/github/last-commit/CalebPrince/opskeep-skills)
+![Repo size](https://img.shields.io/github/repo-size/CalebPrince/opskeep-skills)
+![License](https://img.shields.io/github/license/CalebPrince/opskeep-skills)
+![Issues](https://img.shields.io/github/issues/CalebPrince/opskeep-skills)
 
 **Operations skills for the agent you already use.**
 
