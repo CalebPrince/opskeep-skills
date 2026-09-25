@@ -74,6 +74,7 @@
 <symbol id="i-github" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.5-1.1-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.7.4-1.1.6-1.4-2.3-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.5-1.3.1-2.6 0 0 .8-.3 2.7 1a9.4 9.4 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .6 1.3.2 2.3.1 2.6.6.7 1 1.6 1 2.7 0 3.9-2.3 4.7-4.6 5 .4.3.7 1 .7 2v2.9c0 .3.2.6.7.5A10 10 0 0 0 12 2Z"/></symbol>
   <symbol id="i-bag" viewBox="0 0 24 24"><path d="M6 7h12l1 14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1Z"/><path d="M9 7V5a3 3 0 0 1 6 0v2"/></symbol>
   <symbol id="i-bowl" viewBox="0 0 24 24"><path d="M3.5 11h17a8.5 8.5 0 0 1-17 0Z"/><path d="M8 11l1.5-4M12 11l1-4M16 11l1.5-4"/></symbol>
+  <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="12" r="4"/><path d="M11 12h9"/><path d="M16 12v3M19 12v3"/></symbol>
 </defs>
 </svg>
 
@@ -86,6 +87,7 @@
     <a href="#directory">Skill directory</a>
     <a href="#runtimes">Works with</a>
     <a href="#mcp">MCP server</a>
+    <a href="#agency">Agent manager</a>
     <a href="#provenance">License</a>
   </nav>
   <div class="header-actions">
@@ -113,6 +115,7 @@
     <a href="#directory">Skill directory</a>
     <a href="#runtimes">Works with</a>
     <a href="#mcp">MCP server</a>
+    <a href="#agency">Agent manager</a>
     <a href="#provenance">License</a>
   </nav>
   <div class="menu-actions">
@@ -142,7 +145,12 @@
         <a class="btn btn-primary" href="#install">Install a skill <svg class="icon" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></a>
         <a class="btn btn-outline" href="#directory">Browse the directory</a>
       </div>
-      <p class="hero-note">Independent, open-source, MIT licensed. Nineteen skills, one open format.</p>
+      <div class="hero-proof" aria-label="Opskeep operating loop">
+        <span><b>01</b> Win the work</span>
+        <span><b>02</b> Run the work</span>
+        <span><b>03</b> Keep the client</span>
+      </div>
+      <p class="hero-note">Independent, open-source, MIT licensed. Twenty skills, one open format.</p>
     </div>
 
     <div class="hero-diagram" aria-hidden="true">
@@ -180,7 +188,7 @@
   <section class="stat-strip-wrap">
     <div class="stat-strip" aria-label="What Opskeep adds">
       <div class="stat"><svg class="icon" viewBox="0 0 24 24"><use href="#i-grid"/></svg><span class="stat-num">6</span><span class="stat-label">business lanes</span></div>
-      <div class="stat"><svg class="icon" viewBox="0 0 24 24"><use href="#i-layers"/></svg><span class="stat-num">2</span><span class="stat-label">meta surfaces</span></div>
+      <div class="stat"><svg class="icon" viewBox="0 0 24 24"><use href="#i-layers"/></svg><span class="stat-num">3</span><span class="stat-label">meta surfaces</span></div>
       <div class="stat"><svg class="icon" viewBox="0 0 24 24"><use href="#i-box"/></svg><span class="stat-num">8</span><span class="stat-label">breakout skills</span></div>
       <div class="stat"><svg class="icon" viewBox="0 0 24 24"><use href="#i-shield"/></svg><span class="stat-num">2</span><span class="stat-label">Secure by Design</span></div>
       <div class="stat"><svg class="icon" viewBox="0 0 24 24"><use href="#i-link2"/></svg><span class="stat-num">1</span><span class="stat-label">MCP server</span></div>
@@ -377,17 +385,17 @@
     <div class="section-head section-head-row">
       <div>
         <p class="eyebrow"><span class="dot"></span>Skill directory</p>
-        <h2>19 skills. One operating layer.</h2>
+        <h2>20 skills. One operating layer.</h2>
         <p class="section-lede">Every skill is a plain folder — <code>SKILL.md</code> plus optional <code>scripts/</code>, <code>references/</code> and <code>assets/</code>. Pick a lane below, or install the whole box.</p>
       </div>
-      <button class="btn btn-primary btn-sm" id="view-all-btn" type="button">View all 19 skills <svg class="icon" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></button>
+      <button class="btn btn-primary btn-sm" id="view-all-btn" type="button">View all 20 skills <svg class="icon" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></button>
     </div>
 
     <div class="tabs" role="tablist" aria-label="Skill categories">
-      <button class="tab is-active" role="tab" aria-selected="true" data-filter="all">All (19)</button>
+      <button class="tab is-active" role="tab" aria-selected="true" data-filter="all">All (20)</button>
       <button class="tab" role="tab" aria-selected="false" data-filter="core">Core router (1)</button>
       <button class="tab" role="tab" aria-selected="false" data-filter="lane">Business lanes (6)</button>
-      <button class="tab" role="tab" aria-selected="false" data-filter="meta">Meta (2)</button>
+      <button class="tab" role="tab" aria-selected="false" data-filter="meta">Meta (3)</button>
       <button class="tab" role="tab" aria-selected="false" data-filter="breakout">Breakout (8)</button>
       <button class="tab" role="tab" aria-selected="false" data-filter="security">Security (2)</button>
     </div>
@@ -457,6 +465,13 @@
         <p class="skill-eyebrow">Meta</p>
         <h3>opskeep-tools</h3>
         <p>Routes standalone utilities: audio briefs, voice huddles, follow-up reminders, time tracking, and Composio-backed tool access.</p>
+        <span class="card-arrow"><svg class="icon" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span>
+      </li>
+      <li class="skill-card" data-cat="meta">
+        <span class="icon-badge icon-badge-sm"><svg class="icon" viewBox="0 0 24 24"><use href="#i-key"/></svg></span>
+        <p class="skill-eyebrow">Meta</p>
+        <h3>opskeep-manage-client-keys</h3>
+        <p>For the agent manager: tracks API keys installed per client website, how many keys each client has, credits bought, and agent usage.</p>
         <span class="card-arrow"><svg class="icon" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span>
       </li>
 
@@ -592,7 +607,7 @@
             <svg class="icon" viewBox="0 0 24 24"><use href="#i-copy"/></svg>
           </button>
         </div>
-        <pre class="terminal-body"><code><span class="tk-comment"># separate pack, not part of the 19-skill install</span>
+        <pre class="terminal-body"><code><span class="tk-comment"># separate pack, not part of the 20-skill install</span>
 <span class="tk-cmd">git</span> clone https://github.com/CalebPrince/opskeep-skills
 <span class="tk-cmd">cp</span> -r opskeep-skills/verticals/opskeep-retail/skills/* ~/.agents/skills/
 <span class="tk-comment"># swap in opskeep-hospitality for a venue; add opskeep-tools + breakout skills from the core pack</span></code></pre>
@@ -697,6 +712,63 @@
       <div class="tool-chip">
         <svg class="icon" viewBox="0 0 24 24"><use href="#i-alert"/></svg>
         <div><h4>escalate_to_owner</h4><p>Pause, record, and resolve</p></div>
+      </div>
+      <div class="tool-chip">
+        <svg class="icon" viewBox="0 0 24 24"><use href="#i-key"/></svg>
+        <div><h4>register_client / record_credit_purchase</h4><p>Per-client keys, credit balances, and agent usage</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AGENCY / CLIENT AGENT MANAGEMENT -->
+  <section class="agency" id="agency">
+    <div class="section-head">
+      <p class="eyebrow"><span class="dot"></span>For the agent manager</p>
+      <h2>Agents you run for clients, accounted for.</h2>
+      <p class="section-lede">If you manage AI agents for clients, you manage their API keys and their spend. Opskeep tracks each client by their website: which keys are installed, how many each client has, the credits they bought, and what their agents burn.</p>
+    </div>
+
+    <div class="agency-layout">
+      <div class="agency-copy">
+        <div class="agency-point">
+          <span class="icon-badge"><svg class="icon" viewBox="0 0 24 24"><use href="#i-key"/></svg></span>
+          <div>
+            <h3>Keys, per client, per website</h3>
+            <p>Every key installed for a client's AI model is registered against their site with provider, model, and a label. Full key values are never stored; the registry tracks where each unlock sits.</p>
+          </div>
+        </div>
+        <div class="agency-point">
+          <span class="icon-badge"><svg class="icon" viewBox="0 0 24 24"><use href="#i-card"/></svg></span>
+          <div>
+            <h3>Credits bought, tracked</h3>
+            <p>Each top-up is recorded, so what a client paid for is a number in the book, not a memory. Balance is always credits bought minus credits used.</p>
+          </div>
+        </div>
+        <div class="agency-point">
+          <span class="icon-badge"><svg class="icon" viewBox="0 0 24 24"><use href="#i-bars"/></svg></span>
+          <div>
+            <h3>Usage reconciled</h3>
+            <p>Agent usage is booked per client and reconciled against their balance. When a client asks what their agents cost them this month, the answer is concrete.</p>
+          </div>
+        </div>
+        <p class="agency-cta">Backed by MCP tools in the <a href="#mcp">companion server</a> and routed by the <code>opskeep-manage-client-keys</code> skill.</p>
+      </div>
+
+      <div class="registry" aria-label="Example: client key and credit registry">
+        <p class="registry-label">Client registry</p>
+        <div class="registry-row registry-head">
+          <span>Client</span><span>Keys</span><span>Bought</span><span>Used</span><span>Left</span>
+        </div>
+        <div class="registry-row">
+          <span>oakst.example</span><span>3</span><span>$100</span><span>$32</span><span>$68</span>
+        </div>
+        <div class="registry-row">
+          <span>riverdalefab.com</span><span>1</span><span>$250</span><span>$118</span><span>$132</span>
+        </div>
+        <div class="registry-row">
+          <span>northline.studio</span><span>2</span><span>$75</span><span>$21</span><span>$54</span>
+        </div>
+        <p class="registry-note">register_client &middot; add_client_key &middot; record_credit_purchase &middot; record_agent_usage</p>
       </div>
     </div>
   </section>
