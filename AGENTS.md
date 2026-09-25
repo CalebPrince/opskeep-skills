@@ -24,6 +24,13 @@ others — see the README's "Other agent runtimes" section for verified per-tool
    information is missing, the skill should ask or flag it as unknown.
 5. **Evals before merge.** Any change to a skill's routing or output shape needs a
    corresponding eval under `evals/`. See [CONTRIBUTING.md](CONTRIBUTING.md).
+6. **Business environment first.** SKILL.md prompt design targets how the business
+   actually operates (leads, briefs, client threads, updates, invoices, shop/venue
+   loops), not developer codebases. Use developer framing only where the skill
+   inherently works on code or repos (`opskeep-elliot-design`, `opskeep-elliot-review`,
+   `composio-mcp` developer-tool access, and coding delivery coordinated through
+   `opskeep-deliver-work`); even there, keep outputs business-facing: owner, next
+   action, status, blocker, handoff.
 
 ## Directory map
 

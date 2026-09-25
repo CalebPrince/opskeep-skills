@@ -5,6 +5,13 @@ as a whole (see `package.json`).
 
 ## Unreleased
 
+- The core `opskeep` router now recognizes retail/shop and restaurant/venue business-model
+  intent (stock, reorder, SKU, till, markdown or prep list, reservation, table, waitlist,
+  close-out) and routes it to the separately installed `opskeep-retail` /
+  `opskeep-hospitality` vertical routers instead of flattening it into core service lanes.
+  When the matching vertical pack isn't installed, it returns the clone-and-copy install
+  path rather than inventing or running vertical skills as if present. The router help
+  menu now lists both vertical packs.
 - Added opt-in autonomous sale completion to `opskeep-retail-sell`, off by default. A shop
   can turn on `autonomous_with_escalation` (`opskeep-retail-manage`, new
   `references/transaction-autonomy.md`) so the agent completes a routine, already-priced

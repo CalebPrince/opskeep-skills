@@ -1,9 +1,9 @@
 ---
 name: opskeep
-description: "Use when the user invokes Opskeep and needs routing across service-business operations, Opskeep setup/management, or Opskeep tools. Routes to business lanes: get work, define work, deliver work, get paid, keep clients, improve operations; to Manage Opskeep for setup, tools, automations, memory, and preferences; or to Opskeep Tools for audio briefs, huddles, reminders, time tracking, and Composio-backed utilities."
+description: "Use when the user invokes Opskeep and needs routing across service-business operations, Opskeep setup/management, or Opskeep tools. Routes to business lanes: get work, define work, deliver work, get paid, keep clients, improve operations; to Manage Opskeep for setup, tools, automations, memory, and preferences; to Opskeep Tools for audio briefs, huddles, reminders, time tracking, and Composio-backed utilities; or to the separately installed opskeep-retail / opskeep-hospitality vertical router whenever shop or venue work is on the table."
 metadata:
   lane: meta
-  version: 2.0.0
+  version: 2.1.0
 ---
 
 # Opskeep
@@ -36,6 +36,8 @@ No command? Use conversation context to choose the best destination. Show the me
 | Run your business: Improve operations | `improve operations`, `lessons`, `retrospective`, `close`, `archive`, `handover`, `benefits`, `reuse`, `SOP`, `template`, `video tutorial`, `YouTube link`, `transcript` | `opskeep-improve-operations` |
 | Manage Opskeep | `manage opskeep`, `setup`, `onboard opskeep`, `business profile`, `preferences`, `company brain`, `memory`, `connect tools`, `connector`, `automation`, `trigger`, `loop`, `recurring workflow` | `opskeep-manage` |
 | Opskeep Tools | `opskeep tools`, `audio brief`, `voice session`, `talk by voice`, `follow-up reminder`, `email reminder`, `time tracking`, `time entry`, `expense tracking`, `job expense`, `mileage`, `escalate`, `escalation`, `composio`, `hosted utility` | `opskeep-tools` |
+| Vertical: Retail | `retail`, `shop`, `store`, `restock`, `low stock`, `SKU`, `inventory`, `reorder`, `till`, `markdown`, `supplier order` | `opskeep-retail` (separate pack; see routing rules 13-14) |
+| Vertical: Hospitality | `restaurant`, `venue`, `kitchen`, `reservation`, `table`, `waitlist`, `prep list`, `par level`, `plate cost`, `tip`, `service recover` | `opskeep-hospitality` (separate pack; see routing rules 13-14) |
 | Handoff checks | `get-to-define`, `define-to-deliver`, `deliver-to-get-paid`, `deliver-to-relationships`, `improve-to-keep-clients` | source lane first, then named next lane follow-up |
 | Help | `help`, `menu`, sparse context, unsafe/unknown route | `references/help-menu.md` |
 
@@ -53,6 +55,8 @@ No command? Use conversation context to choose the best destination. Show the me
 10. Multiple matches -> one primary destination plus secondary follow-ups, unless user asks for chain.
 11. Handoff checks -> return `Objective`, `Source Check` or `Tool Access Check`, `Current Signal`, actions with owner/date/evidence, `TBD` gaps, and next lane follow-ups. Do not execute multiple lanes unless asked.
 12. Sparse or unsafe route -> help/menu plus one clarifying question only if needed.
+13. Retail/shop or hospitality/venue business-model intent (stock up, reorder, low stock, SKU, till, markdown or prep list, reservation, table, waitlist, nightly close-out) routes to the matching installed vertical pack router: `opskeep-retail` or `opskeep-hospitality`. That pack's lanes own its loop end-to-end; do not flatten shop or venue work into core service lanes.
+14. Vertical packs are separate installs staged under `verticals/<pack>/skills/`. If the matching vertical router is not installed, return the clone-and-copy install path and use `TBD` for the target skill rather than inventing or running `opskeep-retail-*` / `opskeep-hospitality-*` skills as if they were present.
 
 ## Tie-Breakers
 
@@ -82,6 +86,7 @@ No command? Use conversation context to choose the best destination. Show the me
 ## Gotchas
 
 - Do not route generic coding, writing, or research into Opskeep.
+- Do not treat `opskeep-retail` or `opskeep-hospitality` as installed unless the user's environment actually has them (they are separate packs). Shop/venue work stays out of core service lanes, and the install path is returned when the pack is missing.
 - Do not present Opskeep as an acronym.
 - Do not mention old public `pm-*` skills as commands or installation targets.
 - Do not edit/copy internals of `opskeep-audio-brief`, `opskeep-huddle-beta`, `opskeep-follow-up-reminders`, `opskeep-time-tracking`, `opskeep-expense-tracking`, `opskeep-escalate-to-owner`, `opskeep-triggers`, or `composio`; standalone skills own them.

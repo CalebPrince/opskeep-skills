@@ -309,6 +309,39 @@
         "Does it ask at most one clarifying question if needed?"
       ],
       "files": []
+    },
+    {
+      "id": "opskeep-vertical-retail-1",
+      "prompt": "Opskeep: my shop is low on SKUs for the weekend drop. Should I reorder the caps?",
+      "expected_output": "Routes retail/shop intent to the separately installed opskeep-retail vertical router (stock-up lane intent) instead of a core service lane.",
+      "assertions": [
+        "Does the output route shop/retail intent to the `opskeep-retail` vertical pack rather than a core service lane?",
+        "Does it keep reorder/low-stock work inside stock-up intent rather than get-work or get-paid?",
+        "Does it avoid claiming the vertical pack is present when it is not installed, returning the install path instead?"
+      ],
+      "files": []
+    },
+    {
+      "id": "opskeep-vertical-hospitality-1",
+      "prompt": "Opskeep: tonight's prep list is risky and one service station is short-staffed at the venue.",
+      "expected_output": "Routes venue/restaurant intent to the separately installed opskeep-hospitality vertical router (plan-service/serve intent) instead of a core service lane.",
+      "assertions": [
+        "Does the output route venue/restaurant intent to the `opskeep-hospitality` vertical pack rather than a core service lane?",
+        "Does it keep prep/staffing work inside plan-service rather than deliver-work?",
+        "Does it surface the staffing/compliance flag for the owner instead of adjudicating it?"
+      ],
+      "files": []
+    },
+    {
+      "id": "opskeep-vertical-not-installed-1",
+      "prompt": "Opskeep: set up a reorder reminder for my shop's low-stock items.",
+      "expected_output": "Returns the opskeep-retail install path (clone + copy verticals/opskeep-retail/skills/*) instead of inventing or running the pack as if installed.",
+      "assertions": [
+        "Does the output avoid pretending the `opskeep-retail` pack is installed (unless it actually is)?",
+        "Does it give the concrete install path when the pack is missing?",
+        "Does it avoid flattening the shop reorder loop into a core service lane or opskeep-tools?"
+      ],
+      "files": []
     }
   ]
 }

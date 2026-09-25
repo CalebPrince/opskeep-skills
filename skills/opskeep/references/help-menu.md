@@ -24,6 +24,10 @@ Run your business:
 - `Opskeep keep clients`
 - `Opskeep improve operations`
 
+Other business models (separate packs):
+- `Opskeep retail` - shop/stock/sell work, needs `opskeep-retail` installed
+- `Opskeep hospitality` - restaurant/venue work, needs `opskeep-hospitality` installed
+
 Manage Opskeep:
 - `setup`, `connect tools`, `company brain`, `automation`, `trigger`, `loop`
 
