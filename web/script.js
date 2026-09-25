@@ -22,34 +22,52 @@
   // ---- skill directory tabs ----
   var tabs = document.querySelectorAll(".tab");
   var cards = document.querySelectorAll(".skill-card");
+
+  function activateFilter(filter) {
+    tabs.forEach(function (t) {
+      var isMatch = t.getAttribute("data-filter") === filter;
+      t.classList.toggle("is-active", isMatch);
+      t.setAttribute("aria-selected", isMatch ? "true" : "false");
+    });
+    cards.forEach(function (card) {
+      card.hidden = !(filter === "all" || card.getAttribute("data-cat") === filter);
+    });
+  }
+
   tabs.forEach(function (tab) {
     tab.addEventListener("click", function () {
-      tabs.forEach(function (t) {
-        t.classList.remove("is-active");
-        t.setAttribute("aria-selected", "false");
-      });
-      tab.classList.add("is-active");
-      tab.setAttribute("aria-selected", "true");
+      activateFilter(tab.getAttribute("data-filter"));
+    });
+  });
 
-      var filter = tab.getAttribute("data-filter");
-      cards.forEach(function (card) {
-        var match = filter === "all" || card.getAttribute("data-cat") === filter;
-        card.hidden = !match;
-      });
+  // ---- "view all" + card deep-links into the directory ----
+  var viewAllBtn = document.getElementById("view-all-btn");
+  if (viewAllBtn) {
+    viewAllBtn.addEventListener("click", function () {
+      activateFilter("all");
+      document.getElementById("directory").scrollIntoView({ behavior: "smooth" });
+    });
+  }
+  document.querySelectorAll("[data-filter-link]").forEach(function (el) {
+    el.addEventListener("click", function (e) {
+      e.preventDefault();
+      activateFilter(el.getAttribute("data-filter-link"));
+      document.getElementById("directory").scrollIntoView({ behavior: "smooth" });
     });
   });
 
   // ---- copy install command ----
   var copyBtn = document.querySelector(".copy-btn");
   if (copyBtn) {
+    var originalMarkup = copyBtn.innerHTML;
+    var checkMarkup = '<svg class="icon" viewBox="0 0 24 24"><use href="#i-check"></use></svg>';
     copyBtn.addEventListener("click", function () {
       var text = copyBtn.getAttribute("data-copy") || "";
       var done = function () {
-        var original = "Copy";
-        copyBtn.textContent = "Copied";
+        copyBtn.innerHTML = checkMarkup;
         copyBtn.classList.add("copied");
         setTimeout(function () {
-          copyBtn.textContent = original;
+          copyBtn.innerHTML = originalMarkup;
           copyBtn.classList.remove("copied");
         }, 1600);
       };
