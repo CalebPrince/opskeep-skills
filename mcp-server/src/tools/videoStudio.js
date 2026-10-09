@@ -174,7 +174,10 @@ export const videoWriteFileTool = tool(
   "video_write_file",
   "Write a project content file",
   `Replace one of a project's content files (${FILES.join(", ")}) with new text, up to 2 MB. index.html is the page with the scenes. ` +
-    "Scripts cannot be written. Use video_set_script_lines for voice lines rather than rewriting audio.json, so changed lines are re-voiced.",
+    "Scripts cannot be written. Use video_set_script_lines for voice lines rather than rewriting audio.json, so changed lines are re-voiced. " +
+    "The page must set window.__seek(t) and window.__meta { duration, fps, width, height } so the studio can preview and render it, and should list its " +
+    "on-screen graphics as window.__graphics = [{ label, kind, t, d }] (seconds; kind is one of lower-third, text, icons, broll, cta) so they show as " +
+    "labelled blocks on the studio timeline. Keep that list in step with the page whenever a graphic is added, moved or removed.",
   {
     projectId,
     file: z.enum(FILES).describe("Which content file"),
