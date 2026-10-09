@@ -1,8 +1,8 @@
 # Opskeep MCP server
 
 An MCP server exposing Opskeep's hosted tools as callable functions: client update
-delivery, reminders, session recaps, time and expense tracking, and owner escalations.
-This is the mechanical,
+delivery, reminders, session recaps, time and expense tracking, owner escalations, and
+per-client key/credit/usage bookkeeping for the agent manager. This is the mechanical,
 stateful half of `opskeep-tools`: the judgment (what to write, when to check in) stays in
 the skill; this server does the sending, scheduling, and storing.
 
@@ -27,14 +27,52 @@ the skill; this server does the sending, scheduling, and storing.
 | `escalate_to_owner` | Pauses an autonomous transaction and records an escalation for the business owner |
 | `resolve_escalation` | Records how a paused escalation was resolved |
 | `list_escalations` | Lists escalations, optionally by status |
+| `register_client` | Registers or updates a client by their website (the stable id) |
+| `add_client_key` | Records an API key installed for a client's AI model, encrypted at rest |
+| `verify_client_key` | Makes a live request to confirm a recorded key still works |
+| `list_client_keys` | Lists a client's recorded keys (masked references), optionally by status |
+| `remove_client_key` | Soft-removes a recorded key by ID and scrubs its stored credential |
+| `record_credit_purchase` | Records credits a client bought / topped up |
+| `get_client_balance` | Credits bought minus credits used, for one client |
+| `record_agent_usage` | Records what a client's agents used (credits burned) |
+| `summarize_client_usage` | Per-client book: keys, credits bought, used, remaining |
+
+## Persistence
+
+All tool records (reminders, recaps, time entries, expenses, escalations, and the client
+registry) live in a JSON file and survive server restarts:
+
+| Variable | Default | Purpose |
+| --- | --- | --- |
+| `OPSKEEP_STORE_FILE` | `~/.opskeep/registry.json` | Where the store is saved (and loaded from). Set it to share a registry across machines via a synced path, or to keep the file out of a user's home. |
+| `OPSKEEP_KEY_ENCRYPTION_SECRET` | none | Required (24+ characters) before `add_client_key` will save a key. Encrypts recorded provider keys at rest (AES-256-GCM). Use the **same** value here and on any admin dashboard sharing this store file, so either side can decrypt keys the other recorded. |
+
+Writes are atomic (temp file + rename), and the id counter is persisted too, so new records
+never collide with ones already on disk. Run **one server instance per store file**; two
+processes writing the same file can drop each other's updates.
+
+The "Which tools cost credits" behavior below is independent of storage: metering gates
+billable actions only, regardless of where records are kept.
 
 ## Status
 
-This is a **scaffold**, not production infra. Reminders, recaps, time entries, and
-escalations are held in memory (see `src/store.js`) and reset on restart. Email/Slack
-delivery, TTS generation, and owner escalation notifications are stubbed with `TODO`
-comments marking where a real provider goes. The tool contracts (names, input schemas,
-response shape) are the stable part: build against those.
+The server keeps its records in a **file-backed store** that survives restarts, so
+multi-session use keeps its data. Every mutating call is written atomically (temp file +
+rename) to a single JSON file. Default location is `~/.opskeep/registry.json`; point it
+elsewhere with the `OPSKEEP_STORE_FILE` environment variable. One server instance should
+own a given file.
+
+Email/Slack delivery, TTS generation, and owner escalation notifications are still stubbed
+with `TODO` comments marking where a real provider goes. The tool contracts (names, input
+schemas, response shape) are the stable part: build against those.
+
+The client registry stores recorded provider keys encrypted at rest (AES-256-GCM, see
+`src/secrets.js`), alongside a masked display reference (first/last 4 characters). The
+raw key value still passes through this conversation once, when `add_client_key` is
+called — that's unavoidable for any tool that accepts a secret as an argument — but it is
+never echoed back afterward, and `remove_client_key` scrubs the stored credential. Set
+`OPSKEEP_KEY_ENCRYPTION_SECRET` before recording keys; without it, `add_client_key` refuses
+to save.
 
 ## Install & run
 
@@ -45,6 +83,14 @@ npm start
 ```
 
 The server speaks MCP over stdio.
+
+## Related
+
+- [`admin`](../admin) — a local web dashboard over this same store file (registry, key
+  encryption, provider verification, pricing, and agent runs) for the person who'd rather
+  click through a UI than call these tools from a conversation.
+- [`skills/opskeep-manage-client-keys`](../skills/opskeep-manage-client-keys) — the skill
+  that teaches an agent when and how to call the client-key/credit/usage tools above.
 
 ## Connect it to an agent
 

@@ -27,6 +27,17 @@ import {
   resolveEscalationTool,
   listEscalationsTool,
 } from "./tools/escalations.js";
+import {
+  registerClientTool,
+  addClientKeyTool,
+  verifyClientKeyTool,
+  listClientKeysTool,
+  removeClientKeyTool,
+  recordCreditPurchaseTool,
+  getClientBalanceTool,
+  recordAgentUsageTool,
+  summarizeClientUsageTool,
+} from "./tools/clientKeyRegistry.js";
 import { meterTool, meteringEnabled } from "./metering.js";
 
 const server = new McpServer({
@@ -65,6 +76,15 @@ const tools = [
   escalateToOwnerTool,
   resolveEscalationTool,
   listEscalationsTool,
+  registerClientTool,
+  addClientKeyTool,
+  verifyClientKeyTool,
+  listClientKeysTool,
+  removeClientKeyTool,
+  recordCreditPurchaseTool,
+  getClientBalanceTool,
+  recordAgentUsageTool,
+  summarizeClientUsageTool,
 ];
 
 for (const tool of tools) {

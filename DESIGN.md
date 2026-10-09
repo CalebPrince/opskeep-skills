@@ -17,13 +17,16 @@ Each lane is owned by exactly one skill. A lane skill may read context from anot
 (e.g., `opskeep-get-paid` reading the scope from `opskeep-define-work`) but should never
 duplicate another lane's workflow.
 
-## Two meta surfaces
+## Three meta surfaces
 
 - **`opskeep-manage`**: setup, preferences, memory, connectors, automations. This is
   "operating Opskeep," not "operating the business."
 - **`opskeep-tools`**: routes standalone breakout skills (audio briefs, voice huddles,
   follow-up reminders, time tracking, Composio-backed tool access) that are useful even
   outside a lane workflow.
+- **`opskeep-manage-client-keys`**: the agent manager's registry for the clients they run
+  AI agents for: per-client API keys (masked references only), credit purchases, balances,
+  and agent usage, keyed by each client's website.
 
 ## Routing philosophy
 

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sign in · Opskeep Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="login-wrap">
+    <form class="login-card" id="login-form">
+      <svg height="0" width="0" style="position:absolute" aria-hidden="true">
+        <defs>
+          <symbol id="i-asterisk-bold" viewBox="0 0 100 100"><g fill="currentColor"><rect x="46" y="4" width="8" height="40" rx="4"/><rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(60 50 50)"/><rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(120 50 50)"/><rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(180 50 50)"/><rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(240 50 50)"/><rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(300 50 50)"/></g></symbol>
+        </defs>
+      </svg>
+      <div class="login-brand-row">
+      <div class="brand">
+        <svg class="brand-mark" viewBox="0 0 100 100" width="22" height="22" aria-hidden="true"><use href="#i-asterisk-bold"/></svg>
+        <span>Opskeep <small>admin</small></span>
+      </div>
+      <span class="login-secure">Local access</span>
+      </div>
+      <p class="eyebrow">Operations desk</p>
+      <h1>Welcome back.</h1>
+      <p>Sign in to manage client balances, key references, and agent work.</p>
+      <div class="stack">
+        <div class="field">
+          <label for="username">Username</label>
+          <input id="username" name="username" autocomplete="username" placeholder="owner" required>
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" autocomplete="current-password" required>
+        </div>
+        <button class="btn btn-primary btn-block login-submit" type="submit">Open operations desk</button>
+        <p class="msg" id="login-msg" hidden></p>
+      </div>
+    </form>
+  </div>
+  <script>
+    const form = document.getElementById("login-form");
+    const msg = document.getElementById("login-msg");
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      msg.hidden = true;
+      const res = await fetch("/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username: form.username.value,
+          password: form.password.value,
+        }),
+      });
+      if (res.ok) {
+        window.location.href = "/";
+      } else {
+        const data = await res.json().catch(() => ({}));
+        msg.hidden = false;
+        msg.classList.add("msg-err");
+        msg.textContent = data.error || "Sign in failed.";
+      }
+    });
+  </script>
+</body>
+</html>

@@ -342,6 +342,28 @@
         "Does it avoid flattening the shop reorder loop into a core service lane or opskeep-tools?"
       ],
       "files": []
+    },
+    {
+      "id": "opskeep-client-keys-1",
+      "prompt": "Opskeep: track the API keys I install for each client's AI models, the credits each client bought, and what their agents burn.",
+      "expected_output": "Routes to opskeep-manage-client-keys: per-client key registry (masked references only), credit top-ups, balances, and agent usage keyed by client website.",
+      "assertions": [
+        "Does the output select `opskeep-manage-client-keys` as the route?",
+        "Does it keep the registry keyed by each client's website and never store or echo a full API key?",
+        "Does it avoid routing per-client credit/usage bookkeeping into `get paid`, `opskeep-tools`, or `opskeep-manage`?"
+      ],
+      "files": []
+    },
+    {
+      "id": "opskeep-client-keys-negative-1",
+      "prompt": "Opskeep: which of my clients have unpaid invoices from last month?",
+      "expected_output": "Stays in the get-paid lane and does not route to opskeep-manage-client-keys because the question is money follow-through, not key/credit bookkeeping.",
+      "assertions": [
+        "Does the output avoid selecting `opskeep-manage-client-keys`?",
+        "Does it treat invoice and money follow-through as `get paid` work?",
+        "Does it avoid inventing client balances when the registry has no records?"
+      ],
+      "files": []
     }
   ]
 }

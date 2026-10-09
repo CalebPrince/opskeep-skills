@@ -62,7 +62,7 @@ export const cancelReminderTool = {
         content: [{ type: "text", text: `No reminder found with ID ${reminderId}.` }],
       };
     }
-    reminder.status = "cancelled";
+    reminders.set(reminderId, { ...reminders.get(reminderId), status: "cancelled" });
     return { content: [{ type: "text", text: `✓ Reminder ${reminderId} cancelled.` }] };
   },
 };

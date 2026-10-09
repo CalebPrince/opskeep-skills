@@ -1,9 +1,9 @@
 ---
 name: opskeep
-description: "Use when the user invokes Opskeep and needs routing across service-business operations, Opskeep setup/management, or Opskeep tools. Routes to business lanes: get work, define work, deliver work, get paid, keep clients, improve operations; to Manage Opskeep for setup, tools, automations, memory, and preferences; to Opskeep Tools for audio briefs, huddles, reminders, time tracking, and Composio-backed utilities; or to the separately installed opskeep-retail / opskeep-hospitality vertical router whenever shop or venue work is on the table."
+description: "Use when the user invokes Opskeep and needs routing across service-business operations, Opskeep setup/management, or Opskeep tools. Routes to business lanes: get work, define work, deliver work, get paid, keep clients, improve operations; to Manage Opskeep for setup, tools, automations, memory, and preferences; to Opskeep Tools for audio briefs, huddles, reminders, time tracking, and Composio-backed utilities; to the separately installed opskeep-retail / opskeep-hospitality vertical router whenever shop or venue work is on the table; or to opskeep-manage-client-keys when the user is the agent manager tracking per-client API keys, credits, and usage."
 metadata:
   lane: meta
-  version: 2.1.0
+  version: 2.2.0
 ---
 
 # Opskeep
@@ -36,6 +36,7 @@ No command? Use conversation context to choose the best destination. Show the me
 | Run your business: Improve operations | `improve operations`, `lessons`, `retrospective`, `close`, `archive`, `handover`, `benefits`, `reuse`, `SOP`, `template`, `video tutorial`, `YouTube link`, `transcript` | `opskeep-improve-operations` |
 | Manage Opskeep | `manage opskeep`, `setup`, `onboard opskeep`, `business profile`, `preferences`, `company brain`, `memory`, `connect tools`, `connector`, `automation`, `trigger`, `loop`, `recurring workflow` | `opskeep-manage` |
 | Opskeep Tools | `opskeep tools`, `audio brief`, `voice session`, `talk by voice`, `follow-up reminder`, `email reminder`, `time tracking`, `time entry`, `expense tracking`, `job expense`, `mileage`, `escalate`, `escalation`, `composio`, `hosted utility` | `opskeep-tools` |
+| Manage client access | `client keys`, `api key`, `key registry`, `keys per client`, `credits`, `top up`, `credit balance`, `per-client usage`, `agent usage`, `agency`, `agent manager` | `opskeep-manage-client-keys` |
 | Vertical: Retail | `retail`, `shop`, `store`, `restock`, `low stock`, `SKU`, `inventory`, `reorder`, `till`, `markdown`, `supplier order` | `opskeep-retail` (separate pack; see routing rules 13-14) |
 | Vertical: Hospitality | `restaurant`, `venue`, `kitchen`, `reservation`, `table`, `waitlist`, `prep list`, `par level`, `plate cost`, `tip`, `service recover` | `opskeep-hospitality` (separate pack; see routing rules 13-14) |
 | Handoff checks | `get-to-define`, `define-to-deliver`, `deliver-to-get-paid`, `deliver-to-relationships`, `improve-to-keep-clients` | source lane first, then named next lane follow-up |
@@ -57,6 +58,7 @@ No command? Use conversation context to choose the best destination. Show the me
 12. Sparse or unsafe route -> help/menu plus one clarifying question only if needed.
 13. Retail/shop or hospitality/venue business-model intent (stock up, reorder, low stock, SKU, till, markdown or prep list, reservation, table, waitlist, nightly close-out) routes to the matching installed vertical pack router: `opskeep-retail` or `opskeep-hospitality`. That pack's lanes own its loop end-to-end; do not flatten shop or venue work into core service lanes.
 14. Vertical packs are separate installs staged under `verticals/<pack>/skills/`. If the matching vertical router is not installed, return the clone-and-copy install path and use `TBD` for the target skill rather than inventing or running `opskeep-retail-*` / `opskeep-hospitality-*` skills as if they were present.
+15. Agent-manager bookkeeping intent (the user's clients' AI API keys, top-ups, credit balances, or what their agents use) routes to `opskeep-manage-client-keys`. Per-client money still stays in `get paid`, and live external app writes stay in `composio`.
 
 ## Tie-Breakers
 
@@ -74,6 +76,7 @@ No command? Use conversation context to choose the best destination. Show the me
 - `change control` -> `get paid` only when money/billable/margin/budget/invoice impact dominates. Scope/delivery changes stay `define work` or `deliver work`.
 - `video`/`YouTube link`/`transcript` -> `improve operations` when the goal is a reusable SOP/process doc. `opskeep-tools` to `opskeep-audio-brief` only when the user explicitly wants a listenable/audio brief instead.
 - `Reddit`/`social post` -> `get work` when the goal is researching a topic to draft new content. `keep clients` for a testimonial/review-style social ask tied to a specific client relationship instead.
+- `credit(s)`/`top up`/`usage`/`api key` -> `opskeep-manage-client-keys` when the subject is a client's AI budget or installed keys. `get paid` when the wording is about invoicing, payments, or margin.
 
 ## References
 

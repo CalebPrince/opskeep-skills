@@ -5,6 +5,19 @@ as a whole (see `package.json`).
 
 ## Unreleased
 
+- The `opskeep-tools` MCP server's store is now file-backed and survives restarts: all
+  tool records (reminders, time entries, expenses, escalations, and the client registry)
+  are written atomically to `~/.opskeep/registry.json` by default, overridable with
+  `OPSKEEP_STORE_FILE`. The id counter persists too, so new records never collide with
+  what is already on disk.
+- Added `opskeep-manage-client-keys`: a per-client registry for the agent manager, tracking
+  the API keys installed for a client's AI models (masked references only, never the key
+  itself), how many keys each client has, credits bought per client, and what each client's
+  agents use. Backed by eight new `opskeep-tools` MCP tools (`register_client`,
+  `add_client_key`, `list_client_keys`, `remove_client_key`, `record_credit_purchase`,
+  `get_client_balance`, `record_agent_usage`, `summarize_client_usage`). The `opskeep`
+  router, help menu, and `opskeep-tools` route to it; `get paid` still owns invoicing and
+  money follow-through.
 - The core `opskeep` router now recognizes retail/shop and restaurant/venue business-model
   intent (stock, reorder, SKU, till, markdown or prep list, reservation, table, waitlist,
   close-out) and routes it to the separately installed `opskeep-retail` /
