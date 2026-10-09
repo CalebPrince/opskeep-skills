@@ -105,15 +105,25 @@ export const videoListProjectsTool = tool(
 export const videoGetProjectTool = tool(
   "video_get_project",
   "Get a Video Studio project",
-  "One project with its rendered outputs, which content files exist, and its voice lines (with whether each is already voiced).",
+  "One project with its brief (aspect, style, pacing, notes), its stage, rendered outputs, which content files exist, its voice lines " +
+    "(with whether each is already voiced), and the changes Caleb has asked for in the AI Director that are still open.",
   { projectId },
   async ({ projectId }) => {
-    const [p, files, lines] = await Promise.all([
+    const [p, files, lines, ins] = await Promise.all([
       studio("GET", `/api/projects/${projectId}`),
       studio("GET", `/api/projects/${projectId}/files`),
       studio("GET", `/api/projects/${projectId}/lines`),
+      studio("GET", `/api/projects/${projectId}/instructions`),
     ]);
-    return { project: p.project, outputs: p.outputs, files: files.files, lines: quoted("audio.json voice lines", lines.lines) };
+    // Reading the instructions marks the new ones as read in the studio, so Caleb sees they were picked up.
+    const open = ins.instructions.filter((i) => i.status !== "done").map((i) => ({ scene: i.scene, timecode: i.timecode, text: i.text, sentAt: i.created_at }));
+    return {
+      project: p.project,
+      outputs: p.outputs,
+      files: files.files,
+      lines: quoted("audio.json voice lines", lines.lines),
+      directorInstructions: quoted("changes Caleb asked for in the studio's AI Director (open ones, newest first)", open),
+    };
   }
 );
 
@@ -164,7 +174,10 @@ export const videoWriteFileTool = tool(
   "video_write_file",
   "Write a project content file",
   `Replace one of a project's content files (${FILES.join(", ")}) with new text, up to 2 MB. index.html is the page with the scenes. ` +
-    "Scripts cannot be written. Use video_set_script_lines for voice lines rather than rewriting audio.json, so changed lines are re-voiced.",
+    "Scripts cannot be written. Use video_set_script_lines for voice lines rather than rewriting audio.json, so changed lines are re-voiced. " +
+    "The page must set window.__seek(t) and window.__meta { duration, fps, width, height } so the studio can preview and render it, and should list its " +
+    "on-screen graphics as window.__graphics = [{ label, kind, t, d }] (seconds; kind is one of lower-third, text, icons, broll, cta) so they show as " +
+    "labelled blocks on the studio timeline. Keep that list in step with the page whenever a graphic is added, moved or removed.",
   {
     projectId,
     file: z.enum(FILES).describe("Which content file"),

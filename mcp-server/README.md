@@ -36,7 +36,7 @@ the skill; this server does the sending, scheduling, and storing.
 | `get_client_balance` | Credits bought minus credits used, for one client |
 | `record_agent_usage` | Records what a client's agents used (credits burned) |
 | `summarize_client_usage` | Per-client book: keys, credits bought, used, remaining |
-| `video_list_projects` / `video_get_project` | Reads projects in Video Studio (outputs, content files, voice lines) |
+| `video_list_projects` / `video_get_project` | Reads projects in Video Studio (brief, stage, outputs, content files, voice lines, and the open AI Director instructions) |
 | `video_create_project` / `video_update_project` | Creates a project from the owner's template, renames it or sets its voice |
 | `video_read_file` / `video_write_file` | Reads or replaces one of five content files (`index.html`, `audio.json`, `clips.json`, `icons.json`, `notes.md`); never a script |
 | `video_set_script_lines` | Replaces the voice lines; changed lines are set aside for re-voicing |
