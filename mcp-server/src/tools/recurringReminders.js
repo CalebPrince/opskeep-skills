@@ -92,7 +92,7 @@ export const cancelRecurringReminderTool = {
         content: [{ type: "text", text: `No recurring reminder found with ID ${recurringReminderId}.` }],
       };
     }
-    rule.status = "cancelled";
+    recurringReminders.set(recurringReminderId, { ...recurringReminders.get(recurringReminderId), status: "cancelled" });
     return { content: [{ type: "text", text: `✓ Recurring reminder ${recurringReminderId} cancelled.` }] };
   },
 };

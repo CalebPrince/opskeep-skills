@@ -2,8 +2,11 @@ import { z } from "zod";
 import { timeEntries, runningTimers, newId } from "../store.js";
 
 function entriesFor(project) {
-  if (!timeEntries.has(project)) timeEntries.set(project, []);
-  return timeEntries.get(project);
+  return timeEntries.get(project) ?? [];
+}
+
+function appendEntry(project, entry) {
+  timeEntries.set(project, [...entriesFor(project), entry]);
 }
 
 function formatDuration(ms) {
@@ -55,7 +58,7 @@ export const stopTimerTool = {
     }
     const stoppedAt = new Date().toISOString();
     const durationMs = new Date(stoppedAt).getTime() - new Date(running.startedAt).getTime();
-    entriesFor(project).push({ id: running.id, startedAt: running.startedAt, stoppedAt, note: running.note });
+    appendEntry(project, { id: running.id, startedAt: running.startedAt, stoppedAt, note: running.note });
     runningTimers.delete(project);
     return {
       content: [
@@ -87,7 +90,7 @@ export const backfillTimeEntryTool = {
       };
     }
     const id = newId("timer");
-    entriesFor(project).push({ id, startedAt, stoppedAt, note: note ?? null });
+    appendEntry(project, { id, startedAt, stoppedAt, note: note ?? null });
     return {
       content: [
         { type: "text", text: `✓ Backfilled ${formatDuration(stop - start)} for "${project}"` },

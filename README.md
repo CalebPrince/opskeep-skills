@@ -115,10 +115,25 @@ claude mcp add opskeep-tools -- node /absolute/path/to/opskeep-skills/mcp-server
 See [mcp-server](mcp-server) for the full tool list, its scaffold/status caveats, and
 the optional usage-metering setup for the hosted product.
 
+## Admin dashboard
+
+For the agent manager who installs AI keys for clients, [admin](admin) is a local web
+dashboard on top of the same shared store: register clients, add and verify provider
+keys (encrypted at rest), set per-model pricing, track credit balances, and queue or run
+agent tasks.
+
+```bash
+cd admin
+npm install
+npm start
+```
+
+See [admin/README.md](admin/README.md) for configuration and the full feature/API list.
+
 ## What Opskeep adds
 
 - **Six business lanes**: get work, define work, deliver work, get paid, keep clients, improve operations
-- **Two meta surfaces**: `opskeep-manage` for setup/config/memory/automation, and `opskeep-tools` for hosted utilities
+- **Three meta surfaces**: `opskeep-manage` for setup/config/memory/automation, `opskeep-tools` for hosted utilities, and `opskeep-manage-client-keys` for per-client API keys, credit balances, and agent usage, keyed by each client's website
 - Delivery planning, coordination, and follow-through for active client work
 - Money, relationship, handoff, closeout, and learning loops around delivery
 - Client-ready updates and internal operating briefs
@@ -149,6 +164,7 @@ the optional usage-metering setup for the hosted product.
 | --- | --- |
 | `opskeep-manage` | Onboards and manages Opskeep itself: business profile, preferences, memory, connectors, automations, triggers, and recurring reminders. |
 | `opskeep-tools` | Routes standalone utilities: audio briefs, voice huddles, follow-up reminders, time tracking, and Composio-backed tool access. |
+| `opskeep-manage-client-keys` | For the agent manager: tracks API keys installed per client website (encrypted at rest), how many keys each client has, credits bought, and agent usage. See also the [admin dashboard](admin). |
 
 ## Breakout skills
 

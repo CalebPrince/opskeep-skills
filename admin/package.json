@@ -1,0 +1,15 @@
+{
+  "name": "@opskeep/admin",
+  "version": "0.1.0",
+  "description": "Admin dashboard for the agent manager: clients, API keys, credits, agent usage, and agent runs, backed by the shared opskeep store.",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "pdfkit": "^0.20.2"
+  }
+}

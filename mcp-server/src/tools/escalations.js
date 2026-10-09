@@ -79,10 +79,13 @@ export const resolveEscalationTool = {
         content: [{ type: "text", text: `No escalation found with ID ${escalationId}.` }],
       };
     }
-    escalation.status = "resolved";
-    escalation.resolution = resolution;
-    escalation.ownerResponse = ownerResponse ?? null;
-    escalation.resolvedAt = new Date().toISOString();
+    escalations.set(escalationId, {
+      ...escalations.get(escalationId),
+      status: "resolved",
+      resolution,
+      ownerResponse: ownerResponse ?? null,
+      resolvedAt: new Date().toISOString(),
+    });
     return {
       content: [
         { type: "text", text: `✓ Escalation ${escalationId} resolved: ${resolution}${ownerResponse ? ` - "${ownerResponse}"` : ""}` },

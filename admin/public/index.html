@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Opskeep Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <svg height="0" width="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="i-asterisk-bold" viewBox="0 0 100 100"><g fill="currentColor"><rect x="46" y="4" width="8" height="40" rx="4"/><rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(60 50 50)"/><rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(120 50 50)"/><rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(180 50 50)"/><rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(240 50 50)"/><rect x="46" y="4" width="8" height="40" rx="4" transform="rotate(300 50 50)"/></g></symbol>
+    </defs>
+  </svg>
+
+  <div class="shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="side-brand">
+        <a class="brand" href="/">
+          <svg class="brand-mark" viewBox="0 0 100 100" width="22" height="22" aria-hidden="true"><use href="#i-asterisk-bold"/></svg>
+          <span>Opskeep <small>admin</small></span>
+        </a>
+      </div>
+
+      <nav class="side-nav" aria-label="Dashboard">
+        <button class="side-link is-active" data-view="overview" aria-current="page">Overview</button>
+        <button class="side-link" data-view="clients">Clients</button>
+        <button class="side-link" data-view="runs">Agent runs</button>
+        <button class="side-link" data-view="pricing">Pricing</button>
+        <button class="side-link" data-view="settings">Settings</button>
+      </nav>
+
+      <div class="side-foot">
+        <span class="runner-badge" title="OPSKEEP_AGENT_RUNNER status">
+          <span class="status-dot" id="runner-dot"></span><span id="runner-text">runner</span>
+        </span>
+        <div class="store-file" id="store-file"></div>
+        <button class="btn btn-ghost btn-sm btn-block" id="logout-btn">Sign out</button>
+      </div>
+    </aside>
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+    <header class="topbar-mobile">
+      <button class="menu-toggle" id="sidebar-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="sidebar">
+        <svg class="icon icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <svg class="icon icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+      <span class="brand">
+        <svg class="brand-mark" viewBox="0 0 100 100" width="18" height="18" aria-hidden="true"><use href="#i-asterisk-bold"/></svg>
+        Opskeep <small>admin</small>
+      </span>
+    </header>
+
+    <main class="app-main">
+      <div class="notice notice-error" id="load-error" role="alert" hidden>
+        <div><strong>Dashboard data could not be loaded.</strong><span id="load-error-detail">Check the server and try again.</span></div>
+        <button class="btn btn-sm" id="retry-load" type="button">Try again</button>
+      </div>
+
+      <!-- operational overview -->
+      <section class="view is-active" id="view-overview">
+        <div class="page-head overview-head">
+          <div>
+            <p class="eyebrow">Operations desk</p>
+            <h1>Good morning.</h1>
+            <p>A clear view of client balances, keys, and agent work.</p>
+          </div>
+          <div class="date-stamp" id="overview-date"></div>
+        </div>
+
+        <div class="metric-grid" id="overview-metrics" aria-label="Account summary"></div>
+
+        <div class="overview-grid">
+          <div class="card attention-card">
+            <div class="card-head">
+              <div><p class="eyebrow">Needs attention</p><h2>Operator queue</h2></div>
+              <span class="queue-count" id="attention-count">0</span>
+            </div>
+            <div class="attention-list" id="attention-list"></div>
+          </div>
+
+          <div class="card activity-card">
+            <div class="card-head"><div><p class="eyebrow">Recent activity</p><h2>Agent runs</h2></div></div>
+            <div class="activity-list" id="overview-activity"></div>
+            <button class="text-button" type="button" data-jump-view="runs">View all agent runs <span aria-hidden="true">&rarr;</span></button>
+          </div>
+        </div>
+      </section>
+
+      <!-- clients list -->
+      <section class="view" id="view-clients">
+        <div class="page-head">
+          <div>
+            <h1>Clients</h1>
+            <p>One entry per website. API keys are encrypted at rest and used only to run that client's agents.</p>
+          </div>
+          <button class="btn btn-primary" id="new-client-toggle">New client</button>
+        </div>
+
+        <form class="record-form" id="new-client-form" hidden>
+          <div class="form-heading">
+            <div><span class="form-kicker">New record</span><h2>Register a client</h2></div>
+            <p>Create one operating record for each client website.</p>
+          </div>
+          <div class="form-fields form-fields-client">
+            <div class="field"><label for="client-name">Client name <em>Required</em></label><input id="client-name" name="name" placeholder="Oak Street Studio" required></div>
+            <div class="field"><label for="client-website">Website <em>Required</em></label><input id="client-website" name="website" placeholder="oakstreet.example" inputmode="url" required><small>Domain or full website address</small></div>
+            <div class="field"><label for="client-spending-limit">Spending limit <span>Optional</span></label><input id="client-spending-limit" name="spendingLimit" type="number" min="0" step="any" placeholder="No limit"><small>Total credits their agents may ever use, regardless of balance.</small></div>
+            <div class="field"><label for="client-notes">Internal note <span>Optional</span></label><input id="client-notes" name="notes" placeholder="Main contact, plan, or context"></div>
+          </div>
+          <div class="form-submit"><span>Keys and credits can be added after registration.</span><button class="btn btn-primary" type="submit">Register client</button></div>
+        </form>
+
+        <div class="card">
+          <div class="table-wrap">
+            <table class="table" id="clients-table">
+              <thead>
+                <tr><th>Client</th><th>Website</th><th>Keys</th><th>Bought</th><th>Used</th><th>Left</th></tr>
+              </thead>
+              <tbody id="clients-body"></tbody>
+            </table>
+          </div>
+          <p class="empty" id="clients-empty">No clients yet. Start one above.</p>
+        </div>
+      </section>
+
+      <!-- client detail -->
+      <section class="view" id="view-client">
+        <button class="btn btn-ghost btn-sm breadcrumb" id="client-back">&#8592; All clients</button>
+        <div class="page-head">
+          <div>
+            <h1 id="client-title">Client</h1>
+            <p id="client-sub" class="mono"></p>
+          </div>
+          <div class="balance-row" id="client-balance"></div>
+        </div>
+        <form class="inline-edit" id="spending-limit-form">
+          <label for="spending-limit-input">Spending limit</label>
+          <input id="spending-limit-input" name="spendingLimit" type="number" min="0" step="any" placeholder="No limit">
+          <span class="muted">total credits, regardless of balance</span>
+          <button class="btn btn-ghost btn-sm" type="submit">Save</button>
+        </form>
+
+        <form class="inline-edit" id="site-sync-form">
+          <label for="site-sync-url">Site sync URL</label>
+          <input id="site-sync-url" name="syncUrl" type="url" placeholder="https://client-site.com/api/opskeep/sync-key" style="width:280px">
+          <label for="site-sync-secret">Secret</label>
+          <input id="site-sync-secret" name="syncSecret" type="password" autocomplete="off" placeholder="leave blank to keep current">
+          <span class="muted" id="site-sync-status">not configured</span>
+          <button class="btn btn-ghost btn-sm" type="submit">Save</button>
+        </form>
+
+        <div class="detail-grid">
+        <div class="card card-wide">
+          <div class="card-head"><h2>API keys</h2><span class="connected-keys-note" id="connected-keys-note">encrypted at rest; used only for this client's runs</span></div>
+          <div class="notice notice-warn" id="vault-warning" hidden>
+            <div><strong>Key encryption is not configured.</strong><span>Set OPSKEEP_KEY_ENCRYPTION_SECRET (24+ characters) on the admin server before saving provider keys.</span></div>
+          </div>
+          <div class="table-wrap">
+            <table class="table">
+              <thead><tr><th>ID</th><th>Provider</th><th>Model</th><th>Label</th><th>Mask</th><th>Status</th><th>Actions</th></tr></thead>
+              <tbody id="keys-body"></tbody>
+            </table>
+          </div>
+          <button class="btn btn-sm" id="add-key-toggle">Add a key</button>
+          <form class="record-form embedded-form" id="add-key-form" hidden>
+            <div class="form-heading"><div><span class="form-kicker">Key registry</span><h3>Add an API key</h3></div><p>The key is encrypted and stored so the agent can authenticate to the provider. It is sent to the provider only to verify it or to run a task, and is never shown again after saving.</p></div>
+            <div class="form-fields">
+              <div class="field"><label for="key-provider">Provider <em>Required</em></label><select id="key-provider" name="provider" required><option value="">Select a provider…</option></select></div>
+              <div class="field"><label for="key-model">Model <span>Optional</span></label><select id="key-model" name="model"><option value="">Any model</option></select></div>
+              <div class="field field-span-2"><label for="key-value">Full key value <em>Required</em></label><input id="key-value" name="keyValue" type="password" placeholder="Paste the key once" autocomplete="off" required><small>Encrypted immediately on save; the plain value is not kept in the browser or logs.</small></div>
+              <div class="field field-span-2"><label for="key-label">Operational label <span>Optional</span></label><input id="key-label" name="keyLabel" placeholder="Production website agent"></div>
+            </div>
+            <div class="form-submit"><span>Confirm the client and environment before saving.</span><button class="btn btn-primary" type="submit">Save and verify</button></div>
+          </form>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><h2>Credit purchases</h2><span class="muted">what the client bought</span></div>
+          <div class="table-wrap">
+            <table class="table">
+              <thead><tr><th>ID</th><th>Credits</th><th>Amount</th><th>Ref</th><th>Date</th></tr></thead>
+              <tbody id="purchases-body"></tbody>
+            </table>
+          </div>
+          <button class="btn btn-sm" id="add-purchase-toggle">Record a top-up</button>
+          <form class="record-form embedded-form" id="add-purchase-form" hidden>
+            <div class="form-heading"><div><span class="form-kicker">Balance entry</span><h3>Record a top-up</h3></div><p>Add the credits the client purchased.</p></div>
+            <div class="form-fields form-fields-compact">
+              <div class="field"><label for="purchase-credits">Credits <em>Required</em></label><input id="purchase-credits" name="credits" type="number" min="0.01" step="any" placeholder="100" required></div>
+              <div class="field"><label for="purchase-amount">Amount <span>Optional</span></label><input id="purchase-amount" name="amount" type="number" min="0" step="any" placeholder="50.00"></div>
+              <div class="field"><label for="purchase-currency">Currency</label><input id="purchase-currency" name="currency" value="USD" maxlength="3"></div>
+              <div class="field"><label for="purchase-ref">Reference <span>Optional</span></label><input id="purchase-ref" name="ref" placeholder="Invoice or receipt"></div>
+            </div>
+            <div class="form-submit"><span>This increases the available client balance.</span><button class="btn btn-primary" type="submit">Add credits</button></div>
+          </form>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><h2>Agent usage</h2><span class="muted">what their agents burned</span></div>
+          <div class="table-wrap">
+            <table class="table">
+              <thead><tr><th>ID</th><th>Credits</th><th>Action</th><th>Note</th><th>Date</th></tr></thead>
+              <tbody id="usage-body"></tbody>
+            </table>
+          </div>
+          <button class="btn btn-sm" id="add-usage-toggle">Record usage</button>
+          <form class="record-form embedded-form" id="add-usage-form" hidden>
+            <div class="form-heading"><div><span class="form-kicker">Usage entry</span><h3>Book agent usage</h3></div><p>Deduct completed work from the client balance.</p></div>
+            <div class="form-fields form-fields-compact">
+              <div class="field"><label for="usage-credits">Credits used <em>Required</em></label><input id="usage-credits" name="credits" type="number" min="0.01" step="any" placeholder="12" required></div>
+              <div class="field"><label for="usage-action">Work type <span>Optional</span></label><input id="usage-action" name="action" placeholder="Content review"></div>
+              <div class="field field-span-2"><label for="usage-note">Note <span>Optional</span></label><input id="usage-note" name="note" placeholder="What the agent completed"></div>
+            </div>
+            <div class="form-submit"><span>This reduces the available client balance.</span><button class="btn btn-primary" type="submit">Book usage</button></div>
+          </form>
+        </div>
+
+        <div class="card card-wide">
+          <div class="card-head"><h2>Agent runs</h2><span class="muted">this client</span></div>
+          <div class="table-wrap">
+            <table class="table">
+              <thead><tr><th>ID</th><th>Task</th><th>Status</th><th>Credits</th><th>Started</th><th>Actions</th></tr></thead>
+              <tbody id="client-runs-body"></tbody>
+            </table>
+          </div>
+          <form class="record-form embedded-form always-open" id="queue-run-form">
+            <div class="form-fields form-fields-task">
+              <div class="field field-span-2">
+                <label class="checkbox-field"><input type="checkbox" id="client-run-live" name="live"> Run live now (auto-failover across connected keys)</label>
+                <small id="client-run-live-hint">Needs at least 3 keys verified "connected" for this client.</small>
+              </div>
+              <div class="field"><label for="client-run-task">Task brief <em>Required</em></label><textarea id="client-run-task" name="task" rows="3" placeholder="Describe the outcome, context, and any limits the agent should follow." required></textarea><small>Write the task as a clear handoff, including what “done” means.</small></div>
+            </div>
+            <div class="form-submit"><span id="client-run-hint">The run will use this client’s operating context.</span><button class="btn btn-primary" type="submit">Queue agent run</button></div>
+          </form>
+        </div>
+
+        <div class="card card-wide">
+          <div class="card-head"><h2>Billing summary</h2><span class="muted">for invoicing this client</span></div>
+          <div class="form-fields form-fields-compact billing-range-fields">
+            <div class="field"><label for="billing-from">From <span>Optional</span></label><input type="date" id="billing-from"></div>
+            <div class="field"><label for="billing-to">To <span>Optional</span></label><input type="date" id="billing-to"></div>
+            <div class="field billing-range-actions">
+              <button class="btn btn-sm" type="button" id="billing-generate">Generate</button>
+              <button class="btn btn-sm btn-primary" type="button" id="billing-download-csv">Download CSV</button>
+              <button class="btn btn-sm btn-primary" type="button" id="billing-download-pdf">Download PDF</button>
+            </div>
+          </div>
+          <p class="billing-hint">Leave both blank for all-time. One credit equals one USD.</p>
+          <div id="billing-summary-result"></div>
+        </div>
+        </div>
+      </section>
+
+      <!-- agent runs -->
+      <section class="view" id="view-runs">
+        <div class="page-head runs-page-head">
+          <div>
+            <p class="eyebrow">Execution desk</p>
+            <h1>Agent runs</h1>
+            <p>Assign client work, monitor progress, and reconcile completed usage.</p>
+          </div>
+          <span class="runs-total" id="runs-sub"></span>
+        </div>
+
+        <div class="run-status-grid" id="run-status-grid" aria-label="Run status summary"></div>
+
+        <div class="runs-workspace">
+          <div class="card run-composer">
+            <div class="card-head"><div><p class="eyebrow">New assignment</p><h2>Send work to an agent</h2></div></div>
+            <form class="run-form" id="queue-run-global">
+              <div class="field"><label for="run-client-select">Client <em>Required</em></label><select name="clientRef" id="run-client-select" required></select><small>The run and its credits will be filed against this client.</small></div>
+              <div class="field">
+                <label class="checkbox-field"><input type="checkbox" id="global-run-live" name="live"> Run live now (auto-failover across connected keys)</label>
+                <small id="global-run-live-hint">Needs at least 3 keys verified "connected" for this client.</small>
+              </div>
+              <div class="field"><label for="global-run-task">Task brief <em>Required</em></label><textarea id="global-run-task" name="task" rows="6" placeholder="Describe the outcome, context, constraints, and what done looks like." required></textarea><small>Write this as a complete handoff the agent can execute without guessing.</small></div>
+              <div class="run-form-action"><span>Check the client and expected result before queueing.</span><button class="btn btn-primary" type="submit">Queue agent run</button></div>
+            </form>
+          </div>
+
+          <aside class="runner-panel" aria-label="Runner status">
+            <div class="runner-panel-top"><span class="status-dot" id="runner-panel-dot"></span><span class="form-kicker">Runner status</span></div>
+            <h2 id="runner-panel-title">Checking runner…</h2>
+            <p id="runner-hint"></p>
+            <div class="runner-flow" aria-label="Run lifecycle">
+              <span><b>1</b> Queue task</span>
+              <span><b>2</b> Agent works</span>
+              <span><b>3</b> Book credits</span>
+            </div>
+          </aside>
+        </div>
+
+        <div class="card runs-ledger">
+          <div class="card-head runs-ledger-head">
+            <div><p class="eyebrow">Run ledger</p><h2>Work history</h2></div>
+            <div class="run-filters" role="group" aria-label="Filter agent runs">
+              <button class="run-filter is-active" type="button" data-run-filter="all">All</button>
+              <button class="run-filter" type="button" data-run-filter="active">Active</button>
+              <button class="run-filter" type="button" data-run-filter="completed">Completed</button>
+            </div>
+          </div>
+          <div class="runs-list" id="runs-list"></div>
+          <div class="empty-state" id="runs-empty"><span class="empty-mark">&#8594;</span><strong>No runs in this view.</strong><p>Queue the first assignment above, or choose another filter.</p></div>
+        </div>
+      </section>
+
+      <!-- pricing -->
+      <section class="view" id="view-pricing">
+        <div class="page-head">
+          <div>
+            <p class="eyebrow">Billing</p>
+            <h1>Pricing</h1>
+            <p>Set each model's USD rate per 1M tokens (from the provider's own pricing page). One credit equals one USD. A run only books usage automatically once its model has a rate here — otherwise it stays in the manual "Book usage" flow.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="table-wrap">
+            <table class="table" id="pricing-table">
+              <thead><tr><th>Provider</th><th>Model</th><th>Input $ / 1M tokens</th><th>Output $ / 1M tokens</th><th>Updated</th><th>Actions</th></tr></thead>
+              <tbody id="pricing-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- settings -->
+      <section class="view" id="view-settings">
+        <div class="page-head">
+          <div>
+            <p class="eyebrow">Account</p>
+            <h1>Settings</h1>
+            <p>Login and server details for this admin dashboard.</p>
+          </div>
+        </div>
+        <div class="detail-grid">
+          <div class="card">
+            <div class="card-head"><h2>Account</h2></div>
+            <div class="form-fields form-fields-compact" style="padding: 18px 20px 4px;">
+              <div class="field"><label>Username</label><input id="settings-username" disabled></div>
+              <div class="field"><label>Store file</label><input id="settings-store-file" disabled class="mono"></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head"><h2>Change password</h2><span class="muted">at least 8 characters</span></div>
+            <form class="record-form embedded-form always-open" id="change-password-form">
+              <div class="form-fields form-fields-compact">
+                <div class="field"><label for="current-password">Current password <em>Required</em></label><input id="current-password" name="currentPassword" type="password" autocomplete="current-password" required></div>
+                <div class="field"><label for="new-password">New password <em>Required</em></label><input id="new-password" name="newPassword" type="password" autocomplete="new-password" minlength="8" required></div>
+                <div class="field"><label for="confirm-password">Confirm new password <em>Required</em></label><input id="confirm-password" name="confirmPassword" type="password" autocomplete="new-password" minlength="8" required></div>
+              </div>
+              <div class="form-submit"><span>You'll stay signed in on this device; other sessions keep working until they expire.</span><button class="btn btn-primary" type="submit">Update password</button></div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

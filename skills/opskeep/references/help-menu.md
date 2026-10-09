@@ -34,6 +34,9 @@ Manage Opskeep:
 Opskeep Tools:
 - `audio brief`, `voice session`, `follow-up reminder`, `time tracking`, `expense tracking`, `escalate to owner`, `composio`
 
+Manage client access:
+- `client keys`, `credits`, `top up`, `agent usage` - per-client API keys, credit balances, and what agents use
+
 Decision stub: next action, owner, date, evidence. Use `TBD` when missing.
 ```
 

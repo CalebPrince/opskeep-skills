@@ -131,7 +131,7 @@ export const deleteExpenseTool = {
         content: [{ type: "text", text: `No expense found with ID ${expenseId}.` }],
       };
     }
-    expense.status = "removed";
+    expenses.set(expenseId, { ...expenses.get(expenseId), status: "removed" });
     return { content: [{ type: "text", text: `✓ Expense ${expenseId} removed.` }] };
   },
 };

@@ -6,6 +6,12 @@
       "runtimeExecutable": "python",
       "runtimeArgs": ["-m", "http.server", "4173", "--directory", "web"],
       "port": 4173
+    },
+    {
+      "name": "admin-dashboard",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["admin/server.js"],
+      "port": 8377
     }
   ]
 }
