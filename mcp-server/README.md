@@ -36,6 +36,22 @@ the skill; this server does the sending, scheduling, and storing.
 | `get_client_balance` | Credits bought minus credits used, for one client |
 | `record_agent_usage` | Records what a client's agents used (credits burned) |
 | `summarize_client_usage` | Per-client book: keys, credits bought, used, remaining |
+| `video_list_projects` / `video_get_project` | Reads projects in Video Studio (outputs, content files, voice lines) |
+| `video_create_project` / `video_update_project` | Creates a project from the owner's template, renames it or sets its voice |
+| `video_read_file` / `video_write_file` | Reads or replaces one of five content files (`index.html`, `audio.json`, `clips.json`, `icons.json`, `notes.md`); never a script |
+| `video_set_script_lines` | Replaces the voice lines; changed lines are set aside for re-voicing |
+| `video_request_voice_lines` | Requests paid voicing; waits for the owner's approval in the studio |
+| `video_queue_job` / `video_get_job_status` | Queues an unpaid pipeline step and reads job or queue status |
+| `video_list_outputs` / `video_get_review_comments` | Lists rendered files and the owner's timed review comments |
+
+## Video Studio tools
+
+The `video_*` tools call the Video Studio server on the same PC (`D:\Websites\video-studio`) with an agent token. The studio enforces the scope: the agent token cannot approve paid jobs, review, delete, download, change settings or write anything except the five content files, so there are deliberately no tools for those here. Comments, file contents and logs come back labelled as untrusted data. These tools are free (not metered).
+
+| Variable | Default | Purpose |
+| --- | --- | --- |
+| `VIDEO_STUDIO_TOKEN` | none | Agent token issued in the studio under Settings (shown once). Without it the `video_*` tools return a plain error and the other tools are unaffected. |
+| `VIDEO_STUDIO_URL` | `http://127.0.0.1:4400` | Where the studio listens. Loopback addresses only; anything else is refused so the token never leaves the PC. |
 
 ## Persistence
 

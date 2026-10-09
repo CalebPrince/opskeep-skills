@@ -38,6 +38,7 @@ import {
   recordAgentUsageTool,
   summarizeClientUsageTool,
 } from "./tools/clientKeyRegistry.js";
+import { videoStudioTools } from "./tools/videoStudio.js";
 import { meterTool, meteringEnabled } from "./metering.js";
 
 const server = new McpServer({
@@ -85,6 +86,7 @@ const tools = [
   getClientBalanceTool,
   recordAgentUsageTool,
   summarizeClientUsageTool,
+  ...videoStudioTools,
 ];
 
 for (const tool of tools) {
