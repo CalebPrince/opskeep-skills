@@ -187,7 +187,7 @@ export const videoWriteFileTool = tool(
     'this person looks, 20 to 600 characters>" }] (then write @Ama in the prompt wherever that person appears), "searched": ["<each footage search that was really run with footage.mjs; a search with no record is ' +
     'refused>"], "why": "<why none of the results fit>", "image": "<optional start picture in the project; Flow holds much closer to it>" } }. ' +
     "Flow drifts from long prompts: keep to one clear action, name concrete things, and put what cannot be wrong in mustShow. Any person who must look the same " +
-    "across clips is a character. Its name is the name of its image in Flow, so it is one plain word (letters and digits only: no spaces, hyphens or underscores), and " +
+    "across clips is a character. Its name is the name of its image in Flow, so it is one plain word of letters only (no numbers, spaces, hyphens, underscores or other marks), and " +
     "the prompt must refer to it as @name every time, for example \"@Ama serves jollof to @Kofi\"; Flow only uses a saved character where the prompt " +
     "says @name. Every character listed must be @-mentioned in the prompt, every @name in the prompt must be listed, and a character keeps exactly the " +
     "same name and look in every clip. Caleb creates the character in Flow first and scenes wait for that. A request that breaks these rules is refused when you write the file, with the reason. video_get_project then shows project.clips: which " +
