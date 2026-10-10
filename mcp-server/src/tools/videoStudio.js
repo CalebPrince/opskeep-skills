@@ -182,7 +182,7 @@ export const videoWriteFileTool = tool(
     "Only when the footage search found nothing right (in practice mostly scenes with Black or African people, places or products) may an entry ask " +
     "for a generated clip. Caleb makes these by hand in Google Flow, so write the request for a person to paste and for Flow to follow: " +
     '{ "name": "family", "file": "gen/family.mp4", "start": 0, "duration": 8, "width": 1080, "generate": { "prompt": "<one shot, one action: subject, ' +
-    'action, setting, light, camera; 20 to 1500 characters>", "aspect": "9:16" | "16:9", "seconds": 4 | 6 | 8, "mustShow": ["<1 to 6 things the clip must ' +
+    'action, setting, light, camera; 20 to 1500 characters>", "aspect": "9:16" | "16:9", "seconds": <whole number, 2 to 10; the longest clip Flow makes is 10>, "mustShow": ["<1 to 6 things the clip must ' +
     'show; Caleb ticks each one before accepting it>"], "avoid": ["<optional: things it must not show>"], "characters": [{ "name": "Ama", "look": "<how ' +
     'this person looks, 20 to 600 characters>" }], "searched": ["<each footage search that was really run with footage.mjs; a search with no record is ' +
     'refused>"], "why": "<why none of the results fit>", "image": "<optional start picture in the project; Flow holds much closer to it>" } }. ' +
