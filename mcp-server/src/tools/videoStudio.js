@@ -86,7 +86,7 @@ const jobSummary = (j) => ({
   step: j.step,
   status: j.status,
   requestedBy: j.requested_by,
-  ...(j.status === "pending_approval" ? { waitingFor: "Caleb's approval in the studio queue", estimateChars: j.estimate_chars, ...(j.estimate_cents ? { estimateUsd: j.estimate_cents / 100 } : {}) } : {}),
+  ...(j.status === "pending_approval" ? { waitingFor: "Caleb's approval in the studio queue", estimateChars: j.estimate_chars } : {}),
   ...(j.progress_total ? { progress: `${j.progress_done || 0}/${j.progress_total}`, etaSeconds: j.eta_seconds } : {}),
   ...(j.error ? { error: j.error } : {}),
   ...(j.warning ? { warning: j.warning } : {}),
@@ -180,10 +180,17 @@ export const videoWriteFileTool = tool(
     "labelled blocks on the studio timeline. Keep that list in step with the page whenever a graphic is added, moved or removed. " +
     "clips.json lists the video clips the page plays. Footage comes first: use real, licensed free footage wherever a fitting clip exists. " +
     "Only when the footage search found nothing right (in practice mostly scenes with Black or African people, places or products) may an entry ask " +
-    'for a generated clip: { "name": "family", "file": "gen/family.mp4", "start": 0, "duration": 8, "width": 1080, "generate": { "prompt": "<the shot: ' +
-    'subject, action, setting, light, camera, 20 to 2000 characters>", "aspect": "9:16" | "16:9", "seconds": 4 | 6 | 8, "resolution": "720p" | "1080p", ' +
-    '"searched": ["<each footage search that was really run with footage.mjs; a search with no record is refused>"], "why": "<why none of the results fit>", "image": "<optional start picture in the project>", ' +
-    '"references": ["<up to 3 pictures in the project>"] } }. 1080p and references need 8 seconds. Then call video_request_clip_generation.',
+    "for a generated clip. Caleb makes these by hand in Google Flow, so write the request for a person to paste and for Flow to follow: " +
+    '{ "name": "family", "file": "gen/family.mp4", "start": 0, "duration": 8, "width": 1080, "generate": { "prompt": "<one shot, one action: subject, ' +
+    'action, setting, light, camera; 20 to 1500 characters>", "aspect": "9:16" | "16:9", "seconds": 4 | 6 | 8, "mustShow": ["<1 to 6 things the clip must ' +
+    'show; Caleb ticks each one before accepting it>"], "avoid": ["<optional: things it must not show>"], "characters": [{ "name": "Ama", "look": "<how ' +
+    'this person looks, 20 to 600 characters>" }], "searched": ["<each footage search that was really run with footage.mjs; a search with no record is ' +
+    'refused>"], "why": "<why none of the results fit>", "image": "<optional start picture in the project; Flow holds much closer to it>" } }. ' +
+    "Flow drifts from long prompts: keep to one clear action, name concrete things, and put what cannot be wrong in mustShow. A person who appears in " +
+    "more than one clip must be a character with exactly the same name and look in each; Caleb creates the character in Flow first and scenes wait for " +
+    "that. A request that breaks these rules is refused when you write the file, with the reason. video_get_project then shows project.clips: which " +
+    "characters and clips are waiting for Caleb, which are accepted, and why he rejected any (also sent to you as a director instruction). " +
+    "Once a clip is accepted, queue build-clips.",
   {
     projectId,
     file: z.enum(FILES).describe("Which content file"),
@@ -223,17 +230,6 @@ export const videoRequestVoiceLinesTool = tool(
     "approves it there, and it counts toward the daily character cap. Lines that are already voiced are reused for free.",
   { projectId },
   async ({ projectId }) => jobSummary((await studio("POST", "/api/jobs", { projectId, step: "voice" })).job)
-);
-
-export const videoRequestClipGenerationTool = tool(
-  "video_request_clip_generation",
-  "Request generated video clips",
-  "Ask for the clips in clips.json that carry a generate block, and are not generated yet, to be made with Google Veo 3.1 Fast. Use this only for " +
-    "shots the free-footage search could not cover; each generate block must list the searches tried and why nothing fit, and Caleb reads that. " +
-    "This is paid (about $0.10 a second at 720p, $0.12 at 1080p): the job waits in the studio queue until Caleb approves it there, and it counts " +
-    "toward his daily cap for generated clips. Clips already generated are reused for free. Afterwards queue build-clips.",
-  { projectId },
-  async ({ projectId }) => jobSummary((await studio("POST", "/api/jobs", { projectId, step: "gen-clips" })).job)
 );
 
 export const videoQueueJobTool = tool(
@@ -297,7 +293,6 @@ export const videoStudioTools = [
   videoWriteFileTool,
   videoSetScriptLinesTool,
   videoRequestVoiceLinesTool,
-  videoRequestClipGenerationTool,
   videoQueueJobTool,
   videoGetJobStatusTool,
   videoListOutputsTool,
