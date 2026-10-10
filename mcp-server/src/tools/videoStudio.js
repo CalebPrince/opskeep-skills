@@ -184,11 +184,13 @@ export const videoWriteFileTool = tool(
     '{ "name": "family", "file": "gen/family.mp4", "start": 0, "duration": 8, "width": 1080, "generate": { "prompt": "<one shot, one action: subject, ' +
     'action, setting, light, camera; 20 to 1500 characters>", "aspect": "9:16" | "16:9", "seconds": <whole number, 2 to 10; the longest clip Flow makes is 10>, "mustShow": ["<1 to 6 things the clip must ' +
     'show; Caleb ticks each one before accepting it>"], "avoid": ["<optional: things it must not show>"], "characters": [{ "name": "Ama", "look": "<how ' +
-    'this person looks, 20 to 600 characters>" }], "searched": ["<each footage search that was really run with footage.mjs; a search with no record is ' +
+    'this person looks, 20 to 600 characters>" }] (then write @Ama in the prompt wherever that person appears), "searched": ["<each footage search that was really run with footage.mjs; a search with no record is ' +
     'refused>"], "why": "<why none of the results fit>", "image": "<optional start picture in the project; Flow holds much closer to it>" } }. ' +
-    "Flow drifts from long prompts: keep to one clear action, name concrete things, and put what cannot be wrong in mustShow. A person who appears in " +
-    "more than one clip must be a character with exactly the same name and look in each; Caleb creates the character in Flow first and scenes wait for " +
-    "that. A request that breaks these rules is refused when you write the file, with the reason. video_get_project then shows project.clips: which " +
+    "Flow drifts from long prompts: keep to one clear action, name concrete things, and put what cannot be wrong in mustShow. Any person who must look the same " +
+    "across clips is a character. Its name is the name of its image in Flow, so it is one word with no spaces (letters, digits, hyphens, underscores), and " +
+    "the prompt must refer to it as @name every time, for example \"@Ama serves jollof to @Kofi\"; Flow only uses a saved character where the prompt " +
+    "says @name. Every character listed must be @-mentioned in the prompt, every @name in the prompt must be listed, and a character keeps exactly the " +
+    "same name and look in every clip. Caleb creates the character in Flow first and scenes wait for that. A request that breaks these rules is refused when you write the file, with the reason. video_get_project then shows project.clips: which " +
     "characters and clips are waiting for Caleb, which are accepted, and why he rejected any (also sent to you as a director instruction). " +
     "Once a clip is accepted, queue build-clips.",
   {
