@@ -13,7 +13,7 @@ import { z } from "zod";
 // The token is never placed in a tool result or an error message.
 
 const LOOPBACK = new Set(["127.0.0.1", "localhost", "[::1]"]);
-const FILES = ["index.html", "audio.json", "clips.json", "icons.json", "notes.md"];
+const FILES = ["index.html", "audio.json", "clips.json", "icons.json", "notes.md", "brand.json"];
 const UNPAID_STEPS = ["place-lines", "build-icons", "build-clips", "make-sfx", "render", "audio", "cut", "final"];
 
 const projectId = z.string().regex(/^prj_[0-9a-f]{12,16}$/).describe("Project id, e.g. prj_1a2b3c4d5e6f (from video_list_projects)");
@@ -192,15 +192,19 @@ export const videoWriteFileTool = tool(
     "says @name. Every character listed must be @-mentioned in the prompt, every @name in the prompt must be listed, and a character keeps exactly the " +
     "same name and look in every clip. Caleb creates the character in Flow first and scenes wait for that. A request that breaks these rules is refused when you write the file, with the reason. video_get_project then shows project.clips: which " +
     "characters and clips are waiting for Caleb, which are accepted, and why he rejected any (also sent to you as a director instruction). " +
-    "Once a clip is accepted, queue build-clips.",
+    "Once a clip is accepted, queue build-clips. " +
+    "brand.json is the brand kit of an ad made from the scene library (company, colors, fonts, the copy of every scene, slots for photos, end card, " +
+    "length 15, 30 or 60, bpm): the studio checks it when you write it (the reason comes back if it is refused) and writes the page's brand.js and " +
+    "timeline.js from it, so change that ad there, not in index.html. Setting music in audio.json on such an ad measures the track's tempo and first " +
+    "downbeat and times the cut to it; the reply says so, or warns when the beat is unclear.",
   {
     projectId,
     file: z.enum(FILES).describe("Which content file"),
     content: z.string().max(2 * 1024 * 1024).describe("The full new content of the file"),
   },
   async ({ projectId, file, content }) => {
-    await studio("PUT", `/api/projects/${projectId}/files/${file}`, { content });
-    return `Wrote ${file} (${Buffer.byteLength(content).toLocaleString()} bytes).`;
+    const r = await studio("PUT", `/api/projects/${projectId}/files/${file}`, { content });
+    return `Wrote ${file} (${Buffer.byteLength(content).toLocaleString()} bytes).` + (r && r.warning ? ` ${r.warning}` : "");
   }
 );
 
