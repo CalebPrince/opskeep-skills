@@ -14,7 +14,7 @@ import { z } from "zod";
 // The token is never placed in a tool result or an error message.
 
 const LOOPBACK = new Set(["127.0.0.1", "localhost", "[::1]"]);
-const FILES = ["index.html", "audio.json", "clips.json", "icons.json", "notes.md", "brand.json", "captions.json"];
+const FILES = ["index.html", "audio.json", "clips.json", "icons.json", "notes.md", "brand.json", "captions.json", "blocks.json"];
 const UNPAID_STEPS = ["place-lines", "build-icons", "build-clips", "make-sfx", "render", "audio", "cut", "final", "transcribe", "beats", "captions", "reframe"];
 
 const projectId = z.string().regex(/^prj_[0-9a-f]{12,16}$/).describe("Project id, e.g. prj_1a2b3c4d5e6f (from video_list_projects)");
@@ -203,6 +203,12 @@ export const videoWriteFileTool = tool(
     "words in it too (no { } \ < > or em dashes; it is checked when you write it). The studio writes captions.js from it (window.CAPTIONS, the lines), " +
     "so a page can draw the captions in its own design: load captions.js and show each word at its time. Do not burn captions into a page that " +
     "already draws them, and tell Caleb when a page draws its own so he skips the Captions burn-in step. " +
+    "blocks.json places gallery blocks (Creator Kit CK, Explainer Kit XK, Talking Head TH) over the page ({ placements: [{ id, kit, block, at, dur, " +
+    "cx, cy, size, z, speaker, options }] }: at and dur in seconds on the video's clock, cx and cy the block's centre and size its width, as fractions " +
+    "of the frame; speaker is a clips.json name for a Talking Head template, else null; options are the block's own, as in its gallery usage). Caleb " +
+    "usually adds blocks from the Motion Menu or Scenes, Blocks; you may fine-tune timing, place and options. It is checked when you write it (only " +
+    "blocks the studio lists, ids kept, no Three.js block), and the studio then writes blocks.js and keeps <script src=\"blocks.js\"></script> " +
+    "before </body> in index.html: leave that line in when you rewrite the page. " +
     "Every shape from one page: build a new piece on the studio's shape kit by loading <script src=\"shape.js\"></script> before your own script " +
     "(the studio writes shape.js into the project; you cannot and need not write it). window.SHAPE then gives name (tall, wide, square, portrait), " +
     "ratio, W, H, CX, CY, z(tall, wide, square, portrait) for sizes, pick({ tall, wide, square, portrait }) for any value, row (room to set things " +
