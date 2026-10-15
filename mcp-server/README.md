@@ -41,7 +41,9 @@ the skill; this server does the sending, scheduling, and storing.
 | `video_read_file` / `video_write_file` | Reads or replaces one of seven content files (`index.html`, `audio.json`, `clips.json`, `icons.json`, `notes.md`, `brand.json`, `captions.json`); never a script. `brand.json` is checked by the studio, which writes the page's `brand.js` and `timeline.js` from it; `captions.json` (every caption word with its time) is checked too, and the studio writes `captions.js` from it |
 | `video_set_script_lines` | Replaces the voice lines; changed lines are set aside for re-voicing |
 | `video_request_voice_lines` | Requests paid voicing; waits for the owner's approval in the studio |
-| `video_queue_job` / `video_get_job_status` | Queues an unpaid pipeline step (including transcribe with a source, the beat map, the captions burn-in and reframe, with a shape for layouts) and reads job or queue status |
+| `video_queue_job` / `video_get_job_status` | Queues an unpaid pipeline step (including transcribe with a source, the beat map, the captions burn-in and reframe, with a shape for layouts) and reads job or queue status (with the run order) |
+| `video_cancel_job` | Cancels one job Claude asked for (queued, running or waiting for approval); Caleb's jobs are refused by the studio |
+| `video_reorder_queue` | Sets the run order of Claude's own queued jobs, within the places they already hold, so Caleb's jobs keep theirs |
 | `video_list_outputs` / `video_get_review_comments` | Lists rendered files and the owner's timed review comments |
 
 ## Video Studio tools
