@@ -3,7 +3,8 @@ import { z } from "zod";
 // Video Studio tools: a fixed allow-list of calls to the studio running on this PC
 // (D:\Websites\video-studio, security control CTL-AI-001). Every call goes to the
 // studio's HTTP API with the agent token, and the studio decides what the agent may
-// do: there is no delete, approve, settings, shell or free-path file tool here, and
+// do: there is no delete, approve, settings, shell or free-path file tool here (cancel and
+// reorder reach only the jobs Claude asked for; the studio checks that too), and
 // adding one here would not help because the studio refuses those to the agent token.
 //
 // Config (environment of this MCP server process):
@@ -285,13 +286,37 @@ export const videoGetJobStatusTool = tool(
   async ({ jobId, includeLog }) => {
     if (!jobId) {
       const q = await studio("GET", "/api/jobs");
-      return { paused: q.paused, voiceCharsToday: q.spentToday, dailyCap: q.dailyCap, jobs: q.jobs.slice(0, 30).map(jobSummary) };
+      return { paused: q.paused, voiceCharsToday: q.spentToday, dailyCap: q.dailyCap, runOrder: q.order || [], jobs: q.jobs.slice(0, 30).map(jobSummary) };
     }
     const job = jobSummary((await studio("GET", `/api/jobs/${jobId}`)).job);
     if (!includeLog) return job;
     const log = (await studio("GET", `/api/jobs/${jobId}/log`)).log;
     return { ...job, log: quoted("job log", String(log).split(/\r?\n/).slice(-60).join("\n")) };
   }
+);
+
+export const videoCancelJobTool = tool(
+  "video_cancel_job",
+  "Cancel a job you asked for",
+  "Cancel one of your own jobs: queued, running (it stops now and the work done so far is lost) or waiting for Caleb's approval. " +
+    "Jobs Caleb asked for are refused: ask him to cancel those in the studio queue. Use it when a job you queued is no longer wanted " +
+    "(a newer change makes it stale, or it was queued by mistake), not to retry a job that is running fine.",
+  { jobId },
+  async ({ jobId }) => {
+    await studio("POST", `/api/jobs/${jobId}/cancel`, {});
+    return jobSummary((await studio("GET", `/api/jobs/${jobId}`)).job);
+  }
+);
+
+export const videoReorderQueueTool = tool(
+  "video_reorder_queue",
+  "Reorder your queued jobs",
+  "Set the run order of the queued jobs you asked for. List every one of your queued jobs once, first to run first " +
+    "(video_get_job_status without a job id gives runOrder and who asked for each job). Your jobs move only among the places they " +
+    "already hold, so Caleb's jobs keep their places and none of yours can go ahead of his. The list is refused if it leaves one of " +
+    "your queued jobs out, names a job of Caleb's or one that is not queued, or the queue changed since you read it: read it again.",
+  { jobIds: z.array(jobId).min(1).max(100).describe("Your queued job ids, in the order they should run") },
+  async ({ jobIds }) => ({ runOrder: (await studio("POST", "/api/jobs/order", { order: jobIds })).order })
 );
 
 export const videoListOutputsTool = tool(
@@ -324,6 +349,8 @@ export const videoStudioTools = [
   videoRequestVoiceLinesTool,
   videoQueueJobTool,
   videoGetJobStatusTool,
+  videoCancelJobTool,
+  videoReorderQueueTool,
   videoListOutputsTool,
   videoGetReviewCommentsTool,
 ];
