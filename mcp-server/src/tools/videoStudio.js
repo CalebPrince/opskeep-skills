@@ -13,8 +13,8 @@ import { z } from "zod";
 // The token is never placed in a tool result or an error message.
 
 const LOOPBACK = new Set(["127.0.0.1", "localhost", "[::1]"]);
-const FILES = ["index.html", "audio.json", "clips.json", "icons.json", "notes.md", "brand.json"];
-const UNPAID_STEPS = ["place-lines", "build-icons", "build-clips", "make-sfx", "render", "audio", "cut", "final"];
+const FILES = ["index.html", "audio.json", "clips.json", "icons.json", "notes.md", "brand.json", "captions.json"];
+const UNPAID_STEPS = ["place-lines", "build-icons", "build-clips", "make-sfx", "render", "audio", "cut", "final", "transcribe", "beats", "captions"];
 
 const projectId = z.string().regex(/^prj_[0-9a-f]{12,16}$/).describe("Project id, e.g. prj_1a2b3c4d5e6f (from video_list_projects)");
 const jobId = z.string().regex(/^job_[0-9a-f]{12,16}$/).describe("Job id (from video_queue_job, video_request_voice_lines or video_get_job_status)");
@@ -196,7 +196,12 @@ export const videoWriteFileTool = tool(
     "brand.json is the brand kit of an ad made from the scene library (company, colors, fonts, the copy of every scene, slots for photos, end card, " +
     "length 15, 30 or 60, bpm): the studio checks it when you write it (the reason comes back if it is refused) and writes the page's brand.js and " +
     "timeline.js from it, so change that ad there, not in index.html. Setting music in audio.json on such an ad measures the track's tempo and first " +
-    "downbeat and times the cut to it; the reply says so, or warns when the beat is unclear.",
+    "downbeat and times the cut to it; the reply says so, or warns when the beat is unclear. " +
+    "captions.json holds every caption line with a time for each word ({ source, label, model, edited, madeAt, lines: [{ t, e, text, words: [{ w, t, e }] }] }, " +
+    "seconds on the video's clock). It comes from the voice-over or the transcribe step, and Caleb corrects it in the Script step; you may fix misheard " +
+    "words in it too (no { } \ < > or em dashes; it is checked when you write it). The studio writes captions.js from it (window.CAPTIONS, the lines), " +
+    "so a page can draw the captions in its own design: load captions.js and show each word at its time. Do not burn captions into a page that " +
+    "already draws them, and tell Caleb when a page draws its own so he skips the Captions burn-in step.",
   {
     projectId,
     file: z.enum(FILES).describe("Which content file"),
@@ -241,14 +246,20 @@ export const videoRequestVoiceLinesTool = tool(
 export const videoQueueJobTool = tool(
   "video_queue_job",
   "Queue a pipeline step",
-  `Queue one unpaid pipeline step for a project: ${UNPAID_STEPS.join(", ")}. Jobs run one at a time on Caleb's PC.`,
+  `Queue one unpaid pipeline step for a project: ${UNPAID_STEPS.join(", ")}. Jobs run one at a time on Caleb's PC. ` +
+    "transcribe hears what is said or sung and replaces the project's captions.json when it finishes (on this PC, free, a few minutes; songs take " +
+    "longer): give source music (the sung words in the project's music), mix (the finished video's sound) or a media id (med_..., a clip in Media). " +
+    "beats maps every beat, bar and strong hit of the project's music into beats.json and beats.js (window.BEATS = { bpm, offset, beats, downbeats, hits }), " +
+    "for cuts that land on the music. captions burns captions.json onto the finished video as a second file (<folder>-captioned.mp4). " +
+    "place-lines is refused when Caleb has timed the project by hand on the timeline: tell him, do not work around it.",
   {
     projectId,
     step: z.enum(UNPAID_STEPS).describe("Pipeline step"),
     cutName: z.string().regex(/^[a-z0-9][a-z0-9-]{0,19}$/).optional().describe("For step=cut only: the cut to build"),
+    source: z.string().regex(/^(music|mix|med_[0-9a-f]{16})$/).optional().describe("For step=transcribe only: music, mix or a media id"),
   },
-  async ({ projectId, step, cutName }) =>
-    jobSummary((await studio("POST", "/api/jobs", { projectId, step, ...(cutName ? { cutName } : {}) })).job)
+  async ({ projectId, step, cutName, source }) =>
+    jobSummary((await studio("POST", "/api/jobs", { projectId, step, ...(cutName ? { cutName } : {}), ...(source ? { source } : {}) })).job)
 );
 
 export const videoGetJobStatusTool = tool(

@@ -38,10 +38,10 @@ the skill; this server does the sending, scheduling, and storing.
 | `summarize_client_usage` | Per-client book: keys, credits bought, used, remaining |
 | `video_list_projects` / `video_get_project` | Reads projects in Video Studio (brief, stage, outputs, content files, voice lines, and the open AI Director instructions) |
 | `video_create_project` / `video_update_project` | Creates a project from the owner's template, renames it or sets its voice |
-| `video_read_file` / `video_write_file` | Reads or replaces one of six content files (`index.html`, `audio.json`, `clips.json`, `icons.json`, `notes.md`, `brand.json`); never a script. `brand.json` is checked by the studio, which writes the page's `brand.js` and `timeline.js` from it |
+| `video_read_file` / `video_write_file` | Reads or replaces one of seven content files (`index.html`, `audio.json`, `clips.json`, `icons.json`, `notes.md`, `brand.json`, `captions.json`); never a script. `brand.json` is checked by the studio, which writes the page's `brand.js` and `timeline.js` from it; `captions.json` (every caption word with its time) is checked too, and the studio writes `captions.js` from it |
 | `video_set_script_lines` | Replaces the voice lines; changed lines are set aside for re-voicing |
 | `video_request_voice_lines` | Requests paid voicing; waits for the owner's approval in the studio |
-| `video_queue_job` / `video_get_job_status` | Queues an unpaid pipeline step and reads job or queue status |
+| `video_queue_job` / `video_get_job_status` | Queues an unpaid pipeline step (including transcribe with a source, the beat map and the captions burn-in) and reads job or queue status |
 | `video_list_outputs` / `video_get_review_comments` | Lists rendered files and the owner's timed review comments |
 
 ## Video Studio tools
