@@ -14,7 +14,7 @@ import { z } from "zod";
 
 const LOOPBACK = new Set(["127.0.0.1", "localhost", "[::1]"]);
 const FILES = ["index.html", "audio.json", "clips.json", "icons.json", "notes.md", "brand.json", "captions.json"];
-const UNPAID_STEPS = ["place-lines", "build-icons", "build-clips", "make-sfx", "render", "audio", "cut", "final", "transcribe", "beats", "captions"];
+const UNPAID_STEPS = ["place-lines", "build-icons", "build-clips", "make-sfx", "render", "audio", "cut", "final", "transcribe", "beats", "captions", "reframe"];
 
 const projectId = z.string().regex(/^prj_[0-9a-f]{12,16}$/).describe("Project id, e.g. prj_1a2b3c4d5e6f (from video_list_projects)");
 const jobId = z.string().regex(/^job_[0-9a-f]{12,16}$/).describe("Job id (from video_queue_job, video_request_voice_lines or video_get_job_status)");
@@ -201,7 +201,13 @@ export const videoWriteFileTool = tool(
     "seconds on the video's clock). It comes from the voice-over or the transcribe step, and Caleb corrects it in the Script step; you may fix misheard " +
     "words in it too (no { } \ < > or em dashes; it is checked when you write it). The studio writes captions.js from it (window.CAPTIONS, the lines), " +
     "so a page can draw the captions in its own design: load captions.js and show each word at its time. Do not burn captions into a page that " +
-    "already draws them, and tell Caleb when a page draws its own so he skips the Captions burn-in step.",
+    "already draws them, and tell Caleb when a page draws its own so he skips the Captions burn-in step. " +
+    "Every shape from one page: build a new piece on the studio's shape kit by loading <script src=\"shape.js\"></script> before your own script " +
+    "(the studio writes shape.js into the project; you cannot and need not write it). window.SHAPE then gives name (tall, wide, square, portrait), " +
+    "ratio, W, H, CX, CY, z(tall, wide, square, portrait) for sizes, pick({ tall, wide, square, portrait }) for any value, row (room to set things " +
+    "side by side), safe ({ top, right, bottom, left }: keep words and buttons inside, clear of the platforms' own buttons), stage(el) and " +
+    "meta(duration, fps) for window.__meta. Lay every scene out for all four shapes, so index.html, ?wide, ?square and ?portrait each look designed, " +
+    "not cropped; the studio then lists all four layouts for the piece.",
   {
     projectId,
     file: z.enum(FILES).describe("Which content file"),
@@ -251,15 +257,21 @@ export const videoQueueJobTool = tool(
     "longer): give source music (the sung words in the project's music), mix (the finished video's sound) or a media id (med_..., a clip in Media). " +
     "beats maps every beat, bar and strong hit of the project's music into beats.json and beats.js (window.BEATS = { bpm, offset, beats, downbeats, hits }), " +
     "for cuts that land on the music. captions burns captions.json onto the finished video as a second file (<folder>-captioned.mp4). " +
-    "place-lines is refused when Caleb has timed the project by hand on the timeline: tell him, do not work around it.",
+    "place-lines is refused when Caleb has timed the project by hand on the timeline: tell him, do not work around it. " +
+    "shape picks the shape for render, audio, captions (a 9:16 page's 16:9, 1:1 or 4:5 layout, which the page must lay out itself) and for " +
+    "reframe, which makes a shape the page does not lay out from the finished video (fitted in a blurred fill or cropped, as Caleb sets in Scenes, Shapes).",
   {
     projectId,
     step: z.enum(UNPAID_STEPS).describe("Pipeline step"),
     cutName: z.string().regex(/^[a-z0-9][a-z0-9-]{0,19}$/).optional().describe("For step=cut only: the cut to build"),
     source: z.string().regex(/^(music|mix|med_[0-9a-f]{16})$/).optional().describe("For step=transcribe only: music, mix or a media id"),
+    shape: z.enum(["9:16", "16:9", "1:1", "4:5"]).optional().describe("For render, audio and captions: the page's layout to use; for reframe: the shape to make"),
   },
-  async ({ projectId, step, cutName, source }) =>
-    jobSummary((await studio("POST", "/api/jobs", { projectId, step, ...(cutName ? { cutName } : {}), ...(source ? { source } : {}) })).job)
+  async ({ projectId, step, cutName, source, shape }) => {
+    const layout = { "16:9": "wide", "1:1": "square", "4:5": "portrait" }[shape];
+    const extra = step === "reframe" ? (shape ? { ratio: shape.replace(":", "x") } : {}) : layout && ["render", "audio", "captions"].includes(step) ? { layout } : {};
+    return jobSummary((await studio("POST", "/api/jobs", { projectId, step, ...(cutName ? { cutName } : {}), ...(source ? { source } : {}), ...extra })).job);
+  }
 );
 
 export const videoGetJobStatusTool = tool(
