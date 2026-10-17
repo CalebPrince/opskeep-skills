@@ -3,6 +3,23 @@
 Behavior-affecting changes to the skill pack, newest first. Follows semver for the pack
 as a whole (see `package.json`).
 
+## 0.3.0 - 2026-10-18
+
+- Added `opskeep-project-gate` to the core pack: the first gate before any new app,
+  website, dashboard or major redesign is built. It starts from the problem (constraint,
+  forces, existing assets, the bet, outcomes), runs an interactive design workshop,
+  produces 2-3 design directions and an approval dashboard, and seals an approved
+  package (`.opskeep/project-gate/`, `gate.json` with file hashes). Approval covers the
+  design direction only; `implementation_authorized` stays false. Bundled scripts
+  (`gate.py`, `render.py`, `gatelib.py`) are local-only and ship with their own test
+  suite (`python scripts/test_gate.py`, 8 checks).
+- The sealed `gate.json` now names the real next gate, `opskeep-elliot-design`, instead
+  of a non-existent `opskeep-security`.
+- Core router 2.4.0 routes new-project, project-gate and design-decision intent to
+  `opskeep-project-gate`, and security-gate intent to `opskeep-elliot-design` /
+  `opskeep-elliot-review`; help menu gains a "Before you build" group.
+- README and website list the skill under "Before you build" (21 core skills).
+
 ## 0.2.0 - 2026-10-17
 
 First numbered release since 0.1.0; everything below this heading down to 0.1.0 ships in

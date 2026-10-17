@@ -385,19 +385,19 @@
     <div class="section-head section-head-row">
       <div>
         <p class="eyebrow"><span class="dot"></span>Skill directory</p>
-        <h2>20 skills. One operating layer.</h2>
+        <h2>21 skills. One operating layer.</h2>
         <p class="section-lede">Every skill is a plain folder — <code>SKILL.md</code> plus optional <code>scripts/</code>, <code>references/</code> and <code>assets/</code>. Pick a lane below, or install the whole box.</p>
       </div>
-      <button class="btn btn-primary btn-sm" id="view-all-btn" type="button">View all 20 skills <svg class="icon" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></button>
+      <button class="btn btn-primary btn-sm" id="view-all-btn" type="button">View all 21 skills <svg class="icon" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></button>
     </div>
 
     <div class="tabs" role="tablist" aria-label="Skill categories">
-      <button class="tab is-active" role="tab" aria-selected="true" data-filter="all">All (20)</button>
+      <button class="tab is-active" role="tab" aria-selected="true" data-filter="all">All (21)</button>
       <button class="tab" role="tab" aria-selected="false" data-filter="core">Core router (1)</button>
       <button class="tab" role="tab" aria-selected="false" data-filter="lane">Business lanes (6)</button>
       <button class="tab" role="tab" aria-selected="false" data-filter="meta">Meta (3)</button>
       <button class="tab" role="tab" aria-selected="false" data-filter="breakout">Breakout (8)</button>
-      <button class="tab" role="tab" aria-selected="false" data-filter="security">Security (2)</button>
+      <button class="tab" role="tab" aria-selected="false" data-filter="security">Before you build (3)</button>
     </div>
 
     <ul class="skill-grid" id="skill-grid">
@@ -533,6 +533,13 @@
       </li>
 
       <li class="skill-card" data-cat="security">
+        <span class="icon-badge icon-badge-sm"><svg class="icon" viewBox="0 0 24 24"><use href="#i-layers"/></svg></span>
+        <p class="skill-eyebrow">Project gate</p>
+        <h3>opskeep-project-gate</h3>
+        <p>Starts from the problem, runs an interactive design workshop, and turns the answers into design decisions and an approval dashboard. Nothing is built until you approve.</p>
+        <span class="card-arrow"><svg class="icon" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></span>
+      </li>
+      <li class="skill-card" data-cat="security">
         <span class="icon-badge icon-badge-sm"><svg class="icon" viewBox="0 0 24 24"><use href="#i-shield"/></svg></span>
         <p class="skill-eyebrow">Security</p>
         <h3>opskeep-elliot-design</h3>
@@ -625,7 +632,7 @@
             <svg class="icon" viewBox="0 0 24 24"><use href="#i-copy"/></svg>
           </button>
         </div>
-        <pre class="terminal-body"><code><span class="tk-comment"># separate pack, not part of the 20-skill install</span>
+        <pre class="terminal-body"><code><span class="tk-comment"># separate pack, not part of the 21-skill install</span>
 <span class="tk-cmd">git</span> clone https://github.com/CalebPrince/opskeep-skills
 <span class="tk-cmd">cp</span> -r opskeep-skills/verticals/opskeep-retail/skills/* ~/.agents/skills/
 <span class="tk-comment"># swap in opskeep-hospitality or opskeep-accounting; add opskeep-tools + breakout skills from the core pack</span></code></pre>

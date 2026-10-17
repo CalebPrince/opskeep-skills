@@ -187,12 +187,15 @@ These remain separately installable because they're tool-specific or useful outs
 | `opskeep-escalate-to-owner` | Pauses an autonomous transaction and brings in the business owner, via live conversation handoff when the connected channel supports it, or a notify-and-pause fallback. |
 | `opskeep-triggers` | Creates, inspects, and deletes event-triggered automations with explicit trigger proposal confirmation. |
 
-## Security skills
+## Before you build
 
-Tool-agnostic Secure by Design skills, useful on their own outside the Opskeep router.
+Gates that run before anything new is built, in this order: the project gate agrees the
+problem and the design, then the security gate sets the Secure by Design baseline. Both
+work on their own outside the Opskeep router too.
 
 | Skill | Description |
 | --- | --- |
+| `opskeep-project-gate` | Starts from the problem (constraint, forces, the bet, outcomes), runs an interactive design workshop, and turns the answers into design decisions, 2-3 directions and an approval dashboard. Nothing is built until the user explicitly approves; approval never authorises implementation on its own. |
 | `opskeep-elliot-design` | Designs or reassesses a risk-proportional Secure by Design baseline before project implementation, first commit, production promotion, or a material architecture change. |
 | `opskeep-elliot-review` | Reviews an already-existing local repository and produces an evidence-backed security assessment, visual dashboard, and prioritized recommendations. |
 
