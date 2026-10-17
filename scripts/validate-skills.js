@@ -82,4 +82,48 @@ if (fs.existsSync(verticalsDir)) {
   }
 }
 
+// The update notice compares whats-new.json (fetched from main) against each
+// installed router's metadata.pack_version, so all of them must agree with
+// package.json or installers get a wrong (or missing) "new version" notice.
+function checkPackVersions() {
+  const pkgVersion = JSON.parse(fs.readFileSync(path.join(rootDir, "package.json"), "utf8")).version;
+  const whatsNewPath = path.join(rootDir, "whats-new.json");
+  const errors = [];
+
+  if (!fs.existsSync(whatsNewPath)) {
+    errors.push("whats-new.json is missing");
+  } else {
+    const whatsNew = JSON.parse(fs.readFileSync(whatsNewPath, "utf8"));
+    if (whatsNew.version !== pkgVersion) {
+      errors.push(`whats-new.json version ${whatsNew.version} != package.json ${pkgVersion}`);
+    }
+    if (!whatsNew.headline || !Array.isArray(whatsNew.highlights) || whatsNew.highlights.length === 0) {
+      errors.push("whats-new.json needs a headline and at least one highlight");
+    }
+  }
+
+  const routers = [path.join(rootDir, "skills", "opskeep", "SKILL.md")];
+  if (fs.existsSync(verticalsDir)) {
+    for (const entry of fs.readdirSync(verticalsDir, { withFileTypes: true })) {
+      const router = path.join(verticalsDir, entry.name, "skills", entry.name, "SKILL.md");
+      if (entry.isDirectory() && fs.existsSync(router)) routers.push(router);
+    }
+  }
+  for (const router of routers) {
+    const match = fs.readFileSync(router, "utf8").match(/^\s+pack_version:\s*(\S+)\s*$/m);
+    const rel = path.relative(rootDir, router);
+    if (!match) errors.push(`${rel}: missing metadata.pack_version`);
+    else if (match[1] !== pkgVersion) errors.push(`${rel}: pack_version ${match[1]} != package.json ${pkgVersion}`);
+  }
+
+  if (errors.length) {
+    errors.forEach((e) => console.error(`✗ pack version: ${e}`));
+    hasError = true;
+  } else {
+    console.log(`✓ pack version ${pkgVersion} matches whats-new.json and ${routers.length} router(s)`);
+  }
+}
+
+checkPackVersions();
+
 if (hasError) process.exit(1);

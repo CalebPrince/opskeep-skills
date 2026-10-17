@@ -4,6 +4,7 @@ description: "Use when the user invokes Opskeep Hospitality and needs routing ac
 metadata:
   lane: meta
   version: 0.1.0
+  pack_version: 0.2.0
 ---
 
 # Opskeep Hospitality
@@ -131,3 +132,21 @@ Decision stub: next action, owner, date, evidence. Use `TBD` when missing.
   professional or the venue's own policy.
 - One venue and one continuous service is assumed by default. If daypart (breakfast/
   lunch/dinner) or multi-location context is present, ask which one before acting.
+
+## Update Notice
+
+Once a day, after answering (never before), check for a newer version:
+
+1. Skip if `~/.opskeep/update-check.json` shows `lastChecked` is today or `notices` is
+   `off`, or there's no web access.
+2. Fetch `https://raw.githubusercontent.com/CalebPrince/opskeep-skills/main/whats-new.json`
+   and compare its `version` (as numbers) to `metadata.pack_version` above. Save today
+   as `lastChecked`.
+3. Newer and not yet announced (`lastNotifiedVersion`): end the reply with
+   `There's a newer version of Opskeep. [headline]`, the `highlights` as bullets, and
+   `Want me to install it for you? Just say "yes, update Opskeep".` Plain words only: no
+   version numbers, GitHub, git or commands unless asked. Save `lastNotifiedVersion`.
+4. On yes: pull the pack's clone folder and copy `verticals/opskeep-hospitality/skills/*` into the
+   agent's skills folder again (if the folder is unknown, offer to download a fresh
+   copy), and run `packs.core.update` for the core skills. Never touch the user's
+   records in `~/.opskeep/`. "Stop telling me" sets `notices` to `off`.

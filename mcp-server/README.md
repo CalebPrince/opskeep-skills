@@ -20,9 +20,10 @@ the skill; this server does the sending, scheduling, and storing.
 | `start_timer` / `stop_timer` | Starts/stops a running timer for a project |
 | `backfill_time_entry` | Logs a completed time block without a live timer |
 | `summarize_time` | Totals logged time for a project, optionally since a date |
-| `log_expense` | Logs a materials/mileage/other cost tagged to a job |
-| `list_expenses` | Lists logged expenses, optionally by job and/or category |
-| `summarize_expenses` | Totals a job's expenses by category, ready to fold into an invoice |
+| `log_expense` | Logs a materials/mileage/travel/fees/software/other cost tagged to a job, with currency, billable flag and receipt reference |
+| `list_expenses` | Lists logged expenses, filtered by job, category, date range and billable/unbilled/billed state |
+| `summarize_expenses` | Totals a job's expenses per currency and category, split into unbilled, billed and not billable |
+| `mark_expenses_billed` | Records the invoice a set of billable expenses went on, so they stop showing as unbilled |
 | `delete_expense` | Removes a logged expense by ID |
 | `escalate_to_owner` | Pauses an autonomous transaction and records an escalation for the business owner |
 | `resolve_escalation` | Records how a paused escalation was resolved |
@@ -63,6 +64,7 @@ registry) live in a JSON file and survive server restarts:
 | Variable | Default | Purpose |
 | --- | --- | --- |
 | `OPSKEEP_STORE_FILE` | `~/.opskeep/registry.json` | Where the store is saved (and loaded from). Set it to share a registry across machines via a synced path, or to keep the file out of a user's home. |
+| `OPSKEEP_DEFAULT_CURRENCY` | `USD` | Currency used by `log_expense` when the caller doesn't give one (for example `GHS`). |
 | `OPSKEEP_KEY_ENCRYPTION_SECRET` | none | Required (24+ characters) before `add_client_key` will save a key. Encrypts recorded provider keys at rest (AES-256-GCM). Use the **same** value here and on any admin dashboard sharing this store file, so either side can decrypt keys the other recorded. |
 
 Writes are atomic (temp file + rename), and the id counter is persisted too, so new records

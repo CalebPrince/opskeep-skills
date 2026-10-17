@@ -90,5 +90,13 @@
   {
     "query": "Give me a project status update with current risks and next owner actions.",
     "should_trigger": true
+  },
+  {
+    "query": "Opskeep, build the October records request list for my bookkeeping client.",
+    "should_trigger": true
+  },
+  {
+    "query": "Opskeep what's new? Is there an update?",
+    "should_trigger": true
   }
 ]

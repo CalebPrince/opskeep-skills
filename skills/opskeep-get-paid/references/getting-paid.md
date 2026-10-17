@@ -5,6 +5,8 @@ Use for invoices, payments, billable time, budget health, margin, payment risk, 
 ## Starter Jobs
 
 - Find invoices/payment follow-ups needing action.
+- Age receivables and plan collection follow-up.
+- Value unbilled work (WIP) and check fixed-fee recovery or retainer balance.
 - Review billable time or budget before invoicing.
 - Surface margin, scope creep, change-control, payment-risk signals.
 - Reframe old `budget` money-health as public `get paid`.
@@ -20,11 +22,14 @@ Use for invoices, payments, billable time, budget health, margin, payment risk, 
 - `references/initiate-budget.md`: new baseline/tracker.
 - `references/monitor-budget.md`: burn, forecast, variance, margin, budget health.
 - `references/execute-change-control.md`: money risk from scope/delivery change.
+- `references/receivables.md`: aged debtors, collection ladder, write-off proposals.
+- `references/billing-models.md`: WIP, fixed-fee recovery, retainers, write-ups/downs.
 - `skills/opskeep-deliver-work/references/monitor-risk-escalation.md`: nonpayment or owner drift escalation.
 
 ## Connected Capabilities
 
-- `opskeep-time-tracking`: only start/stop/edit/backfill/summarize/review time records.
+- `opskeep-time-tracking`: only start/stop/edit/backfill/summarize/review time records, including billable/unbilled filters and marking entries billed.
+- `opskeep-expense-tracking`: job expense totals (billable/unbilled) for invoicing, and marking expenses billed.
 - `opskeep-follow-up-reminders`: only future self-email reminder.
 - `composio`: only live invoice/payment/app records or approved external write.
 

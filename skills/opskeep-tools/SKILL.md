@@ -16,7 +16,7 @@ Route standalone utilities without turning them into business lanes.
 - Live voice conversation or huddle -> `opskeep-huddle-beta`.
 - One-shot self-email reminder -> `opskeep-follow-up-reminders`.
 - Start/stop/switch/backfill/update/archive/summarize time records -> `opskeep-time-tracking`.
-- Log/list/summarize/delete a job-tagged expense (materials, mileage, other cost) -> `opskeep-expense-tracking`.
+- Log/list/summarize/delete a job-tagged expense (materials, mileage, travel, fees, software, other cost), or mark expenses billed on an invoice -> `opskeep-expense-tracking`.
 - Pause an autonomous conversation and bring in the business owner -> `opskeep-escalate-to-owner`.
 - Register clients and track per-client AI API keys, credit top-ups, and agent usage -> `opskeep-manage-client-keys`.
 - Live external app access or writes -> `composio` with discovery/schema-safe execution.

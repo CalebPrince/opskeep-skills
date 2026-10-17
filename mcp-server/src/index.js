@@ -20,6 +20,7 @@ import {
   logExpenseTool,
   listExpensesTool,
   summarizeExpensesTool,
+  markExpensesBilledTool,
   deleteExpenseTool,
 } from "./tools/expenseTracking.js";
 import {
@@ -73,6 +74,7 @@ const tools = [
   logExpenseTool,
   listExpensesTool,
   summarizeExpensesTool,
+  markExpensesBilledTool,
   deleteExpenseTool,
   escalateToOwnerTool,
   resolveEscalationTool,

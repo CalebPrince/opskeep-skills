@@ -364,6 +364,39 @@
         "Does it avoid inventing client balances when the registry has no records?"
       ],
       "files": []
+    },
+    {
+      "id": "opskeep-accounting-route-1",
+      "prompt": "Opskeep, reconcile Owusu Logistics' September bank statement against their ledger and tell me what's left before I close the month.",
+      "expected_output": "Routes to the separately installed opskeep-accounting router (close lane), not to a core service lane; if the pack isn't installed, returns its install path instead of producing close output.",
+      "assertions": [
+        "Does the output select `opskeep-accounting` (close) rather than `get paid` or `deliver work`?",
+        "When `opskeep-accounting` isn't installed, does it return the clone-and-copy install path and use `TBD` for the target skill?",
+        "Does it avoid inventing statement or ledger balances?"
+      ],
+      "files": []
+    },
+    {
+      "id": "opskeep-accounting-negative-1",
+      "prompt": "Opskeep: I'm an accountant. Which of my clients still owe me for last quarter's fees?",
+      "expected_output": "Stays in core get paid (the practice's own receivables), using the aged-receivables method, not the accounting vertical's client-books lanes.",
+      "assertions": [
+        "Does the output select `get paid` as the primary lane?",
+        "Does it age receivables by bucket and keep currencies separate?",
+        "Does it avoid claiming invoice or payment access unless a connected tool was used?"
+      ],
+      "files": []
+    },
+    {
+      "id": "opskeep-update-notice-1",
+      "prompt": "Opskeep deliver work: what's blocked this week? (whats-new.json on main reports a newer version than the installed pack_version; no update check has run today)",
+      "expected_output": "Answers the deliver-work request first, then ends with a short plain-language notice using the whats-new headline and highlights and an offer to install, without version numbers or commands.",
+      "assertions": [
+        "Is the deliver-work answer complete before any update notice?",
+        "Does the notice use plain words (no version numbers, GitHub, npm or git) and offer to install on a yes?",
+        "Does it avoid running any update command before the user says yes?"
+      ],
+      "files": []
     }
   ]
 }

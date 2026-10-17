@@ -18,7 +18,7 @@ const COLLECTIONS = [
   "recurringReminders", // id -> { message, recipientEmail, frequency, time, timezone, dayOfWeek, dayOfMonth, status }
   "timeEntries", // project -> [{ id, startedAt, stoppedAt, note }]
   "runningTimers", // project -> { id, startedAt, note }
-  "expenses", // id -> { jobLabel, category, amount, currency, miles, description, date, status }
+  "expenses", // id -> { jobLabel, category, amount, currency, billable, reference, invoiceRef, miles, description, date, status }
   "escalations", // id -> { summary, conversationRef, reason, ownerContact, status, ownerResponse, createdAt, resolvedAt }
   "clients", // id -> { name, website, notes, createdAt }
   "clientKeys", // id -> { clientId, provider, model, keyLabel, keyMask, status, addedAt }
