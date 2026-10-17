@@ -4,7 +4,7 @@ description: "Use when the user invokes Opskeep Hospitality and needs routing ac
 metadata:
   lane: meta
   version: 0.1.0
-  pack_version: 0.2.0
+  pack_version: 0.3.0
 ---
 
 # Opskeep Hospitality

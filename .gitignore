@@ -6,3 +6,5 @@ node_modules/
 dist/
 .cache/
 .playwright-mcp/
+__pycache__/
+*.pyc

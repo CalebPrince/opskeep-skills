@@ -98,5 +98,9 @@
   {
     "query": "Opskeep what's new? Is there an update?",
     "should_trigger": true
+  },
+  {
+    "query": "Opskeep, new project: a booking app for my salon. Where do we start?",
+    "should_trigger": true
   }
 ]

@@ -1,0 +1,498 @@
+{
+  "schema": "opskeep.project-gate/state@1",
+  "project": {
+    "name": "LeadFlow",
+    "slug": "leadflow",
+    "one_liner": "Lead management app for a sales team that lives in it all day.",
+    "created": "2026-09-26"
+  },
+  "intent": [
+    {
+      "label": "Product",
+      "value": "Lead management application"
+    },
+    {
+      "label": "Primary user",
+      "value": "Sales team"
+    },
+    {
+      "label": "Usage",
+      "value": "Daily, high frequency"
+    },
+    {
+      "label": "Primary job",
+      "value": "Manage and follow up leads"
+    },
+    {
+      "label": "Platform",
+      "value": "Responsive web application"
+    }
+  ],
+  "character": [
+    {
+      "trait": "Operational",
+      "score": 100
+    },
+    {
+      "trait": "Professional",
+      "score": 90
+    },
+    {
+      "trait": "Minimal",
+      "score": 80
+    },
+    {
+      "trait": "Expressive",
+      "score": 30
+    }
+  ],
+  "decisions": [
+    {
+      "id": "PG-001",
+      "area": "ux",
+      "title": "Desktop-first workspace",
+      "status": "CONFIRMED",
+      "value": "Design for desktop first; mobile is a deliberate adaptation for quick actions.",
+      "confirmed_via": "interview",
+      "rationale": "Reps work at a desk all day."
+    },
+    {
+      "id": "PG-002",
+      "area": "ux",
+      "title": "Persistent sidebar navigation",
+      "status": "INFERRED",
+      "value": "Left sidebar always visible on desktop; collapses to icons under 1200px.",
+      "rationale": "Daily use across several top-level areas.",
+      "depends_on": [
+        "PG-001"
+      ]
+    },
+    {
+      "id": "PG-003",
+      "area": "visual",
+      "title": "Medium-high information density",
+      "status": "INFERRED",
+      "value": "Compact rows and tight spacing; comfortable line height for scanning.",
+      "rationale": "People scan lists all day.",
+      "depends_on": [
+        "PG-005"
+      ]
+    },
+    {
+      "id": "PG-004",
+      "area": "screens",
+      "title": "Lead detail drawer",
+      "status": "PROPOSED",
+      "value": "Selecting a lead opens a side drawer so the list keeps its place.",
+      "rationale": "Keeps context while following up.",
+      "depends_on": [
+        "PG-005"
+      ]
+    },
+    {
+      "id": "PG-005",
+      "area": "ux",
+      "title": "Table-first lead management",
+      "status": "CONFIRMED",
+      "value": "Leads live in a sortable, filterable table with saved views.",
+      "confirmed_via": "interview"
+    },
+    {
+      "id": "PG-006",
+      "area": "responsive",
+      "title": "Mobile experience",
+      "status": "NEEDS_INPUT",
+      "rationale": "Decides which screens get a real mobile layout.",
+      "depends_on": [
+        "PG-001"
+      ],
+      "options": [
+        {
+          "value": "full",
+          "label": "Full management",
+          "hint": "Everything works on a phone"
+        },
+        {
+          "value": "quick",
+          "label": "Quick actions",
+          "hint": "Reply, update status, log a call"
+        },
+        {
+          "value": "monitor",
+          "label": "Monitoring only",
+          "hint": "Read-only status"
+        }
+      ],
+      "question": "How should mobile users primarily use LeadFlow?"
+    },
+    {
+      "id": "PG-007",
+      "area": "users",
+      "title": "Primary user: sales reps",
+      "status": "CONFIRMED",
+      "value": "Sales representatives following up their own leads, plus a manager reviewing pipeline.",
+      "confirmed_via": "interview"
+    },
+    {
+      "id": "PG-008",
+      "area": "users",
+      "title": "Core job: follow up leads",
+      "status": "CONFIRMED",
+      "value": "Know who to contact next and log what happened in seconds.",
+      "confirmed_via": "interview"
+    },
+    {
+      "id": "PG-009",
+      "area": "ux",
+      "title": "Fast repeated actions",
+      "status": "INFERRED",
+      "value": "Inline editing, keyboard shortcuts and a command palette for search and actions.",
+      "rationale": "High-frequency use rewards speed.",
+      "depends_on": [
+        "PG-005"
+      ]
+    },
+    {
+      "id": "PG-010",
+      "area": "ux",
+      "title": "Undo over confirmation",
+      "status": "CONFIRMED",
+      "value": "Prefer undo toasts to confirmation dialogs; confirm only bulk deletes.",
+      "confirmed_via": "interview",
+      "rationale": "Mistakes are cheap to fix."
+    },
+    {
+      "id": "PG-011",
+      "area": "project",
+      "title": "Responsive web application",
+      "status": "CONFIRMED",
+      "value": "Single web app that adapts across screen sizes; no native app in v1.",
+      "confirmed_via": "interview"
+    },
+    {
+      "id": "PG-012",
+      "area": "screens",
+      "title": "Dashboard structure",
+      "status": "NEEDS_INPUT",
+      "rationale": "Sets what people see first each morning.",
+      "options": [
+        {
+          "value": "followups",
+          "label": "Today's follow-ups first",
+          "hint": "Task-led"
+        },
+        {
+          "value": "pipeline",
+          "label": "Pipeline board first",
+          "hint": "Stage-led"
+        },
+        {
+          "value": "kpis",
+          "label": "KPIs first",
+          "hint": "Manager-led"
+        }
+      ],
+      "question": "What should the home screen lead with?"
+    },
+    {
+      "id": "PG-013",
+      "area": "accessibility",
+      "title": "WCAG 2.2 AA baseline",
+      "status": "CONFIRMED",
+      "value": "Full keyboard operation, visible focus, 4.5:1 text contrast, labelled controls.",
+      "confirmed_via": "interview"
+    },
+    {
+      "id": "PG-014",
+      "area": "visual",
+      "title": "Empty, loading and error states",
+      "status": "PROPOSED",
+      "value": "Skeleton loaders, actionable empty states and plain-language errors with a retry."
+    },
+    {
+      "id": "PG-015",
+      "area": "visual",
+      "title": "Light-first theme",
+      "status": "CONFIRMED",
+      "value": "Light theme by default; tokens support dark later.",
+      "confirmed_via": "interview"
+    },
+    {
+      "id": "PG-016",
+      "area": "responsive",
+      "title": "Slow-network tolerance",
+      "status": "INFERRED",
+      "value": "Lean payloads, skeletons and retryable requests for patchy connections.",
+      "rationale": "Some users have unreliable internet."
+    },
+    {
+      "id": "PG-017",
+      "area": "strategy",
+      "title": "Constraint",
+      "status": "CONFIRMED",
+      "confirmed_via": "interview",
+      "value": "Reps lose leads because follow-ups live in personal spreadsheets and nobody can see what is overdue.",
+      "rationale": "Stated in the brief."
+    },
+    {
+      "id": "PG-018",
+      "area": "strategy",
+      "title": "The bet",
+      "status": "CONFIRMED",
+      "confirmed_via": "interview",
+      "value": "Reps adopt a shared list if it is faster than their spreadsheet; about three weeks; watch contact within 48 hours.",
+      "rationale": "Stated in the workshop.",
+      "depends_on": [
+        "PG-017"
+      ]
+    }
+  ],
+  "conflicts": [],
+  "directions": [
+    {
+      "id": "A",
+      "name": "Operational Precision",
+      "tagline": "Dense, calm, efficient.",
+      "fit": "Built for people who repeat the same actions all day. Nothing decorative gets between a rep and the next lead.",
+      "tradeoffs": "Less visual personality; needs disciplined spacing to stay calm at high density.",
+      "preview": {
+        "nav": "sidebar",
+        "density": 3,
+        "radius": 6,
+        "surface": "flat",
+        "palette": {
+          "bg": "#f6f7f9",
+          "surface": "#ffffff",
+          "accent": "#2447b8",
+          "ink": "#1b1f24",
+          "line": "#dfe3e8"
+        }
+      },
+      "foundation": {
+        "Theme": "Light-first",
+        "Navigation": "Persistent left sidebar",
+        "Content width": "Fluid",
+        "Density": "Medium-high",
+        "Corner radius": "6px",
+        "Typography": "Inter",
+        "Primary interaction": "Tables + detail drawers",
+        "Mobile strategy": "Task-focused adaptation",
+        "Animation": "Functional only",
+        "Icons": "Lucide"
+      },
+      "tokens": {
+        "color": {
+          "bg": "#f6f7f9",
+          "surface": "#ffffff",
+          "border": "#dfe3e8",
+          "text": "#1b1f24",
+          "muted": "#5a6270",
+          "primary": "#2447b8",
+          "primary_contrast": "#ffffff",
+          "success": "#0f6a3b",
+          "warning": "#7a4700",
+          "danger": "#a11d12"
+        },
+        "radius": {
+          "sm": 4,
+          "md": 6,
+          "lg": 10
+        },
+        "font": {
+          "sans": "Inter, system-ui, sans-serif",
+          "mono": "ui-monospace, SFMono-Regular, Menlo, monospace"
+        },
+        "space": {
+          "unit": 4
+        },
+        "density": {
+          "row_height": 32
+        },
+        "color_dark": {
+          "bg": "#0f1216",
+          "surface": "#171b21",
+          "border": "#2a313a",
+          "text": "#e6e9ee",
+          "muted": "#9aa3b2",
+          "primary": "#8fb0ff",
+          "primary_contrast": "#0b1020",
+          "success": "#66d19a",
+          "warning": "#f2c26b",
+          "danger": "#ff9d92"
+        }
+      }
+    },
+    {
+      "id": "B",
+      "name": "Modern CRM",
+      "tagline": "More visual, spacious and approachable.",
+      "fit": "Friendlier and easier to learn, suited to occasional users or teams new to CRM tools.",
+      "tradeoffs": "Fewer rows per screen; heavy users will scroll more.",
+      "preview": {
+        "nav": "top",
+        "density": 2,
+        "radius": 14,
+        "surface": "elevated",
+        "palette": {
+          "bg": "#f4f8ff",
+          "surface": "#ffffff",
+          "accent": "#2563eb",
+          "ink": "#1c2333",
+          "line": "#dbe6f7"
+        }
+      },
+      "foundation": {
+        "Theme": "Light-first",
+        "Navigation": "Top bar with section tabs",
+        "Content width": "Centered, 1200px max",
+        "Density": "Medium",
+        "Corner radius": "14px",
+        "Typography": "Plus Jakarta Sans",
+        "Primary interaction": "Cards + pipeline board",
+        "Mobile strategy": "Responsive reflow",
+        "Animation": "Gentle transitions",
+        "Icons": "Phosphor"
+      },
+      "tokens": {
+        "color": {
+          "bg": "#f4f8ff",
+          "surface": "#ffffff",
+          "border": "#dbe6f7",
+          "text": "#1c2333",
+          "muted": "#556079",
+          "primary": "#2563eb",
+          "primary_contrast": "#ffffff",
+          "success": "#0f6a3b",
+          "warning": "#7a4700",
+          "danger": "#a11d12"
+        },
+        "radius": {
+          "sm": 8,
+          "md": 14,
+          "lg": 20
+        },
+        "font": {
+          "sans": "Plus Jakarta Sans, system-ui, sans-serif",
+          "mono": "ui-monospace, SFMono-Regular, Menlo, monospace"
+        },
+        "space": {
+          "unit": 4
+        },
+        "density": {
+          "row_height": 44
+        }
+      }
+    },
+    {
+      "id": "C",
+      "name": "Command Center",
+      "tagline": "Data-heavy, monitoring-oriented.",
+      "fit": "Best when managers watch the pipeline live and reps work from queues and alerts.",
+      "tradeoffs": "Dark and dense can feel heavy; more effort to keep accessible.",
+      "preview": {
+        "nav": "sidebar",
+        "density": 3,
+        "radius": 4,
+        "surface": "flat",
+        "mono": true,
+        "palette": {
+          "bg": "#0f1216",
+          "surface": "#171b21",
+          "accent": "#4cc2ff",
+          "ink": "#e6e9ee",
+          "line": "#2a313a"
+        }
+      },
+      "foundation": {
+        "Theme": "Dark-first",
+        "Navigation": "Persistent sidebar + command bar",
+        "Content width": "Fluid",
+        "Density": "High",
+        "Corner radius": "4px",
+        "Typography": "IBM Plex Sans + Plex Mono",
+        "Primary interaction": "Live tables + alert rail",
+        "Mobile strategy": "Monitoring only",
+        "Animation": "Live-data indicators",
+        "Icons": "Lucide"
+      },
+      "tokens": {
+        "color": {
+          "bg": "#0f1216",
+          "surface": "#171b21",
+          "border": "#2a313a",
+          "text": "#e6e9ee",
+          "muted": "#9aa3b2",
+          "primary": "#4cc2ff",
+          "primary_contrast": "#06121a",
+          "success": "#66d19a",
+          "warning": "#f2c26b",
+          "danger": "#ff9d92"
+        },
+        "radius": {
+          "sm": 2,
+          "md": 4,
+          "lg": 6
+        },
+        "font": {
+          "sans": "IBM Plex Sans, system-ui, sans-serif",
+          "mono": "ui-monospace, SFMono-Regular, Menlo, monospace"
+        },
+        "space": {
+          "unit": 4
+        },
+        "density": {
+          "row_height": 28
+        }
+      }
+    }
+  ],
+  "selected_direction": null,
+  "risks": [
+    {
+      "id": "R-01",
+      "severity": "med",
+      "text": "High density can hurt new starters; onboarding hints may be needed."
+    },
+    {
+      "id": "R-02",
+      "severity": "low",
+      "text": "Mobile scope is undecided until PG-006 is answered."
+    }
+  ],
+  "assumptions": [
+    {
+      "id": "AS-01",
+      "text": "Fewer than 50 concurrent users, so no virtualisation needed for tables in v1."
+    }
+  ],
+  "gate": {
+    "status": "not_approved",
+    "history": []
+  },
+  "strategy": {
+    "constraint": {
+      "statement": "Reps lose leads because follow-ups live in personal spreadsheets and nobody can see what is overdue.",
+      "evidence": "Last quarter's pipeline review found 31 leads with no contact for over 14 days."
+    },
+    "forces": {
+      "push": "Missed follow-ups and no shared view of the pipeline.",
+      "pull": "One list that shows who to call today.",
+      "anxiety": "Reps worry the tool will slow them down or be used to monitor them.",
+      "habit": "Each rep keeps a private spreadsheet."
+    },
+    "existing_assets": [
+      "Shared email domain and calendar",
+      "Current lead export from the website form"
+    ],
+    "bet": {
+      "belief": "reps will adopt a shared list if it is faster than their spreadsheet",
+      "wager": "about three weeks of build effort",
+      "expected_outcome": "fewer leads going cold and a shared view of overdue follow-ups",
+      "leading_indicator": "share of leads contacted within 48 hours"
+    },
+    "outcomes": [
+      "Overdue follow-ups are visible to the whole team",
+      "Leads are contacted within 48 hours"
+    ]
+  }
+}

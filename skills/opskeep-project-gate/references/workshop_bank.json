@@ -1,0 +1,1188 @@
+{
+  "sections": [
+    {
+      "id": "strategy",
+      "label": "The problem",
+      "blurb": "What is in the way? Start there, not with what to build."
+    },
+    {
+      "id": "project",
+      "label": "Project",
+      "blurb": "What are we making?"
+    },
+    {
+      "id": "users",
+      "label": "People",
+      "blurb": "Who is it for, and how do they work?"
+    },
+    {
+      "id": "experience",
+      "label": "Experience",
+      "blurb": "How should it feel to use?"
+    },
+    {
+      "id": "visual",
+      "label": "Look & feel",
+      "blurb": "Point at what feels right."
+    }
+  ],
+  "controls": [
+    {
+      "id": "s_constraint",
+      "section": "strategy",
+      "type": "text",
+      "multiline": true,
+      "required": true,
+      "prompt": "What is in the way of the outcome you want?",
+      "why": "A constraint is the weak link, not the thing to build. \"Build a client portal\" is a solution; \"clients cannot see invoice status without emailing us\" is a constraint.",
+      "placeholder": "e.g. Prospects cannot reach us after hours, so enquiries are lost."
+    },
+    {
+      "id": "s_evidence",
+      "section": "strategy",
+      "type": "text",
+      "multiline": true,
+      "optional": true,
+      "prompt": "How do you know? What shows it is the constraint?",
+      "placeholder": "Numbers, an incident, customer comments, a contract requirement."
+    },
+    {
+      "id": "s_push",
+      "section": "strategy",
+      "type": "text",
+      "optional": true,
+      "prompt": "Push: what pain makes people want a change?",
+      "placeholder": "What is wrong with how it works today."
+    },
+    {
+      "id": "s_pull",
+      "section": "strategy",
+      "type": "text",
+      "optional": true,
+      "prompt": "Pull: what makes the new thing attractive to them?",
+      "placeholder": "What would they gain."
+    },
+    {
+      "id": "s_anxiety",
+      "section": "strategy",
+      "type": "text",
+      "optional": true,
+      "prompt": "Anxiety: what would make them hesitate or refuse?",
+      "why": "Trust, cost, switching effort, handing over data. This is usually where security and privacy decisions come from.",
+      "placeholder": "e.g. Worried their details will be shared or spammed."
+    },
+    {
+      "id": "s_habit",
+      "section": "strategy",
+      "type": "text",
+      "optional": true,
+      "prompt": "Habit: what do they do today instead?",
+      "placeholder": "The current way, even if it is a workaround."
+    },
+    {
+      "id": "s_existing",
+      "section": "strategy",
+      "type": "text",
+      "multiline": true,
+      "optional": true,
+      "prompt": "What already works or already exists?",
+      "why": "More of what works, then better, and only then something new. Existing tools, platform features, earlier work.",
+      "placeholder": "Write none if there is nothing."
+    },
+    {
+      "id": "s_belief",
+      "section": "strategy",
+      "type": "text",
+      "multiline": true,
+      "prompt": "We believe ...",
+      "why": "Your bet starts with what you believe is true about the people or the market.",
+      "placeholder": "e.g. visitors will use a short form if it says what happens to their details."
+    },
+    {
+      "id": "s_wager",
+      "section": "strategy",
+      "type": "segment",
+      "prompt": "How big is the bet?",
+      "why": "What you are willing to spend to find out. It sizes the scope.",
+      "options": [
+        {
+          "value": "days",
+          "label": "A few days"
+        },
+        {
+          "value": "weeks",
+          "label": "A few weeks"
+        },
+        {
+          "value": "months",
+          "label": "Months"
+        }
+      ]
+    },
+    {
+      "id": "s_outcome",
+      "section": "strategy",
+      "type": "text",
+      "multiline": true,
+      "prompt": "... and this produces what outcome?",
+      "why": "An outcome is what changes for the business or the people, not what gets built.",
+      "placeholder": "e.g. More qualified enquiries each month, acknowledged within a minute."
+    },
+    {
+      "id": "s_indicator",
+      "section": "strategy",
+      "type": "chips",
+      "max": 3,
+      "prompt": "What will you watch to know it is working?",
+      "why": "The leading indicator. Pick up to three.",
+      "options": [
+        {
+          "value": "conversion",
+          "label": "Conversion rate"
+        },
+        {
+          "value": "signups",
+          "label": "Sign-ups or enquiries"
+        },
+        {
+          "value": "time_saved",
+          "label": "Time saved"
+        },
+        {
+          "value": "revenue",
+          "label": "Revenue"
+        },
+        {
+          "value": "retention",
+          "label": "Retention or repeat use"
+        },
+        {
+          "value": "support",
+          "label": "Fewer support requests"
+        },
+        {
+          "value": "errors",
+          "label": "Fewer errors or incidents"
+        },
+        {
+          "value": "satisfaction",
+          "label": "User satisfaction"
+        }
+      ]
+    },
+    {
+      "id": "p_name",
+      "section": "project",
+      "type": "text",
+      "prompt": "Project name",
+      "placeholder": "e.g. LeadFlow",
+      "required": true
+    },
+    {
+      "id": "p_summary",
+      "section": "project",
+      "type": "text",
+      "multiline": true,
+      "optional": true,
+      "prompt": "What does it do, in a sentence or two?",
+      "placeholder": "An internal app my sales team uses to track and follow up leads."
+    },
+    {
+      "id": "p_type",
+      "section": "project",
+      "type": "cards",
+      "prompt": "What kind of thing is it?",
+      "why": "The product type sets the baseline for navigation, density and page structure.",
+      "options": [
+        {
+          "value": "saas",
+          "label": "Web app / SaaS",
+          "hint": "Log in, do work"
+        },
+        {
+          "value": "dashboard",
+          "label": "Dashboard",
+          "hint": "Metrics and monitoring"
+        },
+        {
+          "value": "website",
+          "label": "Marketing site",
+          "hint": "Explain and convert"
+        },
+        {
+          "value": "ecommerce",
+          "label": "Online store",
+          "hint": "Browse and buy"
+        },
+        {
+          "value": "mobile",
+          "label": "Mobile app",
+          "hint": "Phone first"
+        },
+        {
+          "value": "internal",
+          "label": "Internal tool",
+          "hint": "For a team"
+        },
+        {
+          "value": "other",
+          "label": "Something else",
+          "hint": ""
+        }
+      ]
+    },
+    {
+      "id": "p_platform",
+      "section": "project",
+      "type": "segment",
+      "prompt": "Where will people mostly use it?",
+      "options": [
+        {
+          "value": "desktop",
+          "label": "Desktop browser"
+        },
+        {
+          "value": "phone",
+          "label": "Phone browser"
+        },
+        {
+          "value": "native",
+          "label": "Native app"
+        },
+        {
+          "value": "both",
+          "label": "Desktop and phone"
+        }
+      ]
+    },
+    {
+      "id": "p_stage",
+      "section": "project",
+      "type": "segment",
+      "prompt": "Is this new, or replacing something?",
+      "options": [
+        {
+          "value": "new",
+          "label": "Brand new"
+        },
+        {
+          "value": "redesign",
+          "label": "Redesign"
+        },
+        {
+          "value": "prototype",
+          "label": "Quick prototype"
+        }
+      ]
+    },
+    {
+      "id": "u_frequency",
+      "section": "users",
+      "type": "stops",
+      "prompt": "How often will a typical person use it?",
+      "why": "Frequency is the biggest driver of density, shortcuts and navigation depth.",
+      "options": [
+        {
+          "value": "occasional",
+          "label": "Occasionally"
+        },
+        {
+          "value": "weekly",
+          "label": "Weekly"
+        },
+        {
+          "value": "daily",
+          "label": "Daily"
+        },
+        {
+          "value": "allday",
+          "label": "All day"
+        }
+      ]
+    },
+    {
+      "id": "u_activity",
+      "section": "users",
+      "type": "chips",
+      "max": 3,
+      "prompt": "What will they spend most of their time doing?",
+      "why": "Pick up to three. This decides whether tables, editors, feeds or charts lead the UI.",
+      "options": [
+        {
+          "value": "reading",
+          "label": "Reading"
+        },
+        {
+          "value": "searching",
+          "label": "Searching"
+        },
+        {
+          "value": "creating",
+          "label": "Creating"
+        },
+        {
+          "value": "monitoring",
+          "label": "Monitoring"
+        },
+        {
+          "value": "managing",
+          "label": "Managing records"
+        },
+        {
+          "value": "communicating",
+          "label": "Communicating"
+        }
+      ]
+    },
+    {
+      "id": "u_skill",
+      "section": "users",
+      "type": "stops",
+      "prompt": "How comfortable are they with software like this?",
+      "options": [
+        {
+          "value": "novice",
+          "label": "First-timers"
+        },
+        {
+          "value": "mixed",
+          "label": "Mixed"
+        },
+        {
+          "value": "expert",
+          "label": "Power users"
+        }
+      ]
+    },
+    {
+      "id": "u_context",
+      "section": "users",
+      "type": "chips",
+      "prompt": "Where and how do they use it?",
+      "options": [
+        {
+          "value": "desk",
+          "label": "At a desk"
+        },
+        {
+          "value": "moving",
+          "label": "On the move"
+        },
+        {
+          "value": "field",
+          "label": "In the field"
+        },
+        {
+          "value": "shared",
+          "label": "On a shared screen"
+        },
+        {
+          "value": "lowband",
+          "label": "Slow or patchy internet"
+        }
+      ]
+    },
+    {
+      "id": "x_feel",
+      "section": "experience",
+      "type": "chips",
+      "max": 3,
+      "prompt": "Pick up to three words for how it should feel.",
+      "options": [
+        {
+          "value": "trustworthy",
+          "label": "Trustworthy"
+        },
+        {
+          "value": "premium",
+          "label": "Premium"
+        },
+        {
+          "value": "fast",
+          "label": "Fast"
+        },
+        {
+          "value": "technical",
+          "label": "Technical"
+        },
+        {
+          "value": "friendly",
+          "label": "Friendly"
+        },
+        {
+          "value": "bold",
+          "label": "Bold"
+        },
+        {
+          "value": "minimal",
+          "label": "Minimal"
+        },
+        {
+          "value": "editorial",
+          "label": "Editorial"
+        }
+      ]
+    },
+    {
+      "id": "x_tone",
+      "section": "experience",
+      "type": "dials",
+      "prompt": "Nudge the dials. Leave any you don't care about.",
+      "why": "Position matters more than precision. Untouched dials mean no opinion.",
+      "items": [
+        {
+          "id": "d_playful",
+          "left": "Professional",
+          "right": "Playful"
+        },
+        {
+          "id": "d_expressive",
+          "left": "Quiet",
+          "right": "Expressive"
+        },
+        {
+          "id": "d_spacious",
+          "left": "Dense",
+          "right": "Spacious"
+        },
+        {
+          "id": "d_distinct",
+          "left": "Familiar",
+          "right": "Distinctive"
+        }
+      ]
+    },
+    {
+      "id": "x_stakes",
+      "section": "experience",
+      "type": "stops",
+      "prompt": "When someone makes a mistake, how bad is it?",
+      "why": "Drives confirmations, undo, audit trails and how destructive actions look.",
+      "options": [
+        {
+          "value": "low",
+          "label": "Easy to undo"
+        },
+        {
+          "value": "mod",
+          "label": "Annoying to fix"
+        },
+        {
+          "value": "high",
+          "label": "Costly: money, data or safety"
+        }
+      ]
+    },
+    {
+      "id": "x_mobile",
+      "section": "experience",
+      "type": "cards",
+      "prompt": "On a phone, what should people be able to do?",
+      "show_if": {
+        "p_platform": [
+          "both"
+        ]
+      },
+      "options": [
+        {
+          "value": "full",
+          "label": "Everything",
+          "hint": "Full management"
+        },
+        {
+          "value": "quick",
+          "label": "Quick actions",
+          "hint": "Approve, reply, update"
+        },
+        {
+          "value": "monitor",
+          "label": "Watch only",
+          "hint": "Status and alerts"
+        }
+      ]
+    },
+    {
+      "id": "x_content",
+      "section": "experience",
+      "type": "cards",
+      "prompt": "What carries the pages?",
+      "show_if": {
+        "p_type": [
+          "website",
+          "ecommerce"
+        ]
+      },
+      "options": [
+        {
+          "value": "copy",
+          "label": "Written content"
+        },
+        {
+          "value": "visual",
+          "label": "Photos and visuals"
+        },
+        {
+          "value": "catalogue",
+          "label": "Product grids"
+        },
+        {
+          "value": "mixed",
+          "label": "A mix"
+        }
+      ]
+    },
+    {
+      "id": "x_access",
+      "section": "experience",
+      "type": "chips",
+      "prompt": "Anything specific for accessibility or language?",
+      "why": "WCAG 2.2 AA is always the baseline. This adds to it.",
+      "options": [
+        {
+          "value": "keyboard",
+          "label": "Heavy keyboard use"
+        },
+        {
+          "value": "screenreader",
+          "label": "Screen-reader users"
+        },
+        {
+          "value": "lowvision",
+          "label": "Low-vision needs"
+        },
+        {
+          "value": "multilang",
+          "label": "Several languages / RTL"
+        },
+        {
+          "value": "none",
+          "label": "Just the baseline"
+        }
+      ]
+    },
+    {
+      "id": "x_brand",
+      "section": "experience",
+      "type": "segment",
+      "prompt": "Is there an existing brand to work with?",
+      "options": [
+        {
+          "value": "full",
+          "label": "Full brand guide"
+        },
+        {
+          "value": "partial",
+          "label": "Logo and colours"
+        },
+        {
+          "value": "none",
+          "label": "Starting fresh"
+        }
+      ]
+    },
+    {
+      "id": "v_direction",
+      "section": "visual",
+      "type": "cards",
+      "prompt": "Which of these feels closest?",
+      "why": "A gut pick. I will tailor real directions to your project afterwards.",
+      "options": [
+        {
+          "value": "minimal",
+          "label": "Minimal",
+          "hint": "Quiet, monochrome, lots of air",
+          "preview": {
+            "nav": "top",
+            "density": 1,
+            "radius": 6,
+            "surface": "flat",
+            "palette": {
+              "bg": "#fafafa",
+              "surface": "#ffffff",
+              "accent": "#111111",
+              "ink": "#111111",
+              "line": "#e5e5e5"
+            }
+          }
+        },
+        {
+          "value": "technical",
+          "label": "Technical",
+          "hint": "Dense, dark, precise",
+          "preview": {
+            "nav": "sidebar",
+            "density": 3,
+            "radius": 4,
+            "surface": "flat",
+            "mono": true,
+            "palette": {
+              "bg": "#0f1216",
+              "surface": "#171b21",
+              "accent": "#4cc2ff",
+              "ink": "#e6e9ee",
+              "line": "#2a313a"
+            }
+          }
+        },
+        {
+          "value": "editorial",
+          "label": "Editorial",
+          "hint": "Serif type, paper tones",
+          "preview": {
+            "nav": "top",
+            "density": 1,
+            "radius": 2,
+            "surface": "open",
+            "serif": true,
+            "palette": {
+              "bg": "#f6f1e7",
+              "surface": "#fffdf8",
+              "accent": "#8a3b12",
+              "ink": "#241c15",
+              "line": "#ddd3c0"
+            }
+          }
+        },
+        {
+          "value": "friendly",
+          "label": "Friendly",
+          "hint": "Rounded, soft, approachable",
+          "preview": {
+            "nav": "top",
+            "density": 2,
+            "radius": 14,
+            "surface": "elevated",
+            "palette": {
+              "bg": "#f4f8ff",
+              "surface": "#ffffff",
+              "accent": "#3b82f6",
+              "ink": "#1c2333",
+              "line": "#dbe6f7"
+            }
+          }
+        },
+        {
+          "value": "bold",
+          "label": "Bold",
+          "hint": "High contrast, loud accent",
+          "preview": {
+            "nav": "top",
+            "density": 2,
+            "radius": 8,
+            "surface": "flat",
+            "palette": {
+              "bg": "#fff7e6",
+              "surface": "#ffffff",
+              "accent": "#e5391c",
+              "ink": "#141414",
+              "line": "#141414"
+            }
+          }
+        },
+        {
+          "value": "premium",
+          "label": "Premium",
+          "hint": "Dark, gold, thin lines",
+          "preview": {
+            "nav": "top",
+            "density": 1,
+            "radius": 3,
+            "surface": "open",
+            "serif": true,
+            "palette": {
+              "bg": "#0c0c0e",
+              "surface": "#141417",
+              "accent": "#c9a86a",
+              "ink": "#f1ece2",
+              "line": "#2b2a2e"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "v_nav",
+      "section": "visual",
+      "type": "cards",
+      "prompt": "Which navigation feels right?",
+      "show_if": {
+        "p_type": {
+          "not": [
+            "mobile"
+          ]
+        }
+      },
+      "options": [
+        {
+          "value": "sidebar",
+          "label": "Sidebar",
+          "hint": "Always visible, deep",
+          "preview": {
+            "nav": "sidebar",
+            "density": 2,
+            "radius": 6
+          }
+        },
+        {
+          "value": "top",
+          "label": "Top bar",
+          "hint": "Light, familiar",
+          "preview": {
+            "nav": "top",
+            "density": 2,
+            "radius": 6
+          }
+        },
+        {
+          "value": "tabs",
+          "label": "Bottom tabs",
+          "hint": "Thumb-friendly",
+          "preview": {
+            "nav": "tabs",
+            "density": 2,
+            "radius": 6
+          }
+        }
+      ]
+    },
+    {
+      "id": "v_surface",
+      "section": "visual",
+      "type": "cards",
+      "prompt": "How should content sit on the page?",
+      "options": [
+        {
+          "value": "flat",
+          "label": "Flat and bordered",
+          "hint": "Crisp edges",
+          "preview": {
+            "nav": "none",
+            "density": 2,
+            "radius": 6,
+            "surface": "flat"
+          }
+        },
+        {
+          "value": "elevated",
+          "label": "Soft elevation",
+          "hint": "Cards that lift",
+          "preview": {
+            "nav": "none",
+            "density": 2,
+            "radius": 10,
+            "surface": "elevated"
+          }
+        },
+        {
+          "value": "open",
+          "label": "Open and airy",
+          "hint": "No boxes, rules only",
+          "preview": {
+            "nav": "none",
+            "density": 2,
+            "radius": 0,
+            "surface": "open"
+          }
+        }
+      ]
+    },
+    {
+      "id": "v_shape",
+      "section": "visual",
+      "type": "dials",
+      "prompt": "Corners",
+      "items": [
+        {
+          "id": "d_soft",
+          "left": "Sharp corners",
+          "right": "Soft corners"
+        }
+      ]
+    },
+    {
+      "id": "v_theme",
+      "section": "visual",
+      "type": "segment",
+      "prompt": "Light, dark, or both?",
+      "options": [
+        {
+          "value": "light",
+          "label": "Light"
+        },
+        {
+          "value": "dark",
+          "label": "Dark"
+        },
+        {
+          "value": "both",
+          "label": "Both, follow the device"
+        }
+      ]
+    },
+    {
+      "id": "v_accent",
+      "section": "visual",
+      "type": "swatches",
+      "prompt": "An accent colour, if you have a feeling.",
+      "options": [
+        {
+          "value": "blue",
+          "label": "Blue",
+          "color": "#2f6feb"
+        },
+        {
+          "value": "green",
+          "label": "Green",
+          "color": "#1a8f5a"
+        },
+        {
+          "value": "violet",
+          "label": "Violet",
+          "color": "#7a4ff0"
+        },
+        {
+          "value": "orange",
+          "label": "Orange",
+          "color": "#e8710a"
+        },
+        {
+          "value": "red",
+          "label": "Red",
+          "color": "#d92d20"
+        },
+        {
+          "value": "teal",
+          "label": "Teal",
+          "color": "#0b8f9c"
+        },
+        {
+          "value": "ink",
+          "label": "Ink",
+          "color": "#1b1f24"
+        }
+      ]
+    },
+    {
+      "id": "v_notes",
+      "section": "visual",
+      "type": "text",
+      "multiline": true,
+      "optional": true,
+      "prompt": "Anything to copy or avoid? Sites you admire, things you hate.",
+      "placeholder": "Optional"
+    }
+  ],
+  "rules": [
+    {
+      "id": "r01",
+      "area": "ux",
+      "when": {
+        "u_frequency": [
+          "daily",
+          "allday"
+        ]
+      },
+      "say": "Used daily: persistent navigation, keyboard shortcuts and fast repeated actions matter more than first-impression polish."
+    },
+    {
+      "id": "r02",
+      "area": "ux",
+      "when": {
+        "u_frequency": [
+          "occasional"
+        ]
+      },
+      "say": "Used occasionally: screens must explain themselves. Guidance beats speed."
+    },
+    {
+      "id": "r03",
+      "area": "ux",
+      "when": {
+        "u_activity": [
+          "managing",
+          "searching"
+        ]
+      },
+      "say": "Records-heavy work: tables, filters and saved views become first-class."
+    },
+    {
+      "id": "r04",
+      "area": "ux",
+      "when": {
+        "u_activity": [
+          "monitoring"
+        ]
+      },
+      "say": "Monitoring: glanceable status, alerts and data-freshness indicators."
+    },
+    {
+      "id": "r05",
+      "area": "ux",
+      "when": {
+        "u_activity": [
+          "creating"
+        ]
+      },
+      "say": "Creation flows need autosave, undo and strong empty states."
+    },
+    {
+      "id": "r06",
+      "area": "ux",
+      "when": {
+        "u_skill": [
+          "expert"
+        ]
+      },
+      "say": "Power users: density and shortcuts over hand-holding."
+    },
+    {
+      "id": "r07",
+      "area": "ux",
+      "when": {
+        "u_skill": [
+          "novice"
+        ]
+      },
+      "say": "First-timers: guided onboarding, plain language, fewer options per screen."
+    },
+    {
+      "id": "r08",
+      "area": "responsive",
+      "when": {
+        "u_context": [
+          "lowband"
+        ]
+      },
+      "say": "Slow connections: lean pages, skeleton loading and offline-tolerant error states."
+    },
+    {
+      "id": "r09",
+      "area": "responsive",
+      "when": {
+        "u_context": [
+          "moving",
+          "field"
+        ]
+      },
+      "say": "Used away from a desk: large touch targets, high contrast, quick actions."
+    },
+    {
+      "id": "r10",
+      "area": "accessibility",
+      "when": {
+        "u_context": [
+          "shared"
+        ]
+      },
+      "say": "Shared screens: larger type and stronger contrast."
+    },
+    {
+      "id": "r11",
+      "area": "ux",
+      "when": {
+        "x_stakes": [
+          "high"
+        ]
+      },
+      "say": "High stakes: confirm destructive actions, keep an audit trail, make undo obvious."
+    },
+    {
+      "id": "r12",
+      "area": "ux",
+      "when": {
+        "x_stakes": [
+          "low"
+        ]
+      },
+      "say": "Low stakes: prefer undo over confirmation dialogs."
+    },
+    {
+      "id": "r13",
+      "area": "visual",
+      "when": {
+        "d_spacious": {
+          "lte": 30
+        }
+      },
+      "say": "Dense layout with tight rows."
+    },
+    {
+      "id": "r14",
+      "area": "visual",
+      "when": {
+        "d_spacious": {
+          "gte": 70
+        }
+      },
+      "say": "Airy layout with generous spacing."
+    },
+    {
+      "id": "r15",
+      "area": "visual",
+      "when": {
+        "d_distinct": {
+          "gte": 70
+        }
+      },
+      "say": "Strong identity: custom type and illustration, at higher design effort."
+    },
+    {
+      "id": "r16",
+      "area": "visual",
+      "when": {
+        "d_distinct": {
+          "lte": 30
+        }
+      },
+      "say": "Familiar patterns: borrow conventions users already know."
+    },
+    {
+      "id": "r17",
+      "area": "responsive",
+      "when": {
+        "p_platform": [
+          "desktop"
+        ]
+      },
+      "say": "Desktop-first, with mobile as a deliberate adaptation."
+    },
+    {
+      "id": "r18",
+      "area": "responsive",
+      "when": {
+        "p_platform": [
+          "phone",
+          "native"
+        ]
+      },
+      "say": "Mobile-first: thumb-reach navigation, single column."
+    },
+    {
+      "id": "r19",
+      "area": "responsive",
+      "when": {
+        "x_mobile": [
+          "quick"
+        ]
+      },
+      "say": "Mobile is for quick actions: a reduced, task-focused view."
+    },
+    {
+      "id": "r20",
+      "area": "accessibility",
+      "when": {
+        "x_access": [
+          "keyboard",
+          "screenreader"
+        ]
+      },
+      "say": "Keyboard and screen-reader paths are first-class, not retrofitted."
+    },
+    {
+      "id": "r21",
+      "area": "accessibility",
+      "when": {
+        "x_access": [
+          "multilang"
+        ]
+      },
+      "say": "Layouts must tolerate text expansion and RTL."
+    },
+    {
+      "id": "r22",
+      "area": "visual",
+      "when": {
+        "v_theme": [
+          "dark"
+        ]
+      },
+      "say": "Dark-first theme."
+    },
+    {
+      "id": "r23",
+      "area": "screens",
+      "when": {
+        "p_type": [
+          "saas",
+          "dashboard",
+          "internal"
+        ]
+      },
+      "say": "Application shell with persistent navigation is the likely structure."
+    },
+    {
+      "id": "r24",
+      "area": "visual",
+      "when": {
+        "d_playful": {
+          "gte": 70
+        }
+      },
+      "say": "Playful tone: friendlier copy and rounder shapes."
+    },
+    {
+      "id": "r25",
+      "area": "visual",
+      "when": {
+        "d_playful": {
+          "lte": 30
+        }
+      },
+      "say": "Professional tone: restrained colour and precise copy."
+    },
+    {
+      "id": "r26",
+      "area": "screens",
+      "when": {
+        "p_type": [
+          "website",
+          "ecommerce"
+        ]
+      },
+      "say": "Content-led pages: hero, sections and a clear primary call to action."
+    },
+    {
+      "id": "r_s1",
+      "area": "project",
+      "when": {
+        "s_wager": [
+          "days"
+        ]
+      },
+      "say": "A bet of days: keep scope to the single path that tests the belief. Everything else waits."
+    },
+    {
+      "id": "r_s2",
+      "area": "project",
+      "when": {
+        "s_wager": [
+          "months"
+        ]
+      },
+      "say": "A bet of months: stage the work so an early release can confirm or kill the belief."
+    },
+    {
+      "id": "r_s3",
+      "area": "project",
+      "when": {
+        "s_indicator": [
+          "conversion",
+          "signups",
+          "revenue"
+        ]
+      },
+      "say": "Growth indicator: the first screen and the main call to action carry most of the weight."
+    },
+    {
+      "id": "r_s4",
+      "area": "project",
+      "when": {
+        "s_indicator": [
+          "time_saved",
+          "errors"
+        ]
+      },
+      "say": "Efficiency indicator: favour fewer steps, defaults and fast repeated actions."
+    }
+  ]
+}

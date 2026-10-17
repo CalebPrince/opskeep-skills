@@ -29,6 +29,10 @@ Other business models (separate packs):
 - `Opskeep hospitality` - restaurant/venue work, needs `opskeep-hospitality` installed
 - `Opskeep accounting` - client books, reconciliations, filing deadlines, management reports, needs `opskeep-accounting` installed
 
+Before you build:
+- `new project`, `project gate`, `design decisions` - agree the problem and the design before anything is built
+- `security gate` - Secure by Design baseline once the project gate passes
+
 Manage Opskeep:
 - `setup`, `connect tools`, `company brain`, `automation`, `trigger`, `loop`
 

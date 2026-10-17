@@ -1,10 +1,10 @@
 ---
 name: opskeep
-description: "Use when the user invokes Opskeep and needs routing across service-business operations, Opskeep setup/management, or Opskeep tools. Routes to business lanes: get work, define work, deliver work, get paid, keep clients, improve operations; to Manage Opskeep for setup, tools, automations, memory, and preferences; to Opskeep Tools for audio briefs, huddles, reminders, time tracking, and Composio-backed utilities; to the separately installed opskeep-retail / opskeep-hospitality / opskeep-accounting vertical router whenever shop, venue, or accounting-practice client work (bookkeeping, reconciliations, filing deadlines, management accounts) is on the table; or to opskeep-manage-client-keys when the user is the agent manager tracking per-client API keys, credits, and usage."
+description: "Use when the user invokes Opskeep and needs routing across service-business operations, Opskeep setup/management, or Opskeep tools. Routes to business lanes: get work, define work, deliver work, get paid, keep clients, improve operations; to Manage Opskeep for setup, tools, automations, memory, and preferences; to Opskeep Tools for audio briefs, huddles, reminders, time tracking, and Composio-backed utilities; to the separately installed opskeep-retail / opskeep-hospitality / opskeep-accounting vertical router whenever shop, venue, or accounting-practice client work (bookkeeping, reconciliations, filing deadlines, management accounts) is on the table; to opskeep-project-gate before any new app, website, dashboard or major redesign is built (then opskeep-elliot-design for the security gate); or to opskeep-manage-client-keys when the user is the agent manager tracking per-client API keys, credits, and usage."
 metadata:
   lane: meta
-  version: 2.3.0
-  pack_version: 0.2.0
+  version: 2.4.0
+  pack_version: 0.3.0
 ---
 
 # Opskeep
@@ -36,6 +36,8 @@ No command? Use conversation context to choose the best destination. Show the me
 | Run your business: Get paid | `get paid`, `getting paid`, `invoice`, `payment`, `budget`, `billable`, `time review`, `margin` | `opskeep-get-paid` |
 | Run your business: Keep clients | `keep clients`, `relationship`, `follow up`, `check-in`, `client health`, `stakeholder`, `retention`, `renewal`, `testimonial`, `referral` | `opskeep-keep-clients` |
 | Run your business: Improve operations | `improve operations`, `lessons`, `retrospective`, `close`, `archive`, `handover`, `benefits`, `reuse`, `SOP`, `template`, `video tutorial`, `YouTube link`, `transcript` | `opskeep-improve-operations` |
+| Before you build | `new project`, `new app`, `new website`, `before we start`, `project gate`, `design decisions`, `design direction`, `DESIGN.md`, `redesign`, `scaffold` | `opskeep-project-gate` |
+| Security gate | `security gate`, `secure by design`, `security baseline`, `threat model`; `security review` of an existing repo | `opskeep-elliot-design`; existing repo -> `opskeep-elliot-review` |
 | Manage Opskeep | `manage opskeep`, `setup`, `onboard opskeep`, `business profile`, `preferences`, `company brain`, `memory`, `connect tools`, `connector`, `automation`, `trigger`, `loop`, `recurring workflow` | `opskeep-manage` |
 | Opskeep Tools | `opskeep tools`, `audio brief`, `voice session`, `talk by voice`, `follow-up reminder`, `email reminder`, `time tracking`, `time entry`, `expense tracking`, `job expense`, `mileage`, `escalate`, `escalation`, `composio`, `hosted utility` | `opskeep-tools` |
 | Manage client access | `client keys`, `api key`, `key registry`, `keys per client`, `credits`, `top up`, `credit balance`, `per-client usage`, `agent usage`, `agency`, `agent manager` | `opskeep-manage-client-keys` |
@@ -63,6 +65,7 @@ No command? Use conversation context to choose the best destination. Show the me
 13. Retail/shop or hospitality/venue business-model intent (stock up, reorder, low stock, SKU, till, markdown or prep list, reservation, table, waitlist, nightly close-out) routes to the matching installed vertical pack router: `opskeep-retail` or `opskeep-hospitality`. Accounting-practice client work (a client's books, reconciliations, records requests, filing deadlines, management accounts, engagement letters) routes to `opskeep-accounting`. That pack's lanes own its loop end-to-end; do not flatten shop, venue or client-books work into core service lanes. The accounting practice's *own* invoices, WIP, retainers and aged debtors stay in core `get paid`.
 14. Vertical packs are separate installs staged under `verticals/<pack>/skills/`. If the matching vertical router is not installed, return the clone-and-copy install path and use `TBD` for the target skill rather than inventing or running `opskeep-retail-*` / `opskeep-hospitality-*` / `opskeep-accounting-*` skills as if they were present.
 15. Agent-manager bookkeeping intent (the user's clients' AI API keys, top-ups, credit balances, or what their agents use) routes to `opskeep-manage-client-keys`. Per-client money still stays in `get paid`, and live external app writes stay in `composio`.
+16. Starting something new to build (an app, website, dashboard, internal tool, store or major redesign) with no approved design on record routes to `opskeep-project-gate` first. It owns the problem, the bet and the design decisions; it never authorises implementation. After it seals, `opskeep-elliot-design` runs the security gate. Changing a foundational decision on an approved gate ("make it mobile-first") also goes back to `opskeep-project-gate`, which reopens only the affected decisions.
 
 ## Tie-Breakers
 
@@ -71,7 +74,8 @@ No command? Use conversation context to choose the best destination. Show the me
 - `budget` -> `get paid` for burn, forecast, variance, margin, invoice, change-control health. `define work` for new baseline. Ambiguous? Ask one short question.
 - `brief` alone -> `define work` for working brief or `deliver work` for status brief, not audio.
 - `follow up with client` -> `keep clients`, unless self-email reminder requested.
-- `plan` -> `define work`, not another PM skill.
+- `plan` -> `define work`, not another PM skill; planning a new app, site or redesign to be *built* -> `opskeep-project-gate`.
+- `scope` -> `define work` for a client engagement's scope; `opskeep-project-gate` for what a new product should be and how it looks before building.
 - `monitor` -> `deliver work`, unless money/relationship wording dominates.
 - `stakeholder map/setup/decision authority` -> `define work`; relationship health/check-ins/retention -> `keep clients`.
 - `company brain` -> `opskeep-manage` for setup/config/access; `improve operations` for ongoing process learning.

@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>__TITLE__</title>
+<style>
+/*__COMMON_CSS__*/
+.wrap{max-width:1180px;margin:0 auto;padding:24px 16px 64px}
+.head{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:flex-end;margin-bottom:18px}
+.head h1{font-size:30px;margin-top:8px}
+.head .sub{color:var(--muted);margin-top:4px;max-width:64ch}
+.ready{min-width:260px;flex:1;max-width:420px}
+.ready .big{font:700 28px/1 var(--mono);display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
+.ready .big small{font:600 11px var(--mono);color:var(--muted);letter-spacing:.1em}
+.counts{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.banner{border:1px solid var(--warn);background:var(--warn-bg);color:var(--warn);border-radius:10px;padding:10px 14px;margin-bottom:16px;font-size:14px}
+.layout{display:grid;gap:24px;grid-template-columns:minmax(0,1fr)}
+@media (min-width:1000px){.layout{grid-template-columns:minmax(0,1fr) 330px;align-items:start}}
+section.blk{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:18px;box-shadow:var(--shadow)}
+section.blk>h2{font:700 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+.kv{display:grid;grid-template-columns:140px 1fr;gap:8px 16px;margin:0;font-size:14px}
+.kv dt{color:var(--muted)}.kv dd{margin:0}
+@media (max-width:560px){.kv{grid-template-columns:1fr}.kv dt{margin-top:6px}}
+.trait{display:grid;grid-template-columns:110px 1fr 44px;gap:12px;align-items:center;font-size:14px;margin:8px 0}
+.trait b{font:600 13px var(--mono);text-align:right}
+.block-need{border-color:var(--warn)}
+.need{padding:14px 0;border-top:1px solid var(--line)}
+.need:first-of-type{border-top:0;padding-top:0}
+.need h3{font-size:16px;margin:6px 0}
+.opts{display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:10px}
+.opt{text-align:left;border:1.5px solid var(--line-strong);background:var(--panel);border-radius:10px;padding:10px 12px;cursor:pointer}
+.opt:hover{border-color:var(--accent);background:var(--accent-soft)}
+.opt b{display:block;font-size:14px}.opt small{color:var(--muted)}
+.area-h{font-size:15px;margin:18px 0 6px}
+.area-h:first-of-type{margin-top:0}
+ul.decs{list-style:none;margin:0;padding:0}
+.dec{padding:12px 0;border-top:1px solid var(--line)}
+.dec:first-child{border-top:0}
+.dec.muted{opacity:.55}
+.dec-head{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.dec-head .id{font-size:12px;color:var(--muted)}
+.dec-title{font-weight:650;flex:1;min-width:160px}
+.dec-val{margin-top:4px}
+.dec-why{margin-top:2px;color:var(--muted);font-size:13px}
+.dec .row{margin-top:8px}
+.dec.changed{border-left:3px solid var(--accent);padding-left:12px;margin-left:-15px}
+.dirs{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.dir{border:1.5px solid var(--line);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:10px;background:var(--panel)}
+.dir.sel{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.dir-top{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.dir-top h3{font-size:16px;flex:1}
+.dir .detail{font-size:13px;display:grid;gap:8px;border-top:1px solid var(--line);padding-top:10px}
+.dir .detail dl{display:grid;grid-template-columns:auto 1fr;gap:3px 12px;margin:0}
+.dir .detail dt{color:var(--muted)}.dir .detail dd{margin:0;text-align:right}
+.swatchrow{display:flex;gap:4px}.swatchrow i{width:18px;height:18px;border-radius:5px;border:1px solid var(--line)}
+table.found{width:100%;border-collapse:collapse;font-size:14px}
+table.found td{padding:7px 0;border-top:1px solid var(--line)}
+table.found td:first-child{color:var(--muted);width:42%}
+.risk{display:flex;gap:10px;font-size:14px;padding:6px 0}
+.rail{position:sticky;top:12px}
+@media (max-width:999px){.rail{position:static}}
+.gate{border:2px solid var(--warn);border-radius:14px;padding:18px;background:var(--panel);box-shadow:var(--shadow)}
+.gate.ok{border-color:var(--ok)}
+.gate .state{font:700 15px var(--mono);color:var(--warn);margin:8px 0 4px}
+.gate .fine{font-size:13px;color:var(--muted);margin-bottom:12px}
+.gate ul{margin:0 0 12px;padding-left:18px;font-size:13px;color:var(--warn)}
+.gate .btns{display:grid;gap:8px}
+.gate .btns .btn{padding:10px 14px}
+.gate textarea{margin:10px 0;min-height:64px}
+.confirm{border:1px solid var(--line-strong);background:var(--neutral-bg);border-radius:10px;padding:12px;font-size:13px;margin-top:10px;display:grid;gap:10px}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+<script>const DATA=/*__DATA__*/null;</script>
+<script>
+/*__COMMON_JS__*/
+</script>
+<script>
+const S = DATA.state, H = DATA.base_hash, KEY = 'pg-dash:' + H;
+const LABEL = {CONFIRMED:'Confirmed', INFERRED:'Inferred', PROPOSED:'Proposed', NEEDS_INPUT:'Needs input', REJECTED:'Rejected', SUPERSEDED:'Superseded'};
+const AREAS = [['strategy','The problem & the bet'],['project','Project'],['users','Users & jobs'],['ux','UX decisions'],['screens','Screen architecture'],['visual','Visual direction'],['responsive','Responsive strategy'],['accessibility','Accessibility']];
+const W = {CONFIRMED:1, INFERRED:.75, PROPOSED:.5, NEEDS_INPUT:0, REJECTED:0};
+
+let edits = {}, selDir = S.selected_direction || null, notes = '', editing = null, confirming = false, result = null;
+const openDirs = new Set();
+(function () { const s = store.get(KEY); if (s) { edits = s.edits || {}; selDir = s.selDir || selDir; notes = s.notes || ''; } })();
+const persist = () => store.set(KEY, {edits, selDir, notes});
+
+const eff = d => Object.assign({}, d, edits[d.id] || {});
+const decs = () => S.decisions.map(eff);
+function counts() { const c = {CONFIRMED:0,INFERRED:0,PROPOSED:0,NEEDS_INPUT:0,REJECTED:0,SUPERSEDED:0}; decs().forEach(d => c[d.status]++); return c; }
+function readiness(c) {
+  const active = c.CONFIRMED + c.INFERRED + c.PROPOSED + c.NEEDS_INPUT + c.REJECTED;
+  if (!active) return 0;
+  return Math.round(Object.keys(W).reduce((s, k) => s + W[k] * c[k], 0) / active * 100);
+}
+function conflicts() {
+  const m = Object.fromEntries(decs().map(d => [d.id, d])), live = x => x && !['REJECTED', 'SUPERSEDED'].includes(x.status);
+  return (S.conflicts || []).filter(c => live(m[c.a]) && live(m[c.b]));
+}
+function blockers() {
+  const c = counts(), b = [];
+  if (c.NEEDS_INPUT) b.push(`${c.NEEDS_INPUT} decision${c.NEEDS_INPUT > 1 ? 's' : ''} still need your input`);
+  if (c.REJECTED) b.push(`${c.REJECTED} rejected: use Request Changes so I can replace ${c.REJECTED > 1 ? 'them' : 'it'}`);
+  const cf = conflicts().length; if (cf) b.push(`${cf} unresolved conflict${cf > 1 ? 's' : ''}`);
+  if (!selDir) b.push('Pick a design direction');
+  return b;
+}
+const pill = s => `<span class="pill s-${s}">${LABEL[s]}</span>`;
+const dirName = id => (S.directions.find(x => x.id === id) || {}).name || '';
+
+/* ---------- pieces ---------- */
+function header(c, pct) {
+  return `<div class="head"><div><div class="eyebrow">Opskeep · Project Gate</div><h1>${esc(S.project.name)}</h1>` +
+    (S.project.one_liner ? `<p class="sub">${esc(S.project.one_liner)}</p>` : '') + `</div>` +
+    `<div class="ready"><div class="big"><span>${pct}%</span><small>READY</small></div>` +
+    `<div class="meter" role="progressbar" aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100"><i style="width:${pct}%"></i></div>` +
+    `<div class="counts">${['CONFIRMED','INFERRED','PROPOSED','NEEDS_INPUT'].map(k => `<span class="pill s-${k}">${c[k]} ${LABEL[k].toLowerCase()}</span>`).join('')}` +
+    `<span class="pill ${conflicts().length ? 's-REJECTED' : 's-PROPOSED'}">${conflicts().length} conflicts</span></div></div></div>`;
+}
+function reopenBanner() {
+  const g = S.gate || {};
+  if (g.status !== 'reopened' || !(g.reopened || []).length) return '';
+  return `<div class="banner"><b>Reopened.</b> ${g.reopened.length} decision${g.reopened.length > 1 ? 's' : ''} affected by a change (${esc(g.reopened.join(', '))}). Everything else stays as approved.</div>`;
+}
+function strategyBlock() {
+  const st = S.strategy; if (!st) return '';
+  const c = st.constraint || {}, b = st.bet || {}, f = st.forces || {};
+  const rejected = S.directions.filter(x => x.id !== selDir);
+  const forces = ['push', 'pull', 'anxiety', 'habit'].filter(k => f[k]);
+  return `<section class="blk"><h2>The problem &amp; the bet</h2>` +
+    `<p style="font-size:17px;font-weight:650;margin:0 0 6px">${esc(c.statement || '')}</p>` +
+    (c.evidence ? `<p class="hint" style="margin:0 0 14px">Evidence: ${esc(c.evidence)}</p>` : '<p class="hint" style="margin:0 0 14px">No evidence recorded yet.</p>') +
+    (forces.length ? `<dl class="kv">${forces.map(k => `<dt>${k[0].toUpperCase() + k.slice(1)}</dt><dd>${esc(f[k])}</dd>`).join('')}</dl>` : '') +
+    `<h3 class="area-h">Already working or existing</h3><p style="margin:0">${(st.existing_assets || []).map(esc).join('; ')}</p>` +
+    `<h3 class="area-h">The bet</h3><p style="margin:0">We believe ${esc(b.belief || '')}, so we are betting <b>${esc(b.wager || '')}</b> that this produces ${esc(b.expected_outcome || '')}. We will watch ${esc(b.leading_indicator || '')}.</p>` +
+    `<h3 class="area-h">Outcomes</h3><ul style="margin:0;padding-left:18px">${(st.outcomes || []).map(o => `<li>${esc(o)}</li>`).join('')}</ul>` +
+    (rejected.length ? `<h3 class="area-h">Paths considered${selDir ? ' and not chosen' : ''}</h3><ul style="margin:0;padding-left:18px">${rejected.map(x => `<li><b>${esc(x.name)}</b>: ${esc(x.why_not || x.tradeoffs)}</li>`).join('')}</ul>` : '') +
+    `</section>`;
+}
+function intentBlock() {
+  return `<section class="blk"><h2>Project intent</h2><dl class="kv">${(S.intent || []).map(r => `<dt>${esc(r.label)}</dt><dd>${esc(r.value)}</dd>`).join('')}</dl></section>`;
+}
+function characterBlock() {
+  if (!(S.character || []).length) return '';
+  return `<section class="blk"><h2>Product character</h2>${S.character.map(t =>
+    `<div class="trait"><span>${esc(t.trait)}</span><div class="meter" role="img" aria-label="${esc(t.trait)} ${t.score} percent"><i style="width:${t.score}%"></i></div><b>${t.score}%</b></div>`).join('')}</section>`;
+}
+function needBlock() {
+  const ns = decs().filter(d => d.status === 'NEEDS_INPUT');
+  if (!ns.length) return '';
+  return `<section class="blk block-need"><h2>Blocking decisions · ${ns.length}</h2>${ns.map(d => `<div class="need"><span class="pill s-NEEDS_INPUT">Needs input</span> <span class="mono hint">${d.id}</span>` +
+    `<h3>${esc(d.question || d.title)}</h3>${d.rationale ? `<p class="hint">${esc(d.rationale)}</p>` : ''}` +
+    (d.reopened_because ? `<p class="hint">Reopened: ${esc(d.reopened_because)}</p>` : '') +
+    (d.options && d.options.length
+      ? `<div class="opts">${d.options.map(o => `<button type="button" class="opt" data-a="choose" data-id="${d.id}" data-v="${esc(o.value)}" data-l="${esc(o.label)}"><b>${esc(o.label)}</b>${o.hint ? `<small>${esc(o.hint)}</small>` : ''}</button>`).join('')}</div>`
+      : `<textarea id="ed-${d.id}" placeholder="Your answer" aria-label="${esc(d.title)}"></textarea><button type="button" class="btn primary sm" data-a="save-free" data-id="${d.id}">Save answer</button>`) +
+    `</div>`).join('')}</section>`;
+}
+function actions(d, changed) {
+  const b = (a, l, cls) => `<button type="button" class="btn sm ${cls || ''}" data-a="${a}" data-id="${d.id}">${l}</button>`;
+  let r = '';
+  if (d.status === 'INFERRED' || d.status === 'PROPOSED') r = b('confirm', 'Confirm', 'primary') + b('edit', 'Change') + b('reject', 'Reject', 'danger');
+  else if (d.status === 'CONFIRMED') r = b('edit', 'Change') + (changed ? b('reset', 'Undo') : '');
+  else if (d.status === 'REJECTED') r = b('reset', 'Reconsider');
+  return r ? `<div class="row">${r}</div>` : '';
+}
+function editor(d) {
+  return `<div class="row" style="align-items:stretch;flex-direction:column;gap:8px;margin-top:8px">` +
+    (d.options && d.options.length ? `<div class="opts">${d.options.map(o => `<button type="button" class="opt" data-a="choose" data-id="${d.id}" data-v="${esc(o.value)}" data-l="${esc(o.label)}"><b>${esc(o.label)}</b>${o.hint ? `<small>${esc(o.hint)}</small>` : ''}</button>`).join('')}</div>` : '') +
+    `<textarea id="ed-${d.id}" aria-label="Edit ${esc(d.title)}">${esc(d.value)}</textarea>` +
+    `<div class="row"><button type="button" class="btn primary sm" data-a="save-edit" data-id="${d.id}">Save change</button><button type="button" class="btn sm" data-a="cancel-edit">Cancel</button></div></div>`;
+}
+function decRow(d) {
+  const changed = !!edits[d.id];
+  return `<li class="dec ${d.status === 'SUPERSEDED' ? 'muted' : ''} ${changed ? 'changed' : ''}" id="${d.id}"><div class="dec-head"><span class="mono id">${d.id}</span><span class="dec-title">${esc(d.title)}</span>${pill(d.status)}</div>` +
+    `<div class="dec-val">${esc(d.value)}</div>${d.rationale ? `<div class="dec-why">${esc(d.rationale)}</div>` : ''}` +
+    (editing === d.id ? editor(d) : actions(d, changed)) + `</li>`;
+}
+function decisionsBlock() {
+  const all = decs().filter(d => d.status !== 'NEEDS_INPUT');
+  const html = AREAS.map(([k, label]) => {
+    const rows = all.filter(d => d.area === k && d.status !== 'SUPERSEDED');
+    return rows.length ? `<h3 class="area-h">${label}</h3><ul class="decs">${rows.map(decRow).join('')}</ul>` : '';
+  }).join('');
+  const sup = all.filter(d => d.status === 'SUPERSEDED');
+  return `<section class="blk"><h2>Decisions</h2>${html}${sup.length ? `<h3 class="area-h">Superseded</h3><ul class="decs">${sup.map(decRow).join('')}</ul>` : ''}</section>`;
+}
+function conflictBlock() {
+  const cf = conflicts(); if (!cf.length) return '';
+  return `<section class="blk block-need"><h2>Conflicts · ${cf.length}</h2>${cf.map(c => `<p class="need"><span class="mono">${c.a} ↔ ${c.b}</span><br>${esc(c.text)}<br><span class="hint">Reject or change one of them above to resolve.</span></p>`).join('')}</section>`;
+}
+function dirCard(x) {
+  const sel = selDir === x.id, open = openDirs.has(x.id), col = (x.tokens && x.tokens.color) || {};
+  return `<article class="dir ${sel ? 'sel' : ''}"><div class="stage">${miniPreview(Object.assign({title: S.project.name}, x.preview))}</div>` +
+    `<div class="dir-top"><span class="mono hint">${x.id}</span><h3>${esc(x.name)}</h3>${sel ? '<span class="pill s-CONFIRMED">Selected</span>' : ''}</div><p>${esc(x.tagline)}</p>` +
+    (open ? `<div class="detail"><p>${esc(x.fit)}</p><div class="swatchrow" aria-label="Palette">${['bg','surface','primary','text'].map(k => col[k] ? `<i style="background:${esc(col[k])}" title="${k} ${esc(col[k])}"></i>` : '').join('')}</div>` +
+      `<dl>${Object.entries(x.foundation).map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join('')}</dl><p><b>Trade-off:</b> ${esc(x.tradeoffs)}</p></div>` : '') +
+    `<div class="row"><button type="button" class="btn ${sel ? '' : 'primary'}" data-a="select-dir" data-id="${x.id}" aria-pressed="${sel}">${sel ? 'Selected' : 'Select direction'}</button>` +
+    `<button type="button" class="btn" data-a="toggle-dir" data-id="${x.id}" aria-expanded="${open}">${open ? 'Hide details' : 'Explore direction'}</button></div></article>`;
+}
+function directionsBlock() {
+  return `<section class="blk"><h2>Design directions</h2><div class="dirs">${S.directions.map(dirCard).join('')}</div></section>`;
+}
+function foundationBlock() {
+  const x = S.directions.find(d => d.id === selDir);
+  return `<section class="blk"><h2>Foundation${x ? ' · ' + esc(x.name) : ''}</h2>` +
+    (x ? `<table class="found">${Object.entries(x.foundation).map(([k, v]) => `<tr><td>${esc(k)}</td><td>${esc(v)}</td></tr>`).join('')}</table>` : '<p class="hint">Select a direction to see its foundation.</p>') + '</section>';
+}
+function riskBlock() {
+  const rs = S.risks || [], as = S.assumptions || [];
+  if (!rs.length && !as.length) return '';
+  return `<section class="blk"><h2>Risks &amp; assumptions</h2>` +
+    rs.map(r => `<div class="risk"><span class="pill ${r.severity === 'high' ? 's-REJECTED' : r.severity === 'low' ? 's-PROPOSED' : 's-NEEDS_INPUT'}">${esc(r.severity || 'med')}</span><span>${esc(r.text)}</span></div>`).join('') +
+    as.map(a => `<div class="risk"><span class="pill s-INFERRED">assumed</span><span>${esc(a.text)}</span></div>`).join('') + '</section>';
+}
+function approvalRail() {
+  const bl = blockers(), c = counts(), unrev = c.INFERRED + c.PROPOSED;
+  return `<div class="gate ${result && result.action === 'approve_project_gate' ? 'ok' : ''}"><div class="eyebrow">Project gate</div>` +
+    `<div class="state">${result && result.action === 'approve_project_gate' ? 'APPROVAL SUBMITTED' : '⚠ NOT APPROVED'}</div>` +
+    `<p class="fine">${result && result.action === 'approve_project_gate' ? 'Not recorded until Claude validates and applies it.' : 'Approving authorises the design direction only, not implementation.'}</p>` +
+    (bl.length ? `<ul>${bl.map(b => `<li>${esc(b)}</li>`).join('')}</ul>` : '') +
+    `<label class="hint" for="notes">Notes for Claude (optional)</label><textarea id="notes" placeholder="Anything to add or change">${esc(notes)}</textarea>` +
+    `<div class="btns"><button type="button" class="btn primary" data-a="ask-approve" ${bl.length ? 'disabled' : ''}>Approve Project Gate</button>` +
+    `<button type="button" class="btn" data-a="submit" data-act="request_changes">Request Changes</button>` +
+    `<button type="button" class="btn" data-a="submit" data-act="explore_alternative">Explore Alternative</button></div>` +
+    (confirming ? `<div class="confirm"><span>Approve <b>${esc(dirName(selDir))}</b> for <b>${esc(S.project.name)}</b>?` +
+      (unrev ? ` ${unrev} inferred/proposed decision${unrev > 1 ? 's' : ''} will be confirmed by approving.` : '') + ` Implementation stays locked until the security gate passes.</span>` +
+      `<div class="row"><button type="button" class="btn primary sm" data-a="submit" data-act="approve_project_gate">Yes, approve</button><button type="button" class="btn sm" data-a="cancel-approve">Cancel</button></div></div>` : '') +
+    (result ? resultPanel(result, {title: {approve_project_gate: 'Approval ready', request_changes: 'Change request ready', explore_alternative: 'Alternative request ready'}[result.action], lead: 'Copy this and paste it back into the chat with Claude, or download it.', filename: 'gate-response.json'}) : '') + '</div>';
+}
+
+function render() {
+  const c = counts();
+  $('#app').innerHTML = header(c, readiness(c)) + reopenBanner() +
+    `<div class="layout"><div>${strategyBlock()}${intentBlock()}${characterBlock()}${needBlock()}${conflictBlock()}${directionsBlock()}${foundationBlock()}${decisionsBlock()}${riskBlock()}</div><aside class="rail">${approvalRail()}</aside></div>`;
+  if (editing) { const t = $('#ed-' + editing); if (t) t.focus(); }
+}
+
+/* ---------- actions ---------- */
+function setEdit(id, patch) { edits[id] = Object.assign({}, edits[id] || {}, patch); result = null; confirming = false; persist(); }
+function buildResponse(action) {
+  const changes = [];
+  Object.entries(edits).forEach(([id, e]) => {
+    const base = S.decisions.find(d => d.id === id); if (!base) return;
+    if (e.status !== base.status || (e.value != null && e.value !== base.value)) {
+      const ch = {id, status: e.status, value: e.value != null ? e.value : base.value};
+      if (e.choice) ch.choice = e.choice; changes.push(ch);
+    }
+  });
+  return {schema: 'opskeep.project-gate/response@1', project: S.project.slug, base_hash: H, action, selected_direction: selDir, changes, notes: notes.trim(), submitted_at: new Date().toISOString()};
+}
+document.addEventListener('click', e => {
+  const t = e.target.closest('[data-a]'); if (!t) return;
+  const a = t.dataset.a, id = t.dataset.id;
+  if (a === 'copy') return copyResult();
+  if (a === 'download') return downloadResult(t.dataset.f);
+  if (a === 'confirm') setEdit(id, {status: 'CONFIRMED'});
+  else if (a === 'reject') setEdit(id, {status: 'REJECTED'});
+  else if (a === 'reset') { delete edits[id]; result = null; persist(); }
+  else if (a === 'edit') editing = id;
+  else if (a === 'cancel-edit') editing = null;
+  else if (a === 'save-edit') { const v = $('#ed-' + id).value.trim(); if (v) setEdit(id, {status: 'CONFIRMED', value: v}); editing = null; }
+  else if (a === 'save-free') { const v = $('#ed-' + id).value.trim(); if (!v) return; setEdit(id, {status: 'CONFIRMED', value: v}); }
+  else if (a === 'choose') { setEdit(id, {status: 'CONFIRMED', value: t.dataset.l, choice: t.dataset.v}); editing = null; }
+  else if (a === 'select-dir') { selDir = id; result = null; confirming = false; persist(); }
+  else if (a === 'toggle-dir') { openDirs.has(id) ? openDirs.delete(id) : openDirs.add(id); }
+  else if (a === 'ask-approve') confirming = true;
+  else if (a === 'cancel-approve') confirming = false;
+  else if (a === 'submit') { if (t.dataset.act === 'approve_project_gate' && blockers().length) return; confirming = false; result = buildResponse(t.dataset.act); }
+  else return;
+  render();
+  if (result && (a === 'submit')) { const r = $('#result-json'); if (r) r.scrollIntoView({block: 'nearest', behavior: 'smooth'}); }
+});
+document.addEventListener('input', e => { if (e.target.id === 'notes') { notes = e.target.value; result = null; persist(); } });
+render();
+</script>
+</body>
+</html>
