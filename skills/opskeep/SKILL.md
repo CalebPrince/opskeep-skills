@@ -1,9 +1,10 @@
 ---
 name: opskeep
-description: "Use when the user invokes Opskeep and needs routing across service-business operations, Opskeep setup/management, or Opskeep tools. Routes to business lanes: get work, define work, deliver work, get paid, keep clients, improve operations; to Manage Opskeep for setup, tools, automations, memory, and preferences; to Opskeep Tools for audio briefs, huddles, reminders, time tracking, and Composio-backed utilities; to the separately installed opskeep-retail / opskeep-hospitality vertical router whenever shop or venue work is on the table; or to opskeep-manage-client-keys when the user is the agent manager tracking per-client API keys, credits, and usage."
+description: "Use when the user invokes Opskeep and needs routing across service-business operations, Opskeep setup/management, or Opskeep tools. Routes to business lanes: get work, define work, deliver work, get paid, keep clients, improve operations; to Manage Opskeep for setup, tools, automations, memory, and preferences; to Opskeep Tools for audio briefs, huddles, reminders, time tracking, and Composio-backed utilities; to the separately installed opskeep-retail / opskeep-hospitality / opskeep-accounting vertical router whenever shop, venue, or accounting-practice client work (bookkeeping, reconciliations, filing deadlines, management accounts) is on the table; or to opskeep-manage-client-keys when the user is the agent manager tracking per-client API keys, credits, and usage."
 metadata:
   lane: meta
-  version: 2.2.0
+  version: 2.3.0
+  pack_version: 0.2.0
 ---
 
 # Opskeep
@@ -21,6 +22,7 @@ Choose one primary destination, hand off to that skill or reference, return sour
 5. **Use connectors only when needed.** For setup/status, route to `opskeep-manage`. For live app reads/writes, route to `opskeep-tools`/Composio with discovery and schema checks.
 6. **Run the workflow.** Preserve required inputs, approval gates, provenance, and output contract. Use `TBD` for missing facts.
 7. **Return the smallest useful next step.** Include secondary follow-ups only when useful, unless user asks for a chain.
+8. **Update notice (once a day, after the answer).** Follow `references/update-check.md`: if a newer Opskeep version exists, end with its plain-language notice and offer to install it. Never delay or replace the user's answer for it.
 
 No command? Use conversation context to choose the best destination. Show the menu only for explicit `help`/`menu`, sparse context, or unsafe routing. Not service ops, Opskeep setup/config, or a Opskeep utility? Do not force Opskeep.
 
@@ -38,8 +40,10 @@ No command? Use conversation context to choose the best destination. Show the me
 | Opskeep Tools | `opskeep tools`, `audio brief`, `voice session`, `talk by voice`, `follow-up reminder`, `email reminder`, `time tracking`, `time entry`, `expense tracking`, `job expense`, `mileage`, `escalate`, `escalation`, `composio`, `hosted utility` | `opskeep-tools` |
 | Manage client access | `client keys`, `api key`, `key registry`, `keys per client`, `credits`, `top up`, `credit balance`, `per-client usage`, `agent usage`, `agency`, `agent manager` | `opskeep-manage-client-keys` |
 | Vertical: Retail | `retail`, `shop`, `store`, `restock`, `low stock`, `SKU`, `inventory`, `reorder`, `till`, `markdown`, `supplier order` | `opskeep-retail` (separate pack; see routing rules 13-14) |
+| Vertical: Accounting | `bookkeeping`, `month-end close`, `bank reconciliation`, `reconcile the client's bank`, `records request`, `PBC list`, `filing deadline`, `compliance calendar`, `VAT return due`, `management accounts`, `engagement letter`, `client entity` | `opskeep-accounting` (separate pack; see routing rules 13-14) |
 | Vertical: Hospitality | `restaurant`, `venue`, `kitchen`, `reservation`, `table`, `waitlist`, `prep list`, `par level`, `plate cost`, `tip`, `service recover` | `opskeep-hospitality` (separate pack; see routing rules 13-14) |
 | Handoff checks | `get-to-define`, `define-to-deliver`, `deliver-to-get-paid`, `deliver-to-relationships`, `improve-to-keep-clients` | source lane first, then named next lane follow-up |
+| Updates | `update opskeep`, `yes, update opskeep`, `what's new`, `check for updates`, `stop update notices`, `turn update notices on/off` | `references/update-check.md` |
 | Help | `help`, `menu`, sparse context, unsafe/unknown route | `references/help-menu.md` |
 
 ## Routing Rules
@@ -56,8 +60,8 @@ No command? Use conversation context to choose the best destination. Show the me
 10. Multiple matches -> one primary destination plus secondary follow-ups, unless user asks for chain.
 11. Handoff checks -> return `Objective`, `Source Check` or `Tool Access Check`, `Current Signal`, actions with owner/date/evidence, `TBD` gaps, and next lane follow-ups. Do not execute multiple lanes unless asked.
 12. Sparse or unsafe route -> help/menu plus one clarifying question only if needed.
-13. Retail/shop or hospitality/venue business-model intent (stock up, reorder, low stock, SKU, till, markdown or prep list, reservation, table, waitlist, nightly close-out) routes to the matching installed vertical pack router: `opskeep-retail` or `opskeep-hospitality`. That pack's lanes own its loop end-to-end; do not flatten shop or venue work into core service lanes.
-14. Vertical packs are separate installs staged under `verticals/<pack>/skills/`. If the matching vertical router is not installed, return the clone-and-copy install path and use `TBD` for the target skill rather than inventing or running `opskeep-retail-*` / `opskeep-hospitality-*` skills as if they were present.
+13. Retail/shop or hospitality/venue business-model intent (stock up, reorder, low stock, SKU, till, markdown or prep list, reservation, table, waitlist, nightly close-out) routes to the matching installed vertical pack router: `opskeep-retail` or `opskeep-hospitality`. Accounting-practice client work (a client's books, reconciliations, records requests, filing deadlines, management accounts, engagement letters) routes to `opskeep-accounting`. That pack's lanes own its loop end-to-end; do not flatten shop, venue or client-books work into core service lanes. The accounting practice's *own* invoices, WIP, retainers and aged debtors stay in core `get paid`.
+14. Vertical packs are separate installs staged under `verticals/<pack>/skills/`. If the matching vertical router is not installed, return the clone-and-copy install path and use `TBD` for the target skill rather than inventing or running `opskeep-retail-*` / `opskeep-hospitality-*` / `opskeep-accounting-*` skills as if they were present.
 15. Agent-manager bookkeeping intent (the user's clients' AI API keys, top-ups, credit balances, or what their agents use) routes to `opskeep-manage-client-keys`. Per-client money still stays in `get paid`, and live external app writes stay in `composio`.
 
 ## Tie-Breakers
@@ -76,6 +80,8 @@ No command? Use conversation context to choose the best destination. Show the me
 - `change control` -> `get paid` only when money/billable/margin/budget/invoice impact dominates. Scope/delivery changes stay `define work` or `deliver work`.
 - `video`/`YouTube link`/`transcript` -> `improve operations` when the goal is a reusable SOP/process doc. `opskeep-tools` to `opskeep-audio-brief` only when the user explicitly wants a listenable/audio brief instead.
 - `Reddit`/`social post` -> `get work` when the goal is researching a topic to draft new content. `keep clients` for a testimonial/review-style social ask tied to a specific client relationship instead.
+- `reconcile`/`reconciliation` -> `opskeep-accounting` when it's a client's bank or ledger; `get paid` when it's matching payments received against the business's own invoices; `opskeep-retail` for a shop till.
+- `invoice`/`who owes us`/`aged debtors`/`WIP`/`retainer` -> `get paid`, even for an accounting practice.
 - `credit(s)`/`top up`/`usage`/`api key` -> `opskeep-manage-client-keys` when the subject is a client's AI budget or installed keys. `get paid` when the wording is about invoicing, payments, or margin.
 
 ## References
@@ -89,7 +95,7 @@ No command? Use conversation context to choose the best destination. Show the me
 ## Gotchas
 
 - Do not route generic coding, writing, or research into Opskeep.
-- Do not treat `opskeep-retail` or `opskeep-hospitality` as installed unless the user's environment actually has them (they are separate packs). Shop/venue work stays out of core service lanes, and the install path is returned when the pack is missing.
+- Do not treat `opskeep-retail`, `opskeep-hospitality` or `opskeep-accounting` as installed unless the user's environment actually has them (they are separate packs). Shop/venue work stays out of core service lanes, and the install path is returned when the pack is missing.
 - Do not present Opskeep as an acronym.
 - Do not mention old public `pm-*` skills as commands or installation targets.
 - Do not edit/copy internals of `opskeep-audio-brief`, `opskeep-huddle-beta`, `opskeep-follow-up-reminders`, `opskeep-time-tracking`, `opskeep-expense-tracking`, `opskeep-escalate-to-owner`, `opskeep-triggers`, or `composio`; standalone skills own them.

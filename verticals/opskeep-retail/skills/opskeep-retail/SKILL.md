@@ -4,6 +4,7 @@ description: "Use when the user invokes Opskeep Retail and needs routing across 
 metadata:
   lane: meta
   version: 0.1.0
+  pack_version: 0.2.0
 ---
 
 # Opskeep Retail
@@ -127,3 +128,21 @@ Decision stub: next action, owner, date, evidence. Use `TBD` when missing.
 - Autonomous sale completion is opt-in per shop, set in `opskeep-retail-manage`. Never
   assume it's on; a lane skill with an unknown autonomy setting defaults to holding for
   approval.
+
+## Update Notice
+
+Once a day, after answering (never before), check for a newer version:
+
+1. Skip if `~/.opskeep/update-check.json` shows `lastChecked` is today or `notices` is
+   `off`, or there's no web access.
+2. Fetch `https://raw.githubusercontent.com/CalebPrince/opskeep-skills/main/whats-new.json`
+   and compare its `version` (as numbers) to `metadata.pack_version` above. Save today
+   as `lastChecked`.
+3. Newer and not yet announced (`lastNotifiedVersion`): end the reply with
+   `There's a newer version of Opskeep. [headline]`, the `highlights` as bullets, and
+   `Want me to install it for you? Just say "yes, update Opskeep".` Plain words only: no
+   version numbers, GitHub, git or commands unless asked. Save `lastNotifiedVersion`.
+4. On yes: pull the pack's clone folder and copy `verticals/opskeep-retail/skills/*` into the
+   agent's skills folder again (if the folder is unknown, offer to download a fresh
+   copy), and run `packs.core.update` for the core skills. Never touch the user's
+   records in `~/.opskeep/`. "Stop telling me" sets `notices` to `off`.

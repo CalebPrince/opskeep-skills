@@ -8,3 +8,4 @@ gets its own `DESIGN.md` sketch before any skills are built.
 | --- | --- |
 | [`opskeep-retail`](opskeep-retail/DESIGN.md) | Built — see [`skills/`](opskeep-retail/skills), not yet validated with a real shop |
 | [`opskeep-hospitality`](opskeep-hospitality/DESIGN.md) | Built — see [`skills/`](opskeep-hospitality/skills), not yet validated with a real venue |
+| [`opskeep-accounting`](opskeep-accounting/DESIGN.md) | Built — see [`skills/`](opskeep-accounting/skills), not yet validated with a real practice's month-end |

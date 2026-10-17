@@ -27,12 +27,16 @@ Run your business:
 Other business models (separate packs):
 - `Opskeep retail` - shop/stock/sell work, needs `opskeep-retail` installed
 - `Opskeep hospitality` - restaurant/venue work, needs `opskeep-hospitality` installed
+- `Opskeep accounting` - client books, reconciliations, filing deadlines, management reports, needs `opskeep-accounting` installed
 
 Manage Opskeep:
 - `setup`, `connect tools`, `company brain`, `automation`, `trigger`, `loop`
 
 Opskeep Tools:
 - `audio brief`, `voice session`, `follow-up reminder`, `time tracking`, `expense tracking`, `escalate to owner`, `composio`
+
+Updates:
+- `what's new`, `update opskeep`, `stop update notices`
 
 Manage client access:
 - `client keys`, `credits`, `top up`, `agent usage` - per-client API keys, credit balances, and what agents use

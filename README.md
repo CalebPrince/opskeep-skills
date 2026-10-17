@@ -44,6 +44,12 @@ To update later:
 npx skills update CalebPrince/opskeep-skills
 ```
 
+You don't have to remember to check. Once a day, after answering, the Opskeep router
+looks at [`whats-new.json`](whats-new.json) on GitHub. When there's a newer version it
+tells the user in plain words what changed and offers to install it for them. Saying
+"stop update notices" turns it off. See
+[`skills/opskeep/references/update-check.md`](skills/opskeep/references/update-check.md).
+
 ### Clone instead
 
 ```bash
@@ -154,7 +160,7 @@ See [admin/README.md](admin/README.md) for configuration and the full feature/AP
 | `opskeep-get-work` | Helps service businesses build and qualify a pipeline from content, inbound, referrals, outreach, and market signals. |
 | `opskeep-define-work` | Turns messy demand into defined work: discovery, scope, proposals, acceptance checks, and client onboarding. |
 | `opskeep-deliver-work` | Coordinates active delivery: status, blockers, risks, handoffs, dependencies, QA, and weekly updates. |
-| `opskeep-get-paid` | Tracks money follow-through: invoices, payments, billable time, budgets, and change-control money impact. |
+| `opskeep-get-paid` | Tracks money follow-through: invoices, payments, aged receivables and collection follow-up, unbilled work (WIP), fixed-fee, hourly and retainer billing, budgets, and change-control money impact. |
 | `opskeep-keep-clients` | Maintains client trust through follow-ups, check-ins, health checks, renewals, referrals, and testimonials. |
 | `opskeep-improve-operations` | Turns finished work into better process: retrospectives, lessons, SOPs, templates, and reusable playbooks. |
 
@@ -176,8 +182,8 @@ These remain separately installable because they're tool-specific or useful outs
 | `opskeep-huddle-beta` | Starts a voice huddle with Opskeep for live talk-throughs, planning conversation, and concise context handoff. **Needs its own deployed voice-relay backend to actually work — see the skill's README.** |
 | `composio-mcp` | Routes external app work through the Composio MCP with tool discovery, authorization links, schema-safe execution, and concise provenance. |
 | `opskeep-follow-up-reminders` | Creates and cancels deterministic one-shot email follow-up reminders, only when the user wants a specific future reminder. |
-| `opskeep-time-tracking` | Starts, stops, switches, backfills, updates, archives, and summarizes time entries. |
-| `opskeep-expense-tracking` | Logs, lists, and summarizes job-tagged expenses (materials, mileage, other costs) ready to fold into an invoice. |
+| `opskeep-time-tracking` | Starts, stops, switches, backfills, updates, archives, and summarizes time entries, including billable vs non-billable time, unbilled value per client, and marking time billed. |
+| `opskeep-expense-tracking` | Logs, lists, and summarizes job-tagged expenses (materials, mileage, travel, fees, software, other) with billable flags, receipt references and per-currency totals, ready to fold into an invoice, then marks them billed. |
 | `opskeep-escalate-to-owner` | Pauses an autonomous transaction and brings in the business owner, via live conversation handoff when the connected channel supports it, or a notify-and-pause fallback. |
 | `opskeep-triggers` | Creates, inspects, and deletes event-triggered automations with explicit trigger proposal confirmation. |
 
@@ -193,11 +199,13 @@ Tool-agnostic Secure by Design skills, useful on their own outside the Opskeep r
 ## Other business models
 
 The skills above assume project-based service work. For businesses with a different
-operating loop (stock-and-sell retail, restaurant service), see
-[`verticals/`](verticals) for sibling packs built on the same design principles but their
-own lane structure. [`opskeep-retail`](verticals/opskeep-retail/README.md) and
-[`opskeep-hospitality`](verticals/opskeep-hospitality/README.md) are built and
-installable; others are design sketches.
+operating loop (stock-and-sell retail, restaurant service, an accounting practice's
+client books), see [`verticals/`](verticals) for sibling packs built on the same design
+principles but their own lane structure.
+[`opskeep-retail`](verticals/opskeep-retail/README.md),
+[`opskeep-hospitality`](verticals/opskeep-hospitality/README.md) and
+[`opskeep-accounting`](verticals/opskeep-accounting/README.md) are built and installable;
+others are design sketches.
 
 ## Contributing
 

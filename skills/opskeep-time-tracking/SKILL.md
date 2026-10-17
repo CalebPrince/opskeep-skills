@@ -1,9 +1,9 @@
 ---
 name: opskeep-time-tracking
-description: Track work time through Opskeep generic agent utility records. Use when user asks to start, stop, switch, inspect, backfill, update, archive, or summarize time entries.
+description: Track work time through Opskeep generic agent utility records. Use when user asks to start, stop, switch, inspect, backfill, update, archive, or summarize time entries, including billable vs non-billable time, the value of unbilled time per client before invoicing, and marking entries as billed on an invoice.
 metadata:
   lane: meta
-  version: 0.1.0
+  version: 0.2.0
 ---
 
 # Opskeep Time Tracking
@@ -23,10 +23,11 @@ Keep short todo list: mode, creds, missing question, payload validation, API cal
    - Stop current timer -> **stop**.
    - Ask what is running -> **current**.
    - Log past time: "log 45 minutes from 9 to 9:45" -> **backfill**.
-   - Show entries / summarize time -> **review**.
+   - Show entries / summarize time / "what unbilled time do I have for Acme?" -> **review**.
+   - "Those hours went on INV-0142" -> **update/archive** (mark billed).
    - Update/delete/cancel/archive entry -> **update/archive**.
    - Buy credits/top up, check credit balance, or mutating req fails with `insufficient_credits` -> **top-up**.
-   - Payroll, invoicing, screenshots, passive reconstruction, external tracker sync, recurring timers, auto idle detection -> explain V1 unsupported, stop.
+   - Payroll, creating/sending invoices (that's `opskeep-get-paid`), screenshots, passive reconstruction, external tracker sync, recurring timers, auto idle detection -> explain V1 unsupported, stop.
 
    If conversation already has successful API response and user asks about that result, answer from known response. Do not call unsupported reporting endpoints.
 
@@ -145,9 +146,17 @@ Keep short todo list: mode, creds, missing question, payload validation, API cal
      "flex_label": "optional tag/task/phase",
      "rate_amount": 150,
      "rate_currency": "USD",
-     "metadata": { "notes": "optional extras" }
+     "metadata": { "notes": "optional extras", "billable": true, "invoice_ref": null }
    }
    ```
+
+   Billing fields (inside `metadata`, so no extra endpoint is needed):
+
+   - `billable`: `true` unless the user says the time is non-billable (admin, internal,
+     unpaid rework). Entries without the field count as billable.
+   - `invoice_ref`: set to the invoice number once the time is billed; `null` or absent
+     means unbilled.
+   - Set `rate_amount`/`rate_currency` only from the user's stated rate. Never assume one.
 
    Rules:
 
@@ -229,12 +238,22 @@ Keep short todo list: mode, creds, missing question, payload validation, API cal
     3. Exclude archived unless user asks archived/cancelled.
     4. Group/total records in response. Do not call/invent reporting endpoint.
     5. Include running entries separately; duration changes.
+    6. Billing views (computed from fetched records, no extra endpoint):
+       - **Unbilled**: billable entries with no `metadata.invoice_ref`.
+       - **Value**: hours x `rate_amount`, grouped by `client_label` and **per
+         `rate_currency`**. Never add different currencies. Entries without a rate show
+         hours with value `TBD`.
+       - **Non-billable**: hours only, listed separately.
+       Hand the unbilled value to `opskeep-get-paid` for invoicing; this skill doesn't
+       create invoices.
 
 11. **Update/archive mode.**
 
     1. Resolve record id from req, context, or short candidate list.
     2. Ambiguous ref -> ask one direct question, stop.
     3. `PATCH /v1/agent-utility-records/:id` for title, timestamps, labels, rate, metadata.
+       Mark billed: patch each entry's `metadata` with `invoice_ref` (merge with existing
+       metadata, don't drop notes). Confirm the entry list and invoice number first.
     4. `DELETE /v1/agent-utility-records/:id` only for explicit delete/cancel/remove/archive.
     5. Archiving running timer -> say cancelled/archived, not completed.
 

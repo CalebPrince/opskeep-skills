@@ -3,7 +3,41 @@
 Behavior-affecting changes to the skill pack, newest first. Follows semver for the pack
 as a whole (see `package.json`).
 
-## Unreleased
+## 0.2.0 - 2026-10-17
+
+First numbered release since 0.1.0; everything below this heading down to 0.1.0 ships in
+it. Plain-language summary for installers lives in [`whats-new.json`](whats-new.json).
+
+- Added the `opskeep-accounting` vertical pack (`verticals/opskeep-accounting/`) for
+  accounting and bookkeeping practices: `opskeep-accounting` router plus engage (scope of
+  services, onboarding/KYC checklist, finance health check), collect (records request
+  lists, chase ladder), close (statement intake checks, bank/ledger reconciliation,
+  bookkeeping review, fail-closed journal controls with maker-checker, close checklist),
+  deadlines (sourced per-client compliance calendar, Ghana obligation-area checklist
+  with no hardcoded dates or rates), report (management-accounts commentary, variances,
+  KPIs, cash outlook) and manage (practice profile, client roster, sign-off policy,
+  connectors). The practice's own billing reuses core `opskeep-get-paid`. The core
+  router routes accounting-practice client work to it and returns the install path when
+  it isn't installed.
+- `opskeep-get-paid` 0.2.0: new `references/receivables.md` (aged receivables by bucket
+  and currency, collection ladder, write-off proposals) and `references/billing-models.md`
+  (hourly, fixed-fee, fixed-monthly and retainer billing, WIP, recovery,
+  write-ups/downs, retainer drawdown); added the previously missing
+  `references/examples/getting-paid.md`. Amounts in different currencies are never added.
+- `opskeep-time-tracking` 0.2.0: billable/non-billable time and `invoice_ref` stored in
+  record `metadata`; review mode reports unbilled time and its value per client and per
+  currency; update mode marks entries billed. No new API endpoints.
+- `opskeep-expense-tracking` 0.2.0 and its MCP tools: new categories (`travel`, `fees`,
+  `software`), `billable` flag, receipt `reference`, date-range and billing-state filters,
+  per-currency totals split into unbilled/billed/not billable (fixes summaries that added
+  different currencies together), new `mark_expenses_billed` tool, and
+  `OPSKEEP_DEFAULT_CURRENCY`. Existing entries read as billable and unbilled. Corrected
+  the skill's outdated note that expenses reset on restart.
+- Update notices: every router now carries `metadata.pack_version` and, once a day after
+  answering, compares it with `whats-new.json` on `main`. A newer version is announced in
+  plain words with an offer to install it; "stop update notices" turns it off
+  (`~/.opskeep/update-check.json`). `npm run lint:skills` fails if `whats-new.json`,
+  `package.json` and the routers' `pack_version` disagree.
 
 - The `opskeep-tools` MCP server's store is now file-backed and survives restarts: all
   tool records (reminders, time entries, expenses, escalations, and the client registry)

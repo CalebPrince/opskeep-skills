@@ -35,13 +35,15 @@ answering open question 2 below in favor of a dedicated skill rather than foldin
 repeated interaction from invoicing, so it's cleaner as its own tool that `opskeep-get-paid`
 reads from.
 
-- Capture: `log_expense` — a materials/mileage/other cost tagged to a job. Amount is
-  always caller-supplied; the tool never invents a per-mile rate.
-- Store: `list_expenses` / `summarize_expenses` (mirrors the MCP scaffold pattern used for
-  reminders and time entries — in-memory, resets on restart, `TODO` for real
-  receipt-OCR/storage).
-- Output: `summarize_expenses` totals by category, ready to fold into that job's invoice
-  via `opskeep-get-paid`.
+- Capture: `log_expense` — a materials/mileage/travel/fees/software/other cost tagged to a
+  job, with currency, billable flag and receipt reference. Amount is always
+  caller-supplied; the tool never invents a per-mile rate.
+- Store: `list_expenses` / `summarize_expenses`, saved in the local `opskeep-tools` store
+  file (`~/.opskeep/registry.json` by default), so entries survive restarts on that
+  machine. Receipt OCR is still not built.
+- Output: `summarize_expenses` totals per currency and category, split into unbilled,
+  billed and not billable, ready to fold into that job's invoice via `opskeep-get-paid`;
+  `mark_expenses_billed` records the invoice afterwards.
 
 ## Open questions (remaining)
 

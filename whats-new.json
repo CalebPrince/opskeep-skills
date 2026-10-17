@@ -1,0 +1,20 @@
+{
+  "version": "0.2.0",
+  "released": "2026-10-17",
+  "headline": "Opskeep now helps accountants and anyone who bills clients for their time.",
+  "highlights": [
+    "A new accounting pack: client record requests, month-end reconciliations, a filing-deadline calendar for every client, and plain-language management reports.",
+    "See who owes you money and how late, with ready-to-send reminder drafts.",
+    "See unbilled hours and expenses per client before you invoice, and mark them billed afterwards.",
+    "Expenses are now totalled per currency, so cedis and dollars are never added together."
+  ],
+  "packs": {
+    "core": {
+      "update": "npx skills update CalebPrince/opskeep-skills"
+    },
+    "verticals": {
+      "update": "git -C <clone folder> pull, then copy verticals/<pack>/skills/* into the agent's skills folder again",
+      "new": ["opskeep-accounting"]
+    }
+  }
+}
