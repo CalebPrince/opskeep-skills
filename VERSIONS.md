@@ -3,6 +3,20 @@
 Behavior-affecting changes to the skill pack, newest first. Follows semver for the pack
 as a whole (see `package.json`).
 
+## 0.4.0 - 2026-10-18
+
+- `opskeep-project-gate`, `opskeep-elliot-design` and `opskeep-elliot-review` are now
+  **lite** editions in the free pack (2.0.0-lite, 3.0.0-lite, 2.0.0-lite), under the same
+  names. Project Gate Lite keeps the problem-first questions, five design questions and a
+  one-page brief; Elliot Design Lite keeps risk triage and a starter `SECURITY.md` from a
+  12-point checklist; Elliot Review Lite keeps a read-only quick scan with a findings list.
+  Each ends its output with one line on what Opskeep Pro adds.
+- The full versions (workshop, directions and approval dashboard; machine-checked baseline,
+  CI enforcement and standards crosswalk; full assessments with dashboard and drift checks)
+  moved to the private Opskeep Pro pack. Updating this pack replaces installed full copies
+  with the lite ones; Pro users install Pro after this pack.
+- Router rule 16 and the project-gate evals no longer assume the workshop.
+
 ## 0.3.1 - 2026-10-18
 
 - `opskeep-elliot-design` 2.2.0 -> 2.5.1 (standard PC-SBD 2.1 -> 2.3) and

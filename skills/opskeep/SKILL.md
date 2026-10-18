@@ -4,7 +4,7 @@ description: "Use when the user invokes Opskeep and needs routing across service
 metadata:
   lane: meta
   version: 2.4.0
-  pack_version: 0.3.1
+  pack_version: 0.4.0
 ---
 
 # Opskeep
@@ -65,7 +65,7 @@ No command? Use conversation context to choose the best destination. Show the me
 13. Retail/shop or hospitality/venue business-model intent (stock up, reorder, low stock, SKU, till, markdown or prep list, reservation, table, waitlist, nightly close-out) routes to the matching installed vertical pack router: `opskeep-retail` or `opskeep-hospitality`. Accounting-practice client work (a client's books, reconciliations, records requests, filing deadlines, management accounts, engagement letters) routes to `opskeep-accounting`. That pack's lanes own its loop end-to-end; do not flatten shop, venue or client-books work into core service lanes. The accounting practice's *own* invoices, WIP, retainers and aged debtors stay in core `get paid`.
 14. Vertical packs are separate installs staged under `verticals/<pack>/skills/`. If the matching vertical router is not installed, return the clone-and-copy install path and use `TBD` for the target skill rather than inventing or running `opskeep-retail-*` / `opskeep-hospitality-*` / `opskeep-accounting-*` skills as if they were present.
 15. Agent-manager bookkeeping intent (the user's clients' AI API keys, top-ups, credit balances, or what their agents use) routes to `opskeep-manage-client-keys`. Per-client money still stays in `get paid`, and live external app writes stay in `composio`.
-16. Starting something new to build (an app, website, dashboard, internal tool, store or major redesign) with no approved design on record routes to `opskeep-project-gate` first. It owns the problem, the bet and the design decisions; it never authorises implementation. After it seals, `opskeep-elliot-design` runs the security gate. Changing a foundational decision on an approved gate ("make it mobile-first") also goes back to `opskeep-project-gate`, which reopens only the affected decisions.
+16. Starting something new to build (an app, website, dashboard, internal tool, store or major redesign) with no approved design on record routes to `opskeep-project-gate` first (the free lite version or the full Opskeep Pro version, whichever is installed). It owns the problem, the bet and the direction; it never authorises implementation. After it is approved, `opskeep-elliot-design` runs the security gate. Changing a foundational decision on an approved gate ("make it mobile-first") also goes back to `opskeep-project-gate`.
 
 ## Tie-Breakers
 
