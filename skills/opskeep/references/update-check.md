@@ -44,7 +44,14 @@ Rules for the wording:
 
 ## When the user says yes
 
-1. Core pack: run the `packs.core.update` command from the file.
+1. Core pack: work out where the skills are installed. In the user's own skills folder
+   (`~/.agents/skills`, `~/.claude/skills`): run `packs.core.update_global`. In a
+   project's folder: run `packs.core.update` from that project. Both re-run the install,
+   which refreshes every Opskeep skill and adds new ones. (`npx skills update` is not
+   enough: it skips skills it doesn't track and never adds new ones.)
+   Before running it, compare each installed Opskeep skill's `metadata.version` with the
+   one in the repo. If an installed copy is newer or was edited by hand, say so in one
+   plain sentence and ask before replacing it, because the install overwrites it.
 2. A vertical pack the user has installed (for example `opskeep-accounting`): if its
    original clone folder is known, pull it and copy that pack's `skills/*` into the
    agent's skills folder again. If not, explain in one plain sentence and offer to

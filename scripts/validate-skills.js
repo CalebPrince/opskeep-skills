@@ -50,6 +50,19 @@ function validateSkillsDir(skillsDir, label) {
       errors.push("missing top-level field: description");
     }
 
+    // Installers parse frontmatter as real YAML and silently skip a skill whose
+    // header fails. An unquoted value containing ": " or " #" (or starting with a
+    // YAML indicator) is the usual cause, so catch it here.
+    for (const line of frontmatter.split(/\r?\n/)) {
+      const m = line.match(/^([A-Za-z_][\w-]*):[ \t]+(.+)$/);
+      if (!m) continue;
+      const value = m[2].trim();
+      if (/^["'|>]/.test(value)) continue;
+      if (/: /.test(value) || / #/.test(value) || /^[\[{&*!%@`,?-]/.test(value)) {
+        errors.push(`top-level "${m[1]}" is an unquoted value YAML can't parse (contains ": ", " #", or starts with a YAML indicator); wrap it in double quotes`);
+      }
+    }
+
     const hasMetadataBlock = /^metadata:\s*$/m.test(frontmatter);
     const hasMetadataLane = /^\s+lane:\s*\S+/m.test(frontmatter);
     if (!hasMetadataBlock || !hasMetadataLane) {

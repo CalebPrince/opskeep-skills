@@ -4,7 +4,7 @@ description: "Use when the user invokes Opskeep Accounting, or is an accountant,
 metadata:
   lane: meta
   version: 0.1.0
-  pack_version: 0.3.0
+  pack_version: 0.3.1
 ---
 
 # Opskeep Accounting
@@ -123,5 +123,6 @@ Once a day, after answering (never before), check for a newer version:
    version numbers, GitHub, git or commands unless asked. Save `lastNotifiedVersion`.
 4. On yes: pull the pack's clone folder and copy `verticals/opskeep-accounting/skills/*` into the
    agent's skills folder again (if the folder is unknown, offer to download a fresh
-   copy), and run `packs.core.update` for the core skills. Never touch the user's
+   copy), and run `packs.core.update` (`packs.core.update_global` when the skills live
+   in the user's own skills folder) for the core skills. Never touch the user's
    records in `~/.opskeep/`. "Stop telling me" sets `notices` to `off`.

@@ -38,11 +38,21 @@ npx skills add CalebPrince/opskeep-skills --skill opskeep
 npx skills add CalebPrince/opskeep-skills --list
 ```
 
-To update later:
+To update later, run the same install again. It replaces the installed skills with the
+latest ones and adds any new skills (`npx skills update` only refreshes skills it already
+tracks, so it never picks up a new one):
 
 ```bash
-npx skills update CalebPrince/opskeep-skills
+# Project install
+npx skills add CalebPrince/opskeep-skills -y
+
+# Installed for your user (in ~/.agents/skills or ~/.claude/skills)
+npx skills add CalebPrince/opskeep-skills -g -y
 ```
+
+If you copied the skills in by hand, `npx skills` lists them as `Source: local` and can't
+update them; running the install above once switches them to tracked installs. It also
+overwrites any edits you made to the installed copies, so keep those in this repo first.
 
 You don't have to remember to check. Once a day, after answering, the Opskeep router
 looks at [`whats-new.json`](whats-new.json) on GitHub. When there's a newer version it
@@ -196,8 +206,8 @@ work on their own outside the Opskeep router too.
 | Skill | Description |
 | --- | --- |
 | `opskeep-project-gate` | Starts from the problem (constraint, forces, the bet, outcomes), runs an interactive design workshop, and turns the answers into design decisions, 2-3 directions and an approval dashboard. Nothing is built until the user explicitly approves; approval never authorises implementation on its own. |
-| `opskeep-elliot-design` | Designs or reassesses a risk-proportional Secure by Design baseline before project implementation, first commit, production promotion, or a material architecture change. |
-| `opskeep-elliot-review` | Reviews an already-existing local repository and produces an evidence-backed security assessment, visual dashboard, and prioritized recommendations. |
+| `opskeep-elliot-design` | Designs or reassesses a risk-proportional Secure by Design baseline before project implementation, first commit, production promotion, or a material architecture change. Reuses an approved project gate's answers, maps controls to current standards (OWASP Top 10:2025, OWASP LLM and Agentic Top 10, NIST SSDF, SLSA, CISA Secure by Design, ASVS 5.0), and covers AI/agent controls. |
+| `opskeep-elliot-review` | Reviews an already-existing repository and produces an evidence-backed security assessment, visual dashboard, and prioritized recommendations, with standards references per finding, baseline drift checks, and machine-checked deliverables. |
 
 ## Other business models
 

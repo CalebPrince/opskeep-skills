@@ -3,6 +3,30 @@
 Behavior-affecting changes to the skill pack, newest first. Follows semver for the pack
 as a whole (see `package.json`).
 
+## 0.3.1 - 2026-10-18
+
+- `opskeep-elliot-design` 2.2.0 -> 2.5.1 (standard PC-SBD 2.1 -> 2.3) and
+  `opskeep-elliot-review` 1.0.0 -> 1.1.1, brought in from the maintainer's newer local
+  copies (each skill's `CHANGELOG.md` has the detail). Highlights: approval-gate bypass
+  fixes with regression tests; standards crosswalk (OWASP Top 10:2025, LLM Top 10 2025,
+  Agentic Top 10 2026, NIST SSDF 1.1, SLSA 1.2, CISA Secure by Design, ASVS 5.0) with
+  `standards_coverage.py`; 18 control domains and an AI/agent checklist; schema 2.3
+  required engineering, source and `ai_profile` fields; Elliot design reuses an approved
+  `opskeep-project-gate` `intake.yaml` instead of asking again; Elliot review gains
+  standards refs, optional user-approved scanner mode, baseline-drift feedback and
+  `lint_deliverables.py`. `metadata.lane: security` kept so both pass lint. Tests: 58/58
+  and 19/19.
+- Fixed `opskeep-escalate-to-owner` not installing: its unquoted `description`
+  contained ": ", so installers' YAML parser rejected the header and skipped the skill
+  (installs got 20 of 21 core skills). `npm run lint:skills` now fails on unquoted
+  top-level frontmatter values YAML can't parse.
+- Fixed the documented update command. `npx skills update CalebPrince/opskeep-skills`
+  never worked (`update` takes skill names, and only refreshes skills it already tracks,
+  so it never adds new ones). README and `whats-new.json` now use the install command
+  again (`npx skills add CalebPrince/opskeep-skills -y`, `-g` for a user-level install),
+  which refreshes every skill and adds new ones. The update check picks the right scope
+  and asks before overwriting an installed skill that is newer or was edited by hand.
+
 ## 0.3.0 - 2026-10-18
 
 - Added `opskeep-project-gate` to the core pack: the first gate before any new app,

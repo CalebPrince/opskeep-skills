@@ -12,6 +12,18 @@ This file is the human-readable view. `security-baseline.yaml` is authoritative 
 
 State risk tier/mode, environments, in-scope assets and identities, data classifications, production posture, development/deployment locks, and explicit exclusions.
 
+## Assurance targets and standards
+
+Record the targets from `risk.assurance` (ASVS level, SLSA build level) and why. List the standards each control family maps to using the `refs` in the baseline (OWASP Top 10:2025, OWASP LLM and Agentic lists when AI is present, SSDF, SLSA, CISA Secure by Design, ASVS). Name any control domain marked `NOT_APPLICABLE` with its reason. Do not claim conformance to a standard; claim only what evidence shows.
+
+## Supply chain and vulnerability management
+
+Summarize the dependency policy (lockfile, vulnerability gate severity, update automation), SBOM decision, build provenance and signing target, remediation timeline, support policy, and how to report a vulnerability. Mirror `supply_chain` in the baseline.
+
+## Regulatory context
+
+List each applicable or assessed regime from `project.regulatory_context` with status and the controls that address it. State `NOT_ASSESSED` plainly where that is still true.
+
 ## Baseline controls
 
 | Control ID | Requirement | Owner | Status | Evidence ID/location | Limitation or next step |

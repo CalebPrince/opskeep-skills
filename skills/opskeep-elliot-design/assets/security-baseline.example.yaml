@@ -1,4 +1,4 @@
-schema_version: "2.1"
+schema_version: "2.3"
 baseline_version: "1.0.0"
 record_digest: null
 project:
@@ -6,6 +6,28 @@ project:
   name: "Acme Studio Site"
   purpose: "Public brochure site with a contact form"
   owner: "site-owner"
+  intake:
+    constraint:
+      statement: "Prospective clients cannot reach the studio outside business hours, so enquiries are lost"
+      evidence: "Phone and email enquiries cluster after 18:00 and go unanswered until the next day"
+    forces:
+      push: "Missed enquiries; the current site has no way to ask for a quote"
+      pull: "A short form that confirms receipt immediately"
+      anxiety: "Visitors worry their details are shared or spammed"
+      habit: "Prospects currently message on social media"
+    existing_assets: ["Hosting platform with managed TLS", "Existing domain and email"]
+    bet:
+      belief: "visitors will use a short form if it states what happens to their details"
+      wager: "two days of build effort and no recurring cost"
+      expected_outcome: "more qualified enquiries received per month"
+      leading_indicator: "form completion rate and time to first reply"
+    outcomes: ["Enquiries outside business hours are captured and acknowledged", "No visitor data is exposed or sold"]
+    rejected_options:
+      - {option: "Live chat widget", reason: "Adds a third-party script and data processor for a low-volume site"}
+  regulatory_context:
+    - regime: "Data protection law of the visitor and operator jurisdictions (contact form collects names and email addresses)"
+      status: "NOT_ASSESSED"
+      notes: "Confirm which regime applies and whether registration or a privacy notice is required before launch"
 risk:
   tier: "LOW"
   mode: "FAST_TRACK"
@@ -13,6 +35,10 @@ risk:
     - "Public content and a limited contact form"
     - "No accounts, payments, or privileged user workflows"
   likely_production_tier: "LOW"
+  assurance:
+    asvs_level: "L1"
+    slsa_build_level: 1
+    slsa_source_level: 1
 lifecycle:
   status: "REVIEW_REQUIRED"
   production_posture: "ELIGIBLE_WHEN_APPROVED"
@@ -77,7 +103,8 @@ threats:
     scenario: "Automated form abuse causes spam or service exhaustion"
     likelihood: "MEDIUM"
     impact: "LOW"
-    control_ids: ["CTL-API-001"]
+    control_ids: ["CTL-API-001", "CTL-INP-001"]
+    refs: ["OWASP-T10-2025:A05"]
     residual_risk: "LOW"
     owner: "site-owner"
     status: "OPEN"
@@ -86,7 +113,8 @@ threats:
     scenario: "A committed secret or vulnerable dependency ships to production"
     likelihood: "MEDIUM"
     impact: "MEDIUM"
-    control_ids: ["CTL-SC-001"]
+    control_ids: ["CTL-SC-001", "CTL-SEC-001"]
+    refs: ["OWASP-T10-2025:A03"]
     residual_risk: "LOW"
     owner: "developer"
     status: "OPEN"
@@ -96,8 +124,29 @@ threats:
     likelihood: "MEDIUM"
     impact: "MEDIUM"
     control_ids: ["CTL-GOV-001"]
+    refs: ["OWASP-T10-2025:A06"]
     residual_risk: "LOW"
     owner: "site-owner"
+    status: "OPEN"
+  - id: "THR-004"
+    component_ids: ["CMP-001", "CMP-002"]
+    scenario: "Insecure hosting defaults or missing security headers enable script injection or data exposure"
+    likelihood: "MEDIUM"
+    impact: "LOW"
+    control_ids: ["CTL-CFG-001"]
+    refs: ["OWASP-T10-2025:A02"]
+    residual_risk: "LOW"
+    owner: "developer"
+    status: "OPEN"
+  - id: "THR-005"
+    component_ids: ["CMP-002"]
+    scenario: "Logs leak contact details, or abuse and failures go unnoticed"
+    likelihood: "MEDIUM"
+    impact: "LOW"
+    control_ids: ["CTL-LOG-001"]
+    refs: ["OWASP-T10-2025:A09"]
+    residual_risk: "LOW"
+    owner: "developer"
     status: "OPEN"
 controls:
   - id: "CTL-GOV-001"
@@ -106,20 +155,63 @@ controls:
     status: "PLANNED"
     owner: "site-owner"
     acceptance: "CI rejects a change when the baseline is not APPROVED with a matching digest from a protected source"
+    refs: ["SSDF-1.1:PO.1", "SSDF-1.1:PW.2"]
     evidence_ids: []
   - id: "CTL-API-001"
     domain: "API"
-    requirement: "Validate input and rate-limit contact submissions"
+    requirement: "Rate-limit contact submissions and reject oversized or malformed requests"
     status: "PLANNED"
     owner: "developer"
-    acceptance: "Invalid input is rejected and an abuse test demonstrates throttling"
+    acceptance: "An abuse test demonstrates throttling and oversized requests are rejected"
+    refs: ["ASVS-5.0:V4"]
     evidence_ids: []
   - id: "CTL-SC-001"
     domain: "SUPPLY_CHAIN"
-    requirement: "Block committed secrets and high-severity dependency findings"
+    requirement: "Block committed secrets and high-severity dependency findings; commit the lockfile"
     status: "PLANNED"
     owner: "developer"
     acceptance: "Protected checks fail on a seeded secret and a vulnerable test dependency"
+    refs: ["OWASP-T10-2025:A03", "SLSA-1.2:BUILD-L1"]
+    evidence_ids: []
+  - id: "CTL-INP-001"
+    domain: "INPUT"
+    requirement: "Validate every contact field server-side and encode all output; no raw HTML or header injection from form values"
+    status: "PLANNED"
+    owner: "developer"
+    acceptance: "Injection and header-splitting test strings are rejected or neutralised"
+    refs: ["ASVS-5.0:V1"]
+    evidence_ids: []
+  - id: "CTL-SEC-001"
+    domain: "SECRETS"
+    requirement: "No stored deployment secrets; CI uses short-lived federated tokens; no secrets in the repository, client bundle, or logs"
+    status: "PLANNED"
+    owner: "developer"
+    acceptance: "Secret scan passes and the deployment identity holds no long-lived credential"
+    refs: ["OWASP-T10-2025:A02"]
+    evidence_ids: []
+  - id: "CTL-CFG-001"
+    domain: "CONFIG"
+    requirement: "Ship secure defaults: HTTPS only, security headers (CSP, frame, content-type), no debug output, no directory listing"
+    status: "PLANNED"
+    owner: "developer"
+    acceptance: "A header and TLS check against the deployed preview passes"
+    refs: ["SSDF-1.1:PW.9", "CISA-SBD:SECURE-DEFAULTS"]
+    evidence_ids: []
+  - id: "CTL-LOG-001"
+    domain: "LOGGING"
+    requirement: "Log submission outcomes and abuse signals without storing message bodies or addresses; alert the owner on abnormal rates"
+    status: "PLANNED"
+    owner: "developer"
+    acceptance: "Sample logs contain no contact details and an alert fires on a synthetic spike"
+    refs: ["OWASP-T10-2025:A09"]
+    evidence_ids: []
+  - id: "CTL-DEP-001"
+    domain: "DEPLOY"
+    requirement: "Production deploys come only from the protected branch through an environment that requires owner approval, with one-step rollback"
+    status: "PLANNED"
+    owner: "site-owner"
+    acceptance: "A deploy from an unapproved branch is denied and a rollback is rehearsed"
+    refs: ["SSDF-1.1:PS.1"]
     evidence_ids: []
 gates:
   - id: "GATE-001"
@@ -138,6 +230,14 @@ gates:
     required_evidence: ["EVD-002"]
     status: "NOT_YET_BUILT"
     evidence_ids: []
+  - id: "GATE-003"
+    name: "Production deploy gate"
+    stage: "PRE_DEPLOY"
+    blocking: true
+    control_ids: ["CTL-DEP-001"]
+    required_evidence: ["EVD-003"]
+    status: "NOT_YET_BUILT"
+    evidence_ids: []
 decisions:
   - id: "DEC-001"
     question: "Which approved mail service and retention configuration will receive messages?"
@@ -153,6 +253,12 @@ evidence:
     observer: null
     location: null
   - id: "EVD-002"
+    type: "CI_RUN"
+    status: "NOT_YET_BUILT"
+    observed_at: null
+    observer: null
+    location: null
+  - id: "EVD-003"
     type: "CI_RUN"
     status: "NOT_YET_BUILT"
     observed_at: null
@@ -183,12 +289,44 @@ recovery:
   restore: {status: "PLANNED", details: "Redeploy last known-good immutable build"}
   rollback: {status: "PLANNED", details: "Hosting provider rollback to prior deployment"}
   incident_response: {status: "PLANNED", details: "Disable form endpoint, revoke deployment identity, preserve logs"}
+supply_chain:
+  sbom:
+    required: false
+    format: "NONE"
+    status: "NOT_APPLICABLE"
+    reason: "Static site with a small, locked dependency set; the lockfile and dependency scan are the inventory"
+  provenance:
+    status: "PLANNED"
+    details: "Build runs on the hosted CI platform and records build provenance for each release"
+  dependency_policy:
+    lockfile_required: true
+    update_automation: "Weekly automated dependency update pull requests"
+    vulnerability_gate_severity: "HIGH"
+  vulnerability_management:
+    status: "PLANNED"
+    remediation_sla_days: 30
+    disclosure: "security contact address published on the site"
+    support_policy: "Site is maintained under the studio support agreement"
+    details: ""
+capabilities:
+  handles_files: false
+  uses_self_contained_tokens: false
+  uses_federated_login: false
+source:
+  repository: "git host: studio/brochure-site (private)"
+  protected_branch: true
+  history_protected: true
+  required_checks: []
+  review_policy: "ONE_REVIEWER"
+engineering:
+  secure_coding: {status: "PLANNED", practice: "Framework defaults for output encoding; lint rules for unsafe HTML sinks"}
+  security_testing: {status: "PLANNED", practice: "Dependency scan and a form abuse-case test in CI"}
 approval:
   decision: "PENDING"
   approver: null
   approved_at: null
   baseline_version: null
   record_digest: null
-  scope: []
+  scope: ["development", "production"]
   expires_at: null
 changes: []
