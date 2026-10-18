@@ -19,9 +19,12 @@ They ask: "Opskeep, what's due for my clients this month?"
 3. No version numbers, GitHub, npm, git or shell commands in the notice.
 4. `lastChecked` and `lastNotifiedVersion` are saved; asking again the same day shows no
    notice.
-5. On "yes, update Opskeep": runs the core update command and, for an installed vertical
-   pack, re-copies it from its clone folder (or offers a fresh download if unknown);
-   never touches `~/.opskeep/registry.json` or credentials.
+5. On "yes, update Opskeep": re-runs the install (`packs.core.update_global` for skills
+   in the user's own skills folder, `packs.core.update` for a project install), never
+   `npx skills update <repo>`. Before that, if an installed Opskeep skill is newer than
+   the repo's or was edited by hand, it says so and asks first. An installed vertical
+   pack is re-copied from its clone folder (or a fresh download is offered). Never
+   touches `~/.opskeep/registry.json` or credentials.
 6. On "stop update notices": sets `notices: off`; no further notices.
 
 ## Negative cases

@@ -4,7 +4,7 @@ description: "Use when the user invokes Opskeep and needs routing across service
 metadata:
   lane: meta
   version: 2.4.0
-  pack_version: 0.3.0
+  pack_version: 0.3.1
 ---
 
 # Opskeep

@@ -1,15 +1,18 @@
 {
-  "version": "0.3.0",
+  "version": "0.3.1",
   "released": "2026-10-18",
   "headline": "Opskeep can now plan a new project with you before anything gets built.",
   "highlights": [
     "Say \"new project\" and Opskeep starts from the problem you're solving, then runs a short, visual design workshop where you click and point instead of answering a questionnaire.",
     "You get 2-3 design directions and a dashboard to confirm or change each decision. Nothing is built until you approve.",
-    "If you change your mind later (for example \"make it mobile-first\"), only the affected decisions are reopened."
+    "If you change your mind later (for example \"make it mobile-first\"), only the affected decisions are reopened.",
+    "The security check that runs before building now follows the latest security standards, including checks for AI agents, and reuses your project answers instead of asking twice.",
+    "Fixed: the skill that hands a customer conversation over to you wasn't installing. It does now."
   ],
   "packs": {
     "core": {
-      "update": "npx skills update CalebPrince/opskeep-skills"
+      "update": "npx skills add CalebPrince/opskeep-skills -y",
+      "update_global": "npx skills add CalebPrince/opskeep-skills -g -y"
     },
     "verticals": {
       "update": "git -C <clone folder> pull, then copy verticals/<pack>/skills/* into the agent's skills folder again",

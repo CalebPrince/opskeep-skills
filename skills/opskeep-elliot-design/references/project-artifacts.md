@@ -2,6 +2,16 @@
 
 Use these files as a coordinated project record. Copy the starters from `assets/project-artifacts/` into the project root and tailor their depth to the selected risk mode. Do not retain sample claims, routes, commands, or token values as project facts without review.
 
+## Depth by mode
+
+| Mode | Required files |
+|---|---|
+| MEDIUM / STANDARD, HIGH / FULL, CRITICAL | `README.md`, `ARCHITECTURE.md`, `SECURITY.md`, `GUI.md` (or its reasoned `NOT APPLICABLE` statement) and `security-baseline.yaml` |
+| LOW / FAST_TRACK | `README.md`, `SECURITY.md` and `security-baseline.yaml`. The architecture may be a short "Architecture" section inside `README.md` when the system has three or fewer components and no sensitive data flow; the interface handoff may be a short "Interface" section (or one `NOT APPLICABLE` line) there too. Create the separate files as soon as the system grows past that, or a reviewer asks |
+| SPIKE | `README.md` and the baseline; `SECURITY.md` may be the baseline's sandbox section |
+
+A collapsed record still obeys every honesty rule below (capability labels, no invented commands, proposed/implemented/verified kept apart). Collapsing changes where the text lives, not what must be true.
+
 ## Lifecycle
 
 | Stage | Required state |
