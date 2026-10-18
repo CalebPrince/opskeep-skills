@@ -1,13 +1,11 @@
 {
-  "version": "0.3.1",
+  "version": "0.4.0",
   "released": "2026-10-18",
-  "headline": "Opskeep can now plan a new project with you before anything gets built.",
+  "headline": "The project and security gates are now free lite versions, with the full versions in Opskeep Pro.",
   "highlights": [
-    "Say \"new project\" and Opskeep starts from the problem you're solving, then runs a short, visual design workshop where you click and point instead of answering a questionnaire.",
-    "You get 2-3 design directions and a dashboard to confirm or change each decision. Nothing is built until you approve.",
-    "If you change your mind later (for example \"make it mobile-first\"), only the affected decisions are reopened.",
-    "The security check that runs before building now follows the latest security standards, including checks for AI agents, and reuses your project answers instead of asking twice.",
-    "Fixed: the skill that hands a customer conversation over to you wasn't installing. It does now."
+    "Project Gate, Elliot Design and Elliot Review stay free as lite versions: a problem-first project brief, a starter security record from a 12-point checklist, and a quick read-only security scan.",
+    "The full versions (the visual design workshop and approval dashboard, the machine-checked security baseline with CI enforcement, and full security reviews with a dashboard) are now in Opskeep Pro. Request access at princecaleb.dev.",
+    "If you rely on the full gates, do not run this update yet: updating replaces them with the lite versions. Install Opskeep Pro after updating to keep them."
   ],
   "packs": {
     "core": {

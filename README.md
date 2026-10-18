@@ -31,7 +31,7 @@ Independent, open-source project.
 npx skills add CalebPrince/opskeep-skills
 
 # Or install a single skill — swap in any skill name from the tables below,
-# e.g. opskeep-get-work, opskeep-elliot-design, opskeep-elliot-review
+# e.g. opskeep-get-work, opskeep-elliot-design, opskeep-elliot-review (lite)
 npx skills add CalebPrince/opskeep-skills --skill opskeep
 
 # List every available skill
@@ -200,14 +200,19 @@ These remain separately installable because they're tool-specific or useful outs
 ## Before you build
 
 Gates that run before anything new is built, in this order: the project gate agrees the
-problem and the design, then the security gate sets the Secure by Design baseline. Both
-work on their own outside the Opskeep router too.
+problem and the direction, then the security gate sets the Secure by Design starting
+point. Both work on their own outside the Opskeep router too.
 
-| Skill | Description |
-| --- | --- |
-| `opskeep-project-gate` | Starts from the problem (constraint, forces, the bet, outcomes), runs an interactive design workshop, and turns the answers into design decisions, 2-3 directions and an approval dashboard. Nothing is built until the user explicitly approves; approval never authorises implementation on its own. |
-| `opskeep-elliot-design` | Designs or reassesses a risk-proportional Secure by Design baseline before project implementation, first commit, production promotion, or a material architecture change. Reuses an approved project gate's answers, maps controls to current standards (OWASP Top 10:2025, OWASP LLM and Agentic Top 10, NIST SSDF, SLSA, CISA Secure by Design, ASVS 5.0), and covers AI/agent controls. |
-| `opskeep-elliot-review` | Reviews an already-existing repository and produces an evidence-backed security assessment, visual dashboard, and prioritized recommendations, with standards references per finding, baseline drift checks, and machine-checked deliverables. |
+The free pack has **lite** versions of these three gates. The full versions are in
+**Opskeep Pro**, a private pack for paying users:
+[request access at princecaleb.dev](https://princecaleb.dev). Pro installs under the same
+names and replaces the lite ones.
+
+| Skill | Free (lite) | Opskeep Pro adds |
+| --- | --- | --- |
+| `opskeep-project-gate` | Starts from the problem (constraint, forces, the bet, outcomes), asks five design questions and writes a one-page project brief with one recommended direction. Nothing is built until the user explicitly approves. | An interactive design workshop (visual cards, sliders, a live preview), 2-3 design directions with tokens and checked contrast, an approval dashboard, a sealed design package that coding agents verify, and change detection that reopens only affected decisions. |
+| `opskeep-elliot-design` | Classifies the risk and writes a starter `SECURITY.md` from a 12-point Secure by Design checklist with the top threats, then stops for the owner's approval. | A machine-checked `security-baseline.yaml`, approval bound to a design digest that a CI gate enforces, 18 control domains, a standards crosswalk (OWASP Top 10:2025, OWASP LLM and Agentic Top 10, NIST SSDF, SLSA, CISA Secure by Design, ASVS 5.0), AI and agent controls, and a change lifecycle. |
+| `opskeep-elliot-review` | A quick, read-only scan of an existing repository: ten checks and a findings list with severities, file references and fixes. | Standard and deep assessments, an optional scanner-assisted mode, a visual dashboard and report checked against each other, standards references per finding, and baseline drift checks. |
 
 ## Other business models
 
@@ -237,4 +242,6 @@ before it will actually work; everything else runs as soon as an agent reads it.
 ## License
 
 MIT: see [LICENSE](LICENSE). Forked skill content also carries the attribution in
-[NOTICE](NOTICE) as required by the upstream MIT license.
+[NOTICE](NOTICE) as required by the upstream MIT license. Opskeep Pro is a separate,
+proprietary pack; the versions of the three gates published here before 0.4.0 remain
+under MIT.

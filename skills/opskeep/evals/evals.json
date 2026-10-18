@@ -401,7 +401,7 @@
     {
       "id": "opskeep-project-gate-route-1",
       "prompt": "Opskeep, let's build a client portal for my accounting practice. Just start coding it.",
-      "expected_output": "Routes to opskeep-project-gate before any build: restates the solution-shaped brief as a candidate constraint, prepares the design workshop, and does not start implementation.",
+      "expected_output": "Routes to opskeep-project-gate before any build: restates the solution-shaped brief as a candidate constraint, starts the problem-first project brief, and does not start implementation.",
       "assertions": [
         "Does the output select `opskeep-project-gate` rather than a business lane or writing code?",
         "Does it restate 'build a client portal' as a problem/constraint for the user to confirm?",
@@ -415,7 +415,7 @@
       "expected_output": "Stays in define work: scoping a client engagement for a proposal is service-business scoping, not the product design gate.",
       "assertions": [
         "Does the output select `define work` as the primary lane?",
-        "Does it avoid launching the project-gate workshop?"
+        "Does it avoid starting the project gate?"
       ],
       "files": []
     }

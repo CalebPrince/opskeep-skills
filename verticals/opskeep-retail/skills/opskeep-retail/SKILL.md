@@ -4,7 +4,7 @@ description: "Use when the user invokes Opskeep Retail and needs routing across 
 metadata:
   lane: meta
   version: 0.1.0
-  pack_version: 0.3.1
+  pack_version: 0.4.0
 ---
 
 # Opskeep Retail
