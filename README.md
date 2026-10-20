@@ -196,12 +196,15 @@ These remain separately installable because they're tool-specific or useful outs
 | `opskeep-expense-tracking` | Logs, lists, and summarizes job-tagged expenses (materials, mileage, travel, fees, software, other) with billable flags, receipt references and per-currency totals, ready to fold into an invoice, then marks them billed. |
 | `opskeep-escalate-to-owner` | Pauses an autonomous transaction and brings in the business owner, via live conversation handoff when the connected channel supports it, or a notify-and-pause fallback. |
 | `opskeep-triggers` | Creates, inspects, and deletes event-triggered automations with explicit trigger proposal confirmation. |
+| `opskeep-video-production-gate` | Gates reference-led ads, promos, explainers, recuts, and motion work with evidence-backed analysis, explicit reuse/extend/invent decisions, creative-director approval, and scored render review. It plans and verifies; it does not render. |
 
 ## Before you build
 
-Gates that run before anything new is built, in this order: the project gate agrees the
-problem and the direction, then the security gate sets the Secure by Design starting
-point. Both work on their own outside the Opskeep router too.
+Gates that run before production begins. For software and websites, the project gate
+agrees the problem and direction, then the security gate sets the Secure by Design
+starting point. For reference-led video, the video production gate turns the brief and
+references into an approved production contract and later scores the exported render.
+All work on their own outside the Opskeep router too.
 
 The free pack has **lite** versions of these three gates. The full versions are in
 **Opskeep Pro**, a private pack for paying users:
@@ -213,6 +216,9 @@ names and replaces the lite ones.
 | `opskeep-project-gate` | Starts from the problem (constraint, forces, the bet, outcomes), asks five design questions and writes a one-page project brief with one recommended direction. Nothing is built until the user explicitly approves. | An interactive design workshop (visual cards, sliders, a live preview), 2-3 design directions with tokens and checked contrast, an approval dashboard, a sealed design package that coding agents verify, and change detection that reopens only affected decisions. |
 | `opskeep-elliot-design` | Classifies the risk and writes a starter `SECURITY.md` from a 12-point Secure by Design checklist with the top threats, then stops for the owner's approval. | A machine-checked `security-baseline.yaml`, approval bound to a design digest that a CI gate enforces, 18 control domains, a standards crosswalk (OWASP Top 10:2025, OWASP LLM and Agentic Top 10, NIST SSDF, SLSA, CISA Secure by Design, ASVS 5.0), AI and agent controls, and a change lifecycle. |
 | `opskeep-elliot-review` | A quick, read-only scan of an existing repository: ten checks and a findings list with severities, file references and fixes. | Standard and deep assessments, an optional scanner-assisted mode, a visual dashboard and report checked against each other, standards references per finding, and baseline drift checks. |
+
+`opskeep-video-production-gate` is a separate full gate in the core pack. It is not one
+of the lite/Pro security and project gate pairs above.
 
 ## Other business models
 

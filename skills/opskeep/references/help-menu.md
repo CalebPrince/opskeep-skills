@@ -31,6 +31,7 @@ Other business models (separate packs):
 
 Before you build:
 - `new project`, `project gate`, `design decisions` - agree the problem and the design before anything is built
+- `video production gate`, `match this video`, `review this render` - verify references, approve the production plan, and score the exported video before delivery
 - `security gate` - Secure by Design baseline once the project gate passes
 
 Manage Opskeep:
@@ -59,6 +60,7 @@ This is the help screen, not a full command registry. `skills/opskeep/SKILL.md` 
 - Client check-in or retention signal: `Opskeep keep clients` -> `Opskeep define work`
 - Closeout: `Opskeep improve operations` -> `Opskeep keep clients`
 - Recurring/event-driven op: choose lane first; route to `Opskeep manage` only if user wants automation.
+- Reference-led ad or motion brief: `Opskeep video production gate` -> approved plan -> implementation -> scored render review.
 
 ## Clarification Rule
 

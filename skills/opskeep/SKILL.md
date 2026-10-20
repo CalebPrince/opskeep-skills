@@ -1,9 +1,9 @@
 ---
 name: opskeep
-description: "Use when the user invokes Opskeep and needs routing across service-business operations, Opskeep setup/management, or Opskeep tools. Routes to business lanes: get work, define work, deliver work, get paid, keep clients, improve operations; to Manage Opskeep for setup, tools, automations, memory, and preferences; to Opskeep Tools for audio briefs, huddles, reminders, time tracking, and Composio-backed utilities; to the separately installed opskeep-retail / opskeep-hospitality / opskeep-accounting vertical router whenever shop, venue, or accounting-practice client work (bookkeeping, reconciliations, filing deadlines, management accounts) is on the table; to opskeep-project-gate before any new app, website, dashboard or major redesign is built (then opskeep-elliot-design for the security gate); or to opskeep-manage-client-keys when the user is the agent manager tracking per-client API keys, credits, and usage."
+description: "Use when the user invokes Opskeep and needs routing across service-business operations, Opskeep setup/management, or Opskeep tools. Routes to business lanes: get work, define work, deliver work, get paid, keep clients, improve operations; to Manage Opskeep for setup, tools, automations, memory, and preferences; to Opskeep Tools for audio briefs, huddles, reminders, time tracking, and Composio-backed utilities; to the separately installed opskeep-retail / opskeep-hospitality / opskeep-accounting vertical router whenever shop, venue, or accounting-practice client work (bookkeeping, reconciliations, filing deadlines, management accounts) is on the table; to opskeep-project-gate before new software or a major redesign; to opskeep-video-production-gate before reference-led video implementation or for render-fidelity review; or to opskeep-manage-client-keys when the user is the agent manager tracking per-client API keys, credits, and usage."
 metadata:
   lane: meta
-  version: 2.4.0
+  version: 2.5.0
   pack_version: 0.4.0
 ---
 
@@ -37,6 +37,7 @@ No command? Use conversation context to choose the best destination. Show the me
 | Run your business: Keep clients | `keep clients`, `relationship`, `follow up`, `check-in`, `client health`, `stakeholder`, `retention`, `renewal`, `testimonial`, `referral` | `opskeep-keep-clients` |
 | Run your business: Improve operations | `improve operations`, `lessons`, `retrospective`, `close`, `archive`, `handover`, `benefits`, `reuse`, `SOP`, `template`, `video tutorial`, `YouTube link`, `transcript` | `opskeep-improve-operations` |
 | Before you build | `new project`, `new app`, `new website`, `before we start`, `project gate`, `design decisions`, `design direction`, `DESIGN.md`, `redesign`, `scaffold` | `opskeep-project-gate` |
+| Video production gate | `reference video`, `match this video`, `video ad`, `promo`, `motion piece`, `recut`, `scene recreation`, `render review`, `video fidelity`, `reuse extend invent` | `opskeep-video-production-gate` |
 | Security gate | `security gate`, `secure by design`, `security baseline`, `threat model`; `security review` of an existing repo | `opskeep-elliot-design`; existing repo -> `opskeep-elliot-review` |
 | Manage Opskeep | `manage opskeep`, `setup`, `onboard opskeep`, `business profile`, `preferences`, `company brain`, `memory`, `connect tools`, `connector`, `automation`, `trigger`, `loop`, `recurring workflow` | `opskeep-manage` |
 | Opskeep Tools | `opskeep tools`, `audio brief`, `voice session`, `talk by voice`, `follow-up reminder`, `email reminder`, `time tracking`, `time entry`, `expense tracking`, `job expense`, `mileage`, `escalate`, `escalation`, `composio`, `hosted utility` | `opskeep-tools` |
@@ -66,6 +67,7 @@ No command? Use conversation context to choose the best destination. Show the me
 14. Vertical packs are separate installs staged under `verticals/<pack>/skills/`. If the matching vertical router is not installed, return the clone-and-copy install path and use `TBD` for the target skill rather than inventing or running `opskeep-retail-*` / `opskeep-hospitality-*` / `opskeep-accounting-*` skills as if they were present.
 15. Agent-manager bookkeeping intent (the user's clients' AI API keys, top-ups, credit balances, or what their agents use) routes to `opskeep-manage-client-keys`. Per-client money still stays in `get paid`, and live external app writes stay in `composio`.
 16. Starting something new to build (an app, website, dashboard, internal tool, store or major redesign) with no approved design on record routes to `opskeep-project-gate` first (the free lite version or the full Opskeep Pro version, whichever is installed). It owns the problem, the bet and the direction; it never authorises implementation. After it is approved, `opskeep-elliot-design` runs the security gate. Changing a foundational decision on an approved gate ("make it mobile-first") also goes back to `opskeep-project-gate`.
+17. Reference-led video production (ads, promos, explainers, recuts, motion pieces, or scene recreations) routes to `opskeep-video-production-gate` before implementation. It verifies reference access, decides per scene whether to reuse, extend, or invent, obtains explicit plan approval, and reviews the actual export before delivery. It does not render. A video tutorial whose goal is an SOP still routes to `improve operations`.
 
 ## Tie-Breakers
 
@@ -83,6 +85,7 @@ No command? Use conversation context to choose the best destination. Show the me
 - `weekly client update` -> `deliver work`; recurring update automation -> `opskeep-manage`.
 - `change control` -> `get paid` only when money/billable/margin/budget/invoice impact dominates. Scope/delivery changes stay `define work` or `deliver work`.
 - `video`/`YouTube link`/`transcript` -> `improve operations` when the goal is a reusable SOP/process doc. `opskeep-tools` to `opskeep-audio-brief` only when the user explicitly wants a listenable/audio brief instead.
+- `reference video`/`match this ad`/`review this render` -> `opskeep-video-production-gate` when the goal is planning or judging a video production; ordinary video creation without a reference may still use it when a formal approval and render-quality gate is requested.
 - `Reddit`/`social post` -> `get work` when the goal is researching a topic to draft new content. `keep clients` for a testimonial/review-style social ask tied to a specific client relationship instead.
 - `reconcile`/`reconciliation` -> `opskeep-accounting` when it's a client's bank or ledger; `get paid` when it's matching payments received against the business's own invoices; `opskeep-retail` for a shop till.
 - `invoice`/`who owes us`/`aged debtors`/`WIP`/`retainer` -> `get paid`, even for an accounting practice.

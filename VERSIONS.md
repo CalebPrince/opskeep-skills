@@ -3,6 +3,11 @@
 Behavior-affecting changes to the skill pack, newest first. Follows semver for the pack
 as a whole (see `package.json`).
 
+## Unreleased
+
+- Added `opskeep-video-production-gate`, an implementation-neutral gate for reference-led ads, promos, explainers, recuts, and motion work. It requires verified audiovisual evidence, explicit `reuse` / `extend` / `invent` decisions, creative-director plan approval, deterministic state checks, and scored inspection of each exported render before delivery.
+- Added a reusable production checklist and an eval covering mixed reuse, extension, invention, provenance uncertainty, and separate plan/render approvals. The Opskeep router, help menu, and library index now expose the gate.
+
 ## 0.4.0 - 2026-10-18
 
 - `opskeep-project-gate`, `opskeep-elliot-design` and `opskeep-elliot-review` are now

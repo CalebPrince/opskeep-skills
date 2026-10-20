@@ -1,0 +1,4 @@
+interface:
+  display_name: "Opskeep Video Production Gate"
+  short_description: "Gate reference-led video production before execution"
+  default_prompt: "Use $opskeep-video-production-gate to gate this VidKre8 video production brief before implementation."
