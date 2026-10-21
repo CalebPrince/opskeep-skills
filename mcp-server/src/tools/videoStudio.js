@@ -15,7 +15,8 @@ import { z } from "zod";
 
 const LOOPBACK = new Set(["127.0.0.1", "localhost", "[::1]"]);
 const FILES = ["index.html", "audio.json", "clips.json", "icons.json", "notes.md", "brand.json", "captions.json", "blocks.json"];
-const UNPAID_STEPS = ["place-lines", "build-icons", "build-clips", "make-sfx", "render", "audio", "cut", "final", "transcribe", "beats", "captions", "reframe"];
+const UNPAID_STEPS = ["place-lines", "build-icons", "build-clips", "make-sfx", "render", "audio", "cut", "final", "transcribe", "beats", "captions", "reframe", "export"];
+const EXPORT_PRESETS = ["whatsapp", "phone", "social", "youtube", "feed"];
 
 const projectId = z.string().regex(/^prj_[0-9a-f]{12,16}$/).describe("Project id, e.g. prj_1a2b3c4d5e6f (from video_list_projects)");
 const jobId = z.string().regex(/^job_[0-9a-f]{12,16}$/).describe("Job id (from video_queue_job, video_request_voice_lines or video_get_job_status)");
@@ -266,18 +267,23 @@ export const videoQueueJobTool = tool(
     "for cuts that land on the music. captions burns captions.json onto the finished video as a second file (<folder>-captioned.mp4). " +
     "place-lines is refused when Caleb has timed the project by hand on the timeline: tell him, do not work around it. " +
     "shape picks the shape for render, audio, captions (a 9:16 page's 16:9, 1:1 or 4:5 layout, which the page must lay out itself) and for " +
-    "reframe, which makes a shape the page does not lay out from the finished video (fitted in a blurred fill or cropped, as Caleb sets in Scenes, Shapes).",
+    "reframe, which makes a shape the page does not lay out from the finished video (fitted in a blurred fill or cropped, as Caleb sets in Scenes, Shapes). " +
+    "export makes a copy of the finished video for sending or posting, with the limits Caleb sets in Settings: give preset phone (one file under the " +
+    "phone size limit, for sending on WhatsApp or by email), whatsapp (Status parts of the Status length), social (9:16 for Reels, TikTok and Shorts), " +
+    "youtube (16:9) or feed (4:5 or 1:1). It is made from the finished, mixed video (the captioned or sting version when there is one), so run render and audio first.",
   {
     projectId,
     step: z.enum(UNPAID_STEPS).describe("Pipeline step"),
+    preset: z.enum(EXPORT_PRESETS).optional().describe("For step=export only: which copy to make"),
     cutName: z.string().regex(/^[a-z0-9][a-z0-9-]{0,19}$/).optional().describe("For step=cut only: the cut to build"),
     source: z.string().regex(/^(music|mix|med_[0-9a-f]{16})$/).optional().describe("For step=transcribe only: music, mix or a media id"),
     shape: z.enum(["9:16", "16:9", "1:1", "4:5"]).optional().describe("For render, audio and captions: the page's layout to use; for reframe: the shape to make"),
   },
-  async ({ projectId, step, cutName, source, shape }) => {
+  async ({ projectId, step, preset, cutName, source, shape }) => {
     const layout = { "16:9": "wide", "1:1": "square", "4:5": "portrait" }[shape];
     const extra = step === "reframe" ? (shape ? { ratio: shape.replace(":", "x") } : {}) : layout && ["render", "audio", "captions"].includes(step) ? { layout } : {};
-    return jobSummary((await studio("POST", "/api/jobs", { projectId, step, ...(cutName ? { cutName } : {}), ...(source ? { source } : {}), ...extra })).job);
+    if (step === "export" && !preset) throw new Error("Choose an export preset: " + EXPORT_PRESETS.join(", ") + ".");
+    return jobSummary((await studio("POST", "/api/jobs", { projectId, step, ...(step === "export" ? { preset } : {}), ...(cutName ? { cutName } : {}), ...(source ? { source } : {}), ...extra })).job);
   }
 );
 
