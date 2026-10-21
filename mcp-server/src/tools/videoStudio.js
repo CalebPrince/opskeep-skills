@@ -17,6 +17,7 @@ const LOOPBACK = new Set(["127.0.0.1", "localhost", "[::1]"]);
 const FILES = ["index.html", "audio.json", "clips.json", "icons.json", "notes.md", "brand.json", "captions.json", "blocks.json"];
 const UNPAID_STEPS = ["place-lines", "build-icons", "build-clips", "make-sfx", "render", "audio", "cut", "final", "transcribe", "beats", "captions", "reframe", "export"];
 const EXPORT_PRESETS = ["whatsapp", "phone", "social", "youtube", "feed"];
+const COVER_SHAPES = ["9:16", "16:9", "1:1", "4:5"];
 
 const projectId = z.string().regex(/^prj_[0-9a-f]{12,16}$/).describe("Project id, e.g. prj_1a2b3c4d5e6f (from video_list_projects)");
 const jobId = z.string().regex(/^job_[0-9a-f]{12,16}$/).describe("Job id (from video_queue_job, video_request_voice_lines or video_get_job_status)");
@@ -148,15 +149,19 @@ export const videoCreateProjectTool = tool(
 export const videoUpdateProjectTool = tool(
   "video_update_project",
   "Update a Video Studio project",
-  "Rename a project or set its voice id. Whether a project is on Caleb's own channels can only be changed by Caleb in the studio.",
+  "Rename a project, set its voice id, or pick its cover frames. Whether a project is on Caleb's own channels can only be changed by Caleb in the studio. A cover is the picture a phone gallery shows for the video: give a frame time in seconds for each shape (pick a frame that reads well at that shape's size), or null to clear a time you set. Caleb's own covers (a picture he uploaded or a time he picked) stay until he removes them; the studio refuses to replace them.",
   {
     projectId,
     name: z.string().min(1).max(80).optional().describe("New display name"),
     voiceId: z.string().regex(/^[A-Za-z0-9]{10,40}$/).nullable().optional().describe("ElevenLabs voice id, or null to clear it"),
+    covers: z.object(Object.fromEntries(COVER_SHAPES.map((r) => [r, z.number().min(0).max(36000).nullable().optional()]))).strict().optional()
+      .describe('Cover frame per shape, in seconds into the video, e.g. {"9:16": 28.5, "16:9": 12}; null clears a time you set'),
   },
-  async ({ projectId, name, voiceId }) => {
-    const patch = { ...(name !== undefined ? { name } : {}), ...(voiceId !== undefined ? { voiceId } : {}) };
-    if (Object.keys(patch).length === 0) throw new Error("Give a name or a voiceId to change.");
+  async ({ projectId, name, voiceId, covers }) => {
+    // only numbers (or null) go to the studio for covers; pictures, removal and the first-frame switch are Caleb's
+    const shapes = covers ? Object.fromEntries(Object.entries(covers).filter(([, v]) => v !== undefined)) : null;
+    const patch = { ...(name !== undefined ? { name } : {}), ...(voiceId !== undefined ? { voiceId } : {}), ...(shapes && Object.keys(shapes).length ? { covers: shapes } : {}) };
+    if (Object.keys(patch).length === 0) throw new Error("Give a name, a voiceId or covers to change.");
     return (await studio("PATCH", `/api/projects/${projectId}`, patch)).project;
   }
 );
